@@ -1,0 +1,59 @@
+@import 'https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap';
+.auth_loading_button, .auth_submit_button {
+  border: none;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  width: 103%;
+  height: 3.1rem;
+  margin-top: 2.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen and (max-width: 27rem) {
+  .auth_loading_button, .auth_submit_button {
+    width: 100%;
+  }
+}
+
+.join_button {
+  border: none;
+  border-radius: 12px;
+  background-color: yellow;
+  font-weight: 600;
+  width: 8.5rem;
+  height: 2.5rem;
+  font-size: 20px;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+.auth_submit_button {
+  background-color: rgb(37, 219, 37);
+  box-shadow: rgb(174, 165, 165) 0px 3px 4px;
+}
+
+.auth_loading_button {
+  background-color: rgb(174, 165, 165);
+  box-shadow: gray 0px 3px 4px;
+}
+
+.workouts_redirect_button {
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  background-color: #488eff;
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  width: 12rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

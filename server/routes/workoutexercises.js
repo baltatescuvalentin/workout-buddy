@@ -1,5 +1,5 @@
 import express from 'express';
-import { createWorkoutExercise, deleteWorkoutExercise, updateWorkoutExercise } from '../controllers/workoutexercices.js';
+import { createWorkoutExercise, deleteWorkoutExercise, updateWorkoutExercise } from '../controllers/workoutexercises.js';
 import { verifyToken } from '../middleware/auth.js';
 
 const router = express.Router();

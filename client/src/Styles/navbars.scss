@@ -1,0 +1,202 @@
+@import '_variables';
+@import '_config';
+@import 'styles.scss';
+
+.homepage_navbar {
+    margin-left: 5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    justify-content: space-between;
+    width: 90vw;
+    top: 3rem;
+    left: 0;
+
+    @media screen and (max-width: $phone) {
+        display: none;
+    }
+}
+
+.homepage_menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.dark_menu_item {
+    @extend %navbar_item;
+    color: $dark-theme-text;
+}
+
+.light_menu_item {
+    @extend %navbar_item;
+    color: $light-theme-text;
+}
+
+.navbar_logo {
+    width: 18rem;
+    height: 5rem;
+    cursor: pointer;
+}
+
+.pages_navbar_wrapper {
+    width: 35rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 10px 0px 20px -10px $logo-color;
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    @media screen and (max-width: $medium) {
+        display: none;
+    }
+}
+
+.pages_navbar_logo {
+    @extend .navbar_logo;
+    margin-top: 2.5rem;
+    margin-left: 2.3rem;
+}
+
+.pages_navbar {
+    display: flex;
+
+}
+
+.pages_navbar_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 3rem;
+
+    &:hover {
+        color: $logo-color;
+    }
+
+    &:hover .navbar_icon_light, &:hover .navbar_icon_dark {
+        fill: $logo-color;
+    }
+
+    .navbar_icon_light {
+        @extend %navbar_icon;
+        fill: $light-theme-text;
+    }
+
+    .navbar_icon_dark {
+        @extend %navbar_icon;
+        fill: $dark-theme-text;
+    }
+
+    p {
+        font-size: 26px;
+        margin: 0.6rem;
+    }
+}
+
+.category_elements {
+    display: flex;
+    flex-direction: column;
+    margin-left: 6rem;
+}
+
+.link_wrapper {
+    @extend .vertical_flex;
+    display: block;
+}
+
+.link_navbar {
+    display: block;
+    margin-left: 3rem;
+    font-size: 26px;
+}
+
+.mobile_navbar_light {
+    @extend %light_theme;
+}
+
+.mobile_navbar_dark {
+    @extend %dark_theme;
+}
+
+.mobile_navbar_wrapper {
+    display: none;
+    width: 100vw;
+    position: absolute;
+    z-index: 999;
+    height: 100vh;
+
+    @media screen and (max-width: $medium) {
+        display: block;
+    }
+
+    .close_navbar_position {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100vw;
+        position: relative;
+        margin-top: 0.1rem;
+        margin-bottom: 0.3rem;
+
+        .close_navbar {
+            position: absolute;
+            width: 3rem;
+            height: 3rem;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            fill: $logo-color;
+        }
+    }
+}
+
+.mobile_navbar_hidden {
+    @include toggleNavbar(false);
+    @extend .mobile_navbar_wrapper;
+}
+
+.mobile_navbar_active {
+    @include toggleNavbar(true);
+    @extend .mobile_navbar_wrapper;
+}
+
+.mobile_menu_wrapper {
+    border-radius: 8px;
+    background-color: $mobile-menu-color;
+    width: 93%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 0.3rem;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+
+    @media screen and (max-width: $medium) {
+        display: flex;
+    }
+}
+
+.mobile_menu_icon {
+    width: 2.6rem;
+    height: 2.6rem;
+    fill: grey;
+    margin: 0.2rem;
+}
+
+.item_margin_left_navbar {
+    margin-left: 3rem;
+}

@@ -3,14 +3,14 @@ import WorkoutExercise from "../models/WorkoutExercise.js";
 export const createWorkoutExercise = async (req, res) => {
     try {
         const {
-            exerciceId,
+            exerciseId,
             workoutId,
             reps,
             sets,
         } = req.body;
 
         const workoutExercise = new WorkoutExercise({
-            exerciceId,
+            exerciseId,
             workoutId,
             reps,
             sets

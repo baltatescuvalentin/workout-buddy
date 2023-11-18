@@ -1,0 +1,148 @@
+@import 'https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap';
+.wrapper {
+  background-color: white;
+}
+
+.container {
+  margin-left: 15rem;
+  margin-right: 15rem;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: row;
+  background-color: #F7FAFE;
+}
+@media screen and (max-width: 1280px) {
+  .container {
+    margin-left: 5rem;
+    margin-right: 5rem;
+  }
+}
+@media screen and (max-width: 27rem) {
+  .container {
+    margin: 0;
+    display: block;
+    min-height: 100vh;
+  }
+}
+
+.image {
+  width: 35rem;
+  height: 41.25rem;
+}
+@media screen and (max-width: 27rem) {
+  .image {
+    display: none;
+  }
+}
+
+.auth_wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.auth_wrapper h1 {
+  margin: 0;
+  color: #488eff;
+  margin-top: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+@media screen and (max-width: 27rem) {
+  .auth_wrapper h1 {
+    margin-left: 0.25rem;
+  }
+}
+.form_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+@media screen and (max-width: 27rem) {
+  .form_wrapper {
+    width: 100%;
+    padding-left: 0;
+  }
+}
+
+.extra_text {
+  color: #4A6375;
+  font-size: 18px;
+  text-align: center;
+  margin: 0 auto;
+}
+.extra_text span {
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+
+.error_text_server {
+  font-size: 18px;
+  color: red;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.changepassword_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  gap: 0.5rem;
+  margin-top: 8.5rem;
+  height: 100%;
+}
+@media screen and (max-width: 27rem) {
+  .changepassword_wrapper {
+    width: 100%;
+    padding-left: 0;
+  }
+}
+.changepassword_wrapper h3 {
+  margin: 0;
+}
+
+.small_container {
+  margin-top: 3rem;
+}
+
+.info_wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 20rem;
+}
+@media screen and (max-width: 27rem) {
+  .info_wrapper {
+    flex-direction: column;
+  }
+}
+
+.info_card {
+  background: linear-gradient(#FE6221, #5C1B00);
+  border-radius: 48px;
+  width: 6.25rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.info_card p {
+  font-size: 18px;
+}
+@media screen and (max-width: 27rem) {
+  .info_card {
+    width: 100%;
+  }
+}
+.info_card .icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: white;
+}

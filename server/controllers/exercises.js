@@ -2,7 +2,7 @@ import Exercise from "../models/Exercise.js";
 import axios from "axios";
 import { v2 as cloudinary } from 'cloudinary';
 
-export const exercicesFromAPIToDB = async (req, res) => {
+export const exercisesFromAPIToDB = async (req, res) => {
     try {
         const options = {
             method: 'GET',
@@ -51,12 +51,12 @@ export const exercicesFromAPIToDB = async (req, res) => {
     }
 }
 
-export const getExercices = async (req, res) => {
+export const getExercises = async (req, res) => {
     try {
-        const allExercices = await Exercise.find({});
+        const allExercises = await Exercise.find({});
 
         res.status(200).json({
-            exercices: allExercices,
+            exercises: allExercises,
         })
     }
     catch(error) {
@@ -66,7 +66,7 @@ export const getExercices = async (req, res) => {
     }
 }
 
-export const getExercice = async (req, res) => {
+export const getExercise = async (req, res) => {
     try {
         const {
             input,
@@ -98,7 +98,7 @@ export const getExercice = async (req, res) => {
         });
 
         res.status(200).json({
-            exercices: results,
+            exercises: results,
         })
     }
     catch(error) {
@@ -108,7 +108,7 @@ export const getExercice = async (req, res) => {
     }
 }
 
-export const getExerciceByName = async (req, res) => {
+export const getExerciseByName = async (req, res) => {
     try {
         const {
             name,
@@ -131,7 +131,7 @@ export const getExerciceByName = async (req, res) => {
     }
 }
 
-export const getExerciceByBodyPart = async (req, res) => {
+export const getExerciseByBodyPart = async (req, res) => {
     try {
         const {
             bodyPart,
@@ -154,7 +154,7 @@ export const getExerciceByBodyPart = async (req, res) => {
     }
 }
 
-export const getExerciceByTarget = async (req, res) => {
+export const getExerciseByTarget = async (req, res) => {
     try {
         const {
             target,

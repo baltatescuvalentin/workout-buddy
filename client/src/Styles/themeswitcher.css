@@ -1,0 +1,47 @@
+@import 'https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap';
+.light_switcher, .dark_switcher {
+  background: none;
+  border-radius: 2.3rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  cursor: pointer;
+  width: 6rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  transition: transform 0.5 ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.dark_switcher {
+  border-color: #1b1b1b;
+}
+
+.light_switcher {
+  border-color: #F7FAFE;
+}
+
+.light_button {
+  fill: #1b1b1b;
+  /*position: absolute;
+  top: 0;
+  left: 0;*/
+  transform: translateX(-23%);
+  border: 0.1rem solid #1b1b1b;
+  border-radius: 50%;
+  box-shadow: 7px 0 10px -1px #888;
+}
+
+.dark_button {
+  fill: #F7FAFE;
+  /*position: absolute;
+  top: 0;
+  left: 4rem;*/
+  transform: translateX(180%);
+  border: 0.1rem solid #F7FAFE;
+  border-radius: 50%;
+  box-shadow: -7px 0 10px -1px #888;
+}

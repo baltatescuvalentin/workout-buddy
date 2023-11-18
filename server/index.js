@@ -6,8 +6,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import authRoutes from './routes/auth.js';
-import exercicesRoutes from './routes/exercices.js';
-import workoutExercicesRoutes from './routes/workoutexercices.js';
+import exercisesRoutes from './routes/exercises.js';
+import workoutExercisesRoutes from './routes/workoutexercises.js';
 import workoutRoutineRoutes from './routes/workoutroutines.js';
 
 dotenv.config();
@@ -21,8 +21,8 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));*/
 app.use(cors());
 
 app.use('/auth', authRoutes);
-app.use('/exercices', exercicesRoutes);
-app.use('/workoutexercice', workoutExercicesRoutes);
+app.use('/exercises', exercisesRoutes);
+app.use('/workoutexercise', workoutExercisesRoutes);
 app.use('/workoutroutine', workoutRoutineRoutes);
 
 const PORT = process.env.PORT || 5001;

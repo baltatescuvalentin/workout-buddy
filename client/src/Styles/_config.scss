@@ -1,0 +1,159 @@
+@import '_variables';
+
+%container {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.7rem;
+
+    @media screen and (max-width: $phone) {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+%homepage_image_text {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    width: 55rem;
+
+    @media screen and (max-width: $medium) {
+        width: auto;
+    }
+
+    @media screen and (max-width: $phone) {
+        display: none;
+    }
+}
+
+@mixin parallax($imgPath) {
+    min-height: 22rem;
+    min-width: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url($imgPath);
+
+    
+}
+
+%flex_center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+%auth_input {
+    border-radius: 8px;
+    background-color: white;
+    font-size: 18px;
+    padding-left: 0.5rem;
+    height: 2.2rem;
+    width: 100%;
+    outline: none;
+
+    @media screen and (max-width: $phone) {
+        width: 97%;
+        height: 2.5rem;
+    }
+}
+
+%auth_button {
+    border: none;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    width: 103%;
+    height: 3.1rem;
+    margin-top: 2.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media screen and (max-width: $phone) {
+        width: 100%;
+    }
+}
+
+%navbar_item {
+    text-decoration: none;
+    font-size: 18px;
+    display: inline-block;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: $logo-color;
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+}
+
+%switcher {
+    background: none;
+    border-radius: 2.3rem;
+    border-width: 0.1rem;
+    border-style: solid;
+    cursor: pointer;
+    width: 6rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    transition: transform 0.5 ease;
+    overflow: hidden;
+    position: relative;
+}
+
+%navbar_icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+@mixin toggleNavbar($hidden: true) {
+    @if $hidden {
+        transition: left 0.5s linear;
+        left: 0;
+    }
+    @else {
+        transition: left 0.5s linear;
+        left: -150%;
+    }
+}
+
+%mobile_navbar {
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index: 9999;
+    height: 100vh;
+    transition: left 0.5s linear;
+}
+
+%light_theme {
+    background-color: $light-theme-background;
+    color: $light-theme-text;
+}
+
+%dark_theme {
+    background-color: $dark-theme-background;
+    color: $dark-theme-text;
+}

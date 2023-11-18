@@ -1,0 +1,90 @@
+@import 'https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap';
+.auth_ok, .auth_error, .auth_idle {
+  border-radius: 8px;
+  background-color: white;
+  font-size: 18px;
+  padding-left: 0.5rem;
+  height: 2.2rem;
+  width: 100%;
+  outline: none;
+}
+@media screen and (max-width: 27rem) {
+  .auth_ok, .auth_error, .auth_idle {
+    width: 97%;
+    height: 2.5rem;
+  }
+}
+
+.light_input {
+  background-color: #F7FAFE;
+  color: #1b1b1b;
+}
+
+.dark_input {
+  background-color: #1b1b1b;
+  color: #F7FAFE;
+}
+
+.auth_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.auth_idle {
+  border: 2px solid grey;
+  box-shadow: grey 0px 3px 4px;
+}
+
+.auth_error {
+  border: 2px solid rgb(239, 68, 68);
+  box-shadow: rgb(239, 68, 68) 0px 3px 4px;
+}
+
+.auth_ok {
+  border: 2px solid lime;
+}
+
+.auth_label {
+  color: #4A6375;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.auth_label_icon {
+  width: 1rem;
+  height: 1rem;
+  fill: #4A6375;
+}
+
+.error_text {
+  color: rgb(239, 68, 68);
+  margin: 0;
+  margin-top: 0.25rem;
+  margin-left: 0.25rem;
+  font-size: 14px;
+}
+
+.info_input {
+  border-bottom: 2px solid white;
+  color: white;
+  font-size: 18px;
+}
+
+.find_exercise_input {
+  outline: none;
+  width: 25rem;
+  height: 3rem;
+  border: none;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  border-bottom: solid 3px #488eff;
+}
+@media screen and (max-width: 27rem) {
+  .find_exercise_input {
+    width: 100%;
+  }
+}

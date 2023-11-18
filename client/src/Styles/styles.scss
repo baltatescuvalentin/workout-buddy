@@ -1,0 +1,257 @@
+@import "_variables";
+@import '_config';
+
+:root,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: $font;
+}
+
+html {
+    position: relative;
+}
+
+
+.dark {
+    background-color: $dark-theme-background;
+    color: $dark-theme-text;
+}
+
+.light {
+    background-color: $light-theme-background;
+    color: $light-theme-text;
+}
+
+.homepage_image {
+    width: 100%;
+    height: 42.6rem;
+    flex-shrink: 0;
+    opacity: 0.75;
+
+    @media screen and (max-width: $phone) {
+        width: 100%;
+        height: 20rem;
+        /*background-size: 120px auto;
+        background-position: center center;
+        overflow: hidden;*/
+        background-size: cover;
+        background-position: center center;
+        overflow: hidden;
+    }
+}
+
+.homepage_wrapper {
+    position: relative;
+}
+
+.homepage_image_wrapper {
+    @extend %homepage_image_text;
+}
+
+.homepage_image_bold_text {
+
+    margin-top: 3rem;
+
+    & > p {
+        font-weight: 800;
+        font-size: 60px;
+        margin: 0;
+    }
+
+    p > span {
+        font-style: italic;
+        color: $logo-color;
+        margin: 0;
+    }
+
+    @media screen and (max-width: $medium) {
+        & > p {
+            font-size: 20px;
+            margin-top: 0;
+        }
+    }
+}
+
+.homepage_image_text {
+    
+    & > p {
+        font-weight: 600;
+        font-size: 25px;
+        margin: 0;
+    }
+
+    p > span {
+        font-style: italic;
+        color: $logo-color;
+    }
+
+    @media screen and (max-width: $medium) {
+        & > p {
+            font-size: 16px;
+        }
+    }
+}
+
+.homepage_image_text_mobile {
+    @extend %container;
+    display: none;
+
+    @media screen and (max-width: $phone) {
+        display: block;
+    }
+}
+
+.homepage_text {
+    @extend %container;
+
+    & > p {
+        font-size: 18px;
+
+        @media screen and (max-width: $phone) {
+            font-size: 16px;
+        }
+
+        span {
+            font-weight: 700;
+            font-style: italic;
+            color: $logo-color;
+        }
+    }
+}
+
+.workout_parallax {
+    @include parallax('../utils/images/workoutplan.webp');
+}
+
+.fitness_parallax {
+    @include parallax('../utils/images/fitnessparallax4.jpg');
+}
+
+.subtitle {
+    font-weight: 600;
+    font-size: 24px;
+
+    @media screen and (max-width: $phone) {
+        font-size: 20;
+    }
+}
+
+.contact {
+    @extend %container;
+    border-style: solid;
+    border-radius: 16px;
+    border-width: 8px;
+    border-color: $logo-color;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+
+    @media screen and (max-width: $phone) {
+        border-width: 2px;
+    }
+}
+
+.contact_image {
+    height: 20rem;
+    width: 22rem;
+    //border-right: ;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    mask-image: linear-gradient(to right, rgba(0,0,0,0) 10%, rgb(43, 42, 42));
+
+    @media screen and (max-width: $phone) {
+        display: none;
+    }
+}
+
+.contact_item {
+    @extend %flex_center;
+
+    p {
+        font-weight: 600;
+    }
+    
+    @media screen and (max-width: $phone) {
+        font-size: 16px;
+    }
+}
+
+.contact_logo {
+    width: 2rem;
+    height: 2rem;
+}
+
+.contact_container {
+    margin-left: 5%;
+
+    @media screen and (max-width: $phone) {
+        margin-left: 0.75rem;
+    }
+}
+
+.contact_title {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.homepage_card_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+    justify-content: center;
+
+    @media screen and (max-width: $medium) {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+.homepage_card {
+    border-radius: 16px;
+    border: solid 5px cyan;
+    background: linear-gradient($logo-color, rgb(0, 204, 204));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20rem;
+    height: 15rem;
+    
+    & > * {
+        color: white;
+    }
+
+    h2 {
+        margin-bottom: 0;
+    }
+
+    p {
+        text-align: center;
+        margin-left: 0.75rem;
+        margin-right: 0.75rem;
+    }
+
+    .card_icon {
+        fill: white;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+.shared_layout {
+    display: flex;
+    flex-direction: row;
+}
+
+.vertical_flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.cancel_scroll {
+    overflow-y: hidden;
+}

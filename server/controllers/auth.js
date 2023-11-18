@@ -5,8 +5,7 @@ import jwt from 'jsonwebtoken';
 export const registerUser = async (req, res) => {
     try {
         const {
-            firstName,
-            lastName,
+            fullName,
             email,
             password,
             userName,
@@ -16,8 +15,7 @@ export const registerUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
     
         const newUser = new User({
-            firstName,
-            lastName,
+            fullName,
             email,
             password: hashedPassword,
             userName,
@@ -36,12 +34,12 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
     try {
         const {
-            email,
+            userName,
             password,
         } = req.body;
 
         const user = await User.findOne({
-            email,
+            userName,
         });
 
         if(!user) {
@@ -85,12 +83,14 @@ export const updateUserInfo = async (req, res) => {
             age,
             height,
             weight,
+            sex,
         } = req.body;
 
         const updatedUser = await User.findByIdAndUpdate(id, {
             age,
             height,
             weight,
+            sex,
         }, {
             new: true,
         });
@@ -113,19 +113,32 @@ export const updateUserInfo = async (req, res) => {
 export const changePassword = async (req, res) => {
     try {
         const {
-            id,
+            email,
             password
         } = req.body;
+
+        const user = await User.findOne({
+            email: email,
+        });
+
+        if(!user) {
+            return res.status(404).json({
+                message: 'User does not exist!',
+            })
+        }
+
+        const userId = user._id;
 
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);
 
-
-        const updatedUser = await User.findByIdAndUpdate(id, {
+        const updatedUser = await User.findByIdAndUpdate(userId, {
             password: hashedPassword,
         }, {
             new: true,
         });
+
+        console.log(updatedUser);
 
         const userFiltered = { ...updatedUser._doc };
         delete userFiltered.password;
@@ -141,3 +154,32 @@ export const changePassword = async (req, res) => {
     }
 }
 
+export const userCheck = async(req, res) => {
+    try {
+        const {
+            email,
+        } = req.body;
+
+        const user = await User.findOne({
+            email,
+        });
+
+        if(!user) {
+            return res.status(404).json({
+                message: 'User does not exist!',
+            });
+        }
+
+        const userFiltered = { ...user._doc };
+        delete userFiltered.password;
+
+        res.status(200).json({
+            user: userFiltered,
+        })
+    }
+    catch(error) {
+        res.status(500).json({
+            error: error.message,
+        })
+    }
+}

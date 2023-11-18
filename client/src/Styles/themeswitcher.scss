@@ -1,0 +1,34 @@
+@import '_variables';
+@import '_config';
+
+.dark_switcher {
+    @extend %switcher;
+    border-color: $dark-theme-background;
+}
+
+.light_switcher {
+    @extend %switcher;
+    border-color: $light-theme-background;
+}
+
+.light_button {
+    fill: $light-theme-text;
+    /*position: absolute;
+    top: 0;
+    left: 0;*/
+    transform: translateX(-23%);
+    border: 0.1rem solid $light-theme-text;
+    border-radius: 50%;
+    box-shadow: 7px 0 10px -1px #888;
+}
+
+.dark_button {
+    fill: $dark-theme-text;
+    /*position: absolute;
+    top: 0;
+    left: 4rem;*/
+    transform: translateX(180%);
+    border: 0.1rem solid $dark-theme-text;
+    border-radius: 50%;
+    box-shadow: -7px 0 10px -1px #888;
+}

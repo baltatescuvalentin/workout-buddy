@@ -2,13 +2,8 @@ import mongoose from "mongoose";
 import isEmail from "validator/lib/isemail.js";
 
 const userSchema = mongoose.Schema({
-    firstName: {
-        required: [true, "Please type your firstname"],
-        type: String,
-        min: 2,
-    },
-    lastName: {
-        required: [true, "Please type your lastname"],
+    fullName: {
+        required: [true, "Please type your fullname"],
         type: String,
         min: 2,
     },
@@ -34,6 +29,7 @@ const userSchema = mongoose.Schema({
         type: Array,
         default: [],
     },
+    sex: String,
     age: Number,
     weight: Number,
     height: Number,
