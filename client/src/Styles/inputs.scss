@@ -68,10 +68,69 @@
     }
 }
 
+.find_workout_exercise_input {
+    @extend .find_exercise_input;
+    font-size: 16px;
+    width: 15rem;
+    background-color: $logo-color;
+}
+
+.exercise_sets_reps {
+    outline: none;
+    border: none;
+    border-bottom: solid 3px $logo-color;
+    width: 5rem;
+    height: 2rem;
+    font-family: $font;
+    background-color: $logo-color;
+    font-size: 18px;
+    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+    }
+}
+
 .light_input {
     @extend %light_theme;
 }
 
 .dark_input {
     @extend %dark_theme;
+}
+
+.create_workout_title {
+    outline: none;
+    font-size: 26px;
+    font-weight: 600;
+    margin-top: 0.75rem;
+    width: 93%;
+    border: none;
+}
+
+.create_workout_description {
+    outline: none;
+    resize: none;
+    width: 93%;
+    margin-top: 0.5rem;
+    border: none;
+    max-height: 12rem;
+    overflow-y: auto;
+    font-size: 20px;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: rgb(80, 80, 80);
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $logo-color;
+        box-shadow: inset 0 0 6px rgba(124, 60, 60, 0.3);
+    }
+
+    @media screen and (max-width: $phone) {
+        max-width: auto;
+    }
 }

@@ -2,13 +2,13 @@ import { useSelector } from 'react-redux';
 import '../../Styles/inputs.css';
 import { useEffect } from 'react';
 
-const FindExerciseInput = ({getExerciseInput}) => {
+const FindExerciseInput = ({getExerciseInput, styling}) => {
 
     const mode = useSelector(state => state.mode);
 
     return (
-        <input type="text" placeholder="&#128269; Search" onInput={(e) => getExerciseInput(e.target.value)} 
-            className={`${mode === 'light' ? 'light_input' : 'dark_input'} find_exercise_input`}/>
+        <input type="text" placeholder="&#128269; Search" onChange={(e) => getExerciseInput(e.target.value)} onKeyDown={(e) => getExerciseInput(e.target.value)} 
+            className={`${mode === 'light' ? 'light_input' : 'dark_input'} ${styling}`}/>
     )
 }
 

@@ -14,6 +14,7 @@ import MobileWrapper from './components/MobileWrapper';
 import FindExercise from './Scenes/workouts/FindExercise';
 import axios from 'axios';
 import WorkoutsMain from './Scenes/workouts/WorkoutsMain';
+import CreateWorkout from './Scenes/workouts/CreateWorkout';
 
 function App() {
 
@@ -70,6 +71,7 @@ function App() {
             <Route path='/workouts' element={<SharedLayout />} >
               <Route index element={<WorkoutsMain />} />
               <Route path='findexercise' element={<FindExercise />}/>
+              <Route path='create_workout' element={<CreateWorkout />} />
             </Route>
           </Route>
           <Route path='/register' element={<Register />} />

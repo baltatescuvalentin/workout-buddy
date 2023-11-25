@@ -37,7 +37,7 @@
     }
 }
 
-.workouts_find_wrapper {
+.workouts_find_wrapper, .workouts_create_wrapper {
     @extend .workouts_main_wrapper;
     p {
         font-size: 16px;
@@ -50,6 +50,10 @@
     overflow-y: scroll;
     border-radius: 12px;
     cursor: pointer;
+
+    @media screen and (max-width: $phone) {
+        max-height: 10rem;
+    }
 
     &::-webkit-scrollbar {
         width: 10px;
@@ -64,6 +68,11 @@
         background-color: $logo-color;
         box-shadow: inset 0 0 6px rgba(124, 60, 60, 0.3);
     }
+}
+
+.workout_exercises_results_list {
+    @extend .exercises_results_list;
+    max-height: 10rem;
 }
 
 .exercise_wrapper {
@@ -101,7 +110,129 @@
 
 .create_workout_exercise {
     @extend .exercise_wrapper;
-    font-size: 16px !important;
-    width: 20rem !important;
-    height: 20rem !important;
+
+    h2 {
+        font-size: 18px;
+    }
+    
+    p {
+        font-size: 16px;
+    }
+}
+
+.choose_workout_exercise_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    & > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.1rem;
+    }
+}
+
+.create_workout_exercise_steps_image {
+    @extend .exercise_steps_image;
+    
+    p {
+        font-size: 16px;
+    }
+
+    img {
+        width: 20rem;
+        height: 20rem;
+    }
+}
+
+.sets_reps_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0.85rem;
+    gap: 0.75rem;
+
+    @media screen and (max-width: $phone) {
+        gap: 0.5rem;
+    }
+
+    p {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    h2 {
+        margin: 0;
+        margin-right: 0.75rem;
+    }
+
+    .sets_reps {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.75rem;
+    }
+}
+
+.create_workout_form_wrapper {
+    margin-top: 1.5rem;
+    border-radius: 12px;
+    padding: 2rem;
+//    border: 5px solid $logo-color;
+
+    @media screen and (max-width: $phone) {
+        border-width: 3px;
+        padding: 0.2rem;
+    }
+}
+
+.create_workout_buttons_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 0.5rem;
+
+    .create_workout_form_header_buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.75rem;
+    }
+}
+
+.days_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    color: white;
+}
+
+.day_wrapper {
+    border-radius: 12px;
+    //border: 4px solid $logo-color;
+    background-color: $logo-color;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    gap: 0.25rem;
+
+    .day_header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .day_header_buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        h2 {
+            margin-bottom: 0;
+        }
+    }
 }

@@ -1,31 +1,36 @@
-import { useFieldArray, useForm } from 'react-hook-form';
 import '../../Styles/workouts.css';
+import { useState } from 'react';
+import CreateWorkoutButton from '../../components/buttons/CreateWorkoutButton';
+import CreateWorkoutForm from '../../components/CreateWorkoutForm';
 
 const CreateWorkout = () => {
 
-    const { register, handleSubmit, setValue, getValues, control} = useForm({
-        defaultValues: {
-            days: [
-                { dayName: 'Monday', items: [] },
-                { dayName: 'Tuesday', items: [] },
-                { dayName: 'Wednesday', items: [] },
-                { dayName: 'Thursday', items: [] },
-                { dayName: 'Friday', items: [] },
-                { dayName: 'Saturday', items: [] },
-                { dayName: 'Sunday', items: [] },
-              ],
-        }
-    });
+    const [activeCreate, setActiveCreate] = useState(false);
 
-    const { fields, append, remove } = useFieldArray({
-        control,
-        name: 'days',
-    })
+    const handleActiveForm = () => {
+        setActiveCreate(prev => !prev);
+    }
 
     return (
         <div className='workout_wrapper'>
+            <div className='workouts_create_wrapper'>
+                <h1>
+                    Create a workout
+                </h1>
+                <p>
+                    Your journey becoming a better you started when you thought about it, now it's time to put that in practice.
+                    Now let <span>Workout Buddy</span> help you in creating the workout routine you like.
+                </p>
+                <p>
+                    Choose from the
+                    vast variety of exercises the platform makes available to you and organize your week however you like,
+                    we give you the freedom!
+                </p>
+                <CreateWorkoutButton activeCreate={activeCreate} handleActiveForm={handleActiveForm}/>
 
-        </div>
+                {activeCreate && <CreateWorkoutForm handleActiveForm={handleActiveForm}/>}
+            </div>
+        </div>  
     )
 }
 

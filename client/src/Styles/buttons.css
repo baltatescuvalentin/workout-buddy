@@ -22,6 +22,20 @@
   }
 }
 
+.create_workout_button_disabled, .create_workout_button_active {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  color: white;
+  width: 10rem;
+  height: 3rem;
+  font-size: 24px;
+}
+.create_workout_button_disabled:active, .create_workout_button_active:active {
+  transform: scale(0.99);
+}
+
 .join_button {
   border: none;
   border-radius: 12px;
@@ -56,4 +70,167 @@
   height: 2.5rem;
   margin-bottom: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.create_workout_button_active {
+  background-color: #488eff;
+}
+
+.create_workout_button_disabled {
+  background-color: gray;
+  pointer-events: none;
+}
+
+.create_workout_btn_light {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.create_workout_btn_dark {
+  box-shadow: rgba(226, 218, 218, 0.479) 0px 5px 15px;
+}
+
+.create_workout_form_header_save_button {
+  border: 3px solid rgba(0, 128, 0, 0.622);
+  background-color: lime;
+  width: 7rem;
+  height: 2.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+.create_workout_form_header_save_button:hover {
+  box-shadow: rgba(0, 255, 0, 0.5) 5px 5px;
+}
+.create_workout_form_header_save_button p {
+  font-size: 20px;
+  color: rgba(0, 128, 0, 0.622);
+}
+.create_workout_form_header_save_button .workout_header_button_icon {
+  fill: rgba(0, 128, 0, 0.622);
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.create_workout_form_header_cancel_button {
+  border: 3px solid red;
+  background-color: rgba(255, 99, 71, 0.644);
+  width: 7rem;
+  height: 2.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+.create_workout_form_header_cancel_button:hover {
+  box-shadow: rgba(255, 99, 71, 0.5) 5px 5px;
+}
+.create_workout_form_header_cancel_button p {
+  font-size: 20px;
+  color: red;
+}
+.create_workout_form_header_cancel_button .workout_header_button_icon {
+  fill: red;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.choose_workout_exercise_close {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  border: 2px solid gray;
+  background-color: rgb(199, 189, 189);
+  color: rgb(96, 94, 94);
+  cursor: pointer;
+  width: 6rem;
+  height: 2rem;
+  border-radius: 8px;
+}
+@media screen and (max-width: 27rem) {
+  .choose_workout_exercise_close {
+    background: none;
+    border: none;
+    width: 2.5rem;
+  }
+}
+.choose_workout_exercise_close p {
+  margin: 0;
+}
+@media screen and (max-width: 27rem) {
+  .choose_workout_exercise_close p {
+    display: none;
+  }
+}
+.choose_workout_exercise_close .choose_workout_exercise_close_icon {
+  height: 1.2rem;
+  width: 1.2rem;
+  fill: rgb(96, 94, 94);
+}
+@media screen and (max-width: 27rem) {
+  .choose_workout_exercise_close .choose_workout_exercise_close_icon {
+    height: 1.7rem;
+    width: 1.7rem;
+    fill: white;
+  }
+}
+
+.choose_workout_exercise_save {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  border: 2px solid rgb(91, 195, 91);
+  background-color: rgb(0, 198, 0);
+  color: rgb(41, 251, 41);
+  cursor: pointer;
+  width: 6rem;
+  height: 2rem;
+  border-radius: 8px;
+}
+@media screen and (max-width: 27rem) {
+  .choose_workout_exercise_save {
+    background: none;
+    border: none;
+    width: 2.5rem;
+  }
+}
+.choose_workout_exercise_save p {
+  margin: 0;
+}
+@media screen and (max-width: 27rem) {
+  .choose_workout_exercise_save p {
+    display: none;
+  }
+}
+.choose_workout_exercise_save .choose_workout_exercise_close_icon {
+  height: 1.2rem;
+  width: 1.2rem;
+  fill: rgb(41, 251, 41);
+}
+@media screen and (max-width: 27rem) {
+  .choose_workout_exercise_save .choose_workout_exercise_close_icon {
+    height: 1.7rem;
+    width: 1.7rem;
+    fill: white;
+  }
+}
+
+.prerotate {
+  transition: transform 0.3 ease;
+}
+
+.rotate_button {
+  transform: rotate(180deg);
 }

@@ -5,6 +5,7 @@ import ExercisesResultsList from '../../components/ExercisesResultsList';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterExercises } from '../../utils/functions/workouts';
 import ChosenExercise from '../../components/ChosenExercise';
+import ChooseWorkoutExercise from '../../components/ChooseWorkoutExercise';
 
 const FindExercise = () => {
 
@@ -38,12 +39,14 @@ const FindExercise = () => {
                     So just type it up and get healthy!
                 </p>
 
-                <FindExerciseInput getExerciseInput={getExerciseInput}/>
+                <FindExerciseInput getExerciseInput={getExerciseInput} styling='find_exercise_input'/>
 
-                <ExercisesResultsList exercises={exercisesList} setChosenExercise={setChosenExercise}/>
+                <ExercisesResultsList exercises={exercisesList} setChosenExercise={setChosenExercise} styling='exercises_results_list'/>
 
-                {chosenExercise && <ChosenExercise exercise={chosenExercise} />}
+                {chosenExercise && <ChosenExercise exercise={chosenExercise} wrapper_styling='exercise_wrapper' instructions_styling='exercise_steps_image'/>}
             </div>
+
+            <ChooseWorkoutExercise />
         </div>
     )
 }

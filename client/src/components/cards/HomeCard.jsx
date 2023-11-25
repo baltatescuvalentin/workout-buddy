@@ -4,7 +4,7 @@ const HomeCard = ({icon, text, title}) => {
     return (
         <div className='homepage_card'>
             <h2>{title}</h2>
-            <div>{icon}</div>
+            {icon}
             <p>{text}</p>
         </div>
     )

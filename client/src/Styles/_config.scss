@@ -157,3 +157,88 @@
     background-color: $dark-theme-background;
     color: $dark-theme-text;
 }
+
+%create_workout_button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    color: white;
+    width: 10rem;
+    height: 3rem;
+    font-size: 24px;
+
+    &:active {
+        transform: scale(0.99);
+    }
+}
+
+@mixin workout_header_button($primary_color, $bg-color) {
+    border: 3px solid $primary_color;
+    background-color: $bg-color;
+    width: 7rem;
+    height: 2.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: $font;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    
+    &:hover {
+        box-shadow: rgba($bg-color, 0.5) 5px 5px;
+    }
+
+    p {
+        font-size: 20px;
+        color: $primary_color;
+    }
+
+    .workout_header_button_icon {
+        fill: $primary_color;
+        height: 1.2rem;
+        width: 1.2rem;
+    }
+}
+
+@mixin choose_workout_exercise_button($border, $bg-color, $text-color) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    border: $border;
+    background-color: $bg-color;
+    color: $text-color;
+    cursor: pointer;
+    width: 6rem;
+    height: 2rem;
+    border-radius: 8px;
+
+    @media screen and (max-width: $phone) {
+        background: none;
+        border: none;
+        width: 2.5rem;
+    }
+
+    p {
+        margin: 0;
+        @media screen and (max-width: $phone) {
+            display: none;
+        }
+    }
+
+    .choose_workout_exercise_close_icon {
+        height: 1.2rem;
+        width: 1.2rem;
+        fill: $text-color;
+
+        @media screen and (max-width: $phone) {
+            height: 1.7rem;
+            width: 1.7rem;
+            fill: white;
+        }
+    }
+}

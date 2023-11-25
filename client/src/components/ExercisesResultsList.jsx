@@ -1,11 +1,11 @@
 import '../Styles/workouts.css';
 
-const ExercisesResultsList = ({exercises, setChosenExercise}) => {
+const ExercisesResultsList = ({exercises, setChosenExercise, styling}) => {
 
     console.log(exercises);
     
     return (
-        <div className="exercises_results_list">
+        <div className={`${styling}`}>
             {exercises.map((exercise) => {
                 return <p onClick={() => setChosenExercise(exercise)} key={exercise.id}>{exercise.name}</p>
             })}
