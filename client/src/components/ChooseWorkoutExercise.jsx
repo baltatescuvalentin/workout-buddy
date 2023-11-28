@@ -11,7 +11,7 @@ import UtilityButton from "./buttons/UtilityButton";
 import { FaRegTimesCircle } from "react-icons/fa";
 import { FaSave } from "react-icons/fa";
 
-const ChooseWorkoutExercise = () => {
+const ChooseWorkoutExercise = ({handleCloseFind, handleExpand, handleAddExercise, dayIndex}) => {
 
     const [exerciseInput, setExerciseInput] = useState("");
     const [exercisesList, setExecisesList] = useState([]);
@@ -36,13 +36,32 @@ const ChooseWorkoutExercise = () => {
         setExecisesList(filtered);
     }
 
+    const saveExerciseToState = () => {
+        const exercise = {
+            exercise: chosenExercise,
+            reps: getValues('reps'),
+            sets: getValues('sets'),
+            minutes: getValues('minutes'),
+        };
+
+        console.log(chosenExercise);
+        console.log(exercise);
+
+        handleAddExercise(dayIndex, exercise);
+    }
+
+    const handleSave = () => {
+        saveExerciseToState();
+        handleCloseFind();
+    }
+
     return (
-        <div>
+        <div className="choose_workout_wrapper">
             <div className="choose_workout_exercise_header">
                 <FindExerciseInput getExerciseInput={getExerciseInput} styling='find_workout_exercise_input'/>
                 <div>
-                    <UtilityButton title='Save' icon={<FaSave className="choose_workout_exercise_close_icon"/>} styles='choose_workout_exercise_save'/>
-                    <UtilityButton title='Close' icon={<FaRegTimesCircle className="choose_workout_exercise_close_icon"/>} styles='choose_workout_exercise_close'/>
+                    <UtilityButton onClick={handleSave} title='Save' icon={<FaSave className="choose_workout_exercise_close_icon"/>} styles='choose_workout_exercise_save'/>
+                    <UtilityButton onClick={handleCloseFind} title='Close' icon={<FaRegTimesCircle className="choose_workout_exercise_close_icon"/>} styles='choose_workout_exercise_close'/>
                 </div>
             </div>
 
@@ -53,11 +72,11 @@ const ChooseWorkoutExercise = () => {
             {chosenExercise && (
                 <div className="sets_reps_wrapper">
                     <div className="sets_reps">
-                        <WorkoutExerciseInput id='sets' getValues={getValues} register={register} title='Sets'/>
-                        <WorkoutExerciseInput id='reps' getValues={getValues} register={register} title='Reps'/>
+                        <WorkoutExerciseInput id='sets' getValues={getValues} register={register} title='Sets' styles='exercise_sets_reps'/>
+                        <WorkoutExerciseInput id='reps' getValues={getValues} register={register} title='Reps' styles='exercise_sets_reps'/>
                     </div>
                     <h2>or</h2>
-                    <WorkoutExerciseInput id='minutes' getValues={getValues} register={register} title='Minutes'/>
+                    <WorkoutExerciseInput id='minutes' getValues={getValues} register={register} title='Minutes' styles='exercise_sets_reps'/>
                 </div>
             )}
         </div>

@@ -115,6 +115,11 @@
   height: 1.2rem;
   width: 1.2rem;
 }
+.create_workout_form_header_save_button .workout_header_button_loader {
+  height: 1.2rem;
+  width: 1.2rem;
+  color: white;
+}
 
 .create_workout_form_header_cancel_button {
   border: 3px solid red;
@@ -141,6 +146,11 @@
   fill: red;
   height: 1.2rem;
   width: 1.2rem;
+}
+.create_workout_form_header_cancel_button .workout_header_button_loader {
+  height: 1.2rem;
+  width: 1.2rem;
+  color: white;
 }
 
 .choose_workout_exercise_close {
@@ -193,7 +203,7 @@
   gap: 0.2rem;
   border: 2px solid rgb(91, 195, 91);
   background-color: rgb(0, 198, 0);
-  color: rgb(41, 251, 41);
+  color: white;
   cursor: pointer;
   width: 6rem;
   height: 2rem;
@@ -217,7 +227,7 @@
 .choose_workout_exercise_save .choose_workout_exercise_close_icon {
   height: 1.2rem;
   width: 1.2rem;
-  fill: rgb(41, 251, 41);
+  fill: white;
 }
 @media screen and (max-width: 27rem) {
   .choose_workout_exercise_save .choose_workout_exercise_close_icon {
@@ -228,9 +238,140 @@
 }
 
 .prerotate {
-  transition: transform 0.3 ease;
+  transition: transform 0.5 ease;
 }
 
 .rotate_button {
   transform: rotate(180deg);
+}
+
+.expand_button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  border-radius: 8px;
+  border: 3px solid #48EAFF;
+  color: #48EAFF;
+  background-color: #5E48FF;
+  width: 6rem;
+  height: 2.5rem;
+  cursor: pointer;
+}
+.expand_button p {
+  margin: 0;
+}
+@media screen and (max-width: 27rem) {
+  .expand_button p {
+    display: none;
+  }
+}
+@media screen and (max-width: 27rem) {
+  .expand_button {
+    background: none;
+    border: none;
+    width: 2.5rem;
+  }
+}
+.expand_button .day_header_button_icon, .expand_button .workout_exercise_icon {
+  fill: #48EAFF;
+  height: 1rem;
+  width: 1rem;
+}
+@media screen and (max-width: 27rem) {
+  .expand_button .day_header_button_icon, .expand_button .workout_exercise_icon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+.add_exercise_to_day_button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  border-radius: 8px;
+  border: 3px solid white;
+  color: white;
+  background-color: #5E48FF;
+  width: 6rem;
+  height: 2.5rem;
+  cursor: pointer;
+}
+.add_exercise_to_day_button p {
+  margin: 0;
+}
+@media screen and (max-width: 27rem) {
+  .add_exercise_to_day_button p {
+    display: none;
+  }
+}
+@media screen and (max-width: 27rem) {
+  .add_exercise_to_day_button {
+    background: none;
+    border: none;
+    width: 2.5rem;
+  }
+}
+.add_exercise_to_day_button .day_header_button_icon, .add_exercise_to_day_button .workout_exercise_icon {
+  fill: white;
+  height: 1.1rem;
+  width: 1.1rem;
+}
+@media screen and (max-width: 27rem) {
+  .add_exercise_to_day_button .day_header_button_icon, .add_exercise_to_day_button .workout_exercise_icon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+.workout_exercise_button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  border-radius: 8px;
+  border: 3px solid white;
+  color: white;
+  background-color: #FFB948;
+  width: 6rem;
+  height: 2.5rem;
+  cursor: pointer;
+  width: 6rem;
+  height: 2rem;
+}
+.workout_exercise_button p {
+  margin: 0;
+}
+@media screen and (max-width: 27rem) {
+  .workout_exercise_button p {
+    display: none;
+  }
+}
+@media screen and (max-width: 27rem) {
+  .workout_exercise_button {
+    background: none;
+    border: none;
+    width: 2.5rem;
+  }
+}
+.workout_exercise_button .day_header_button_icon, .workout_exercise_button .workout_exercise_icon {
+  fill: white;
+  height: 1rem;
+  width: 1rem;
+}
+@media screen and (max-width: 27rem) {
+  .workout_exercise_button .day_header_button_icon, .workout_exercise_button .workout_exercise_icon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+@media screen and (max-width: 27rem) {
+  .workout_exercise_button {
+    gap: 0;
+    width: 2rem;
+  }
 }

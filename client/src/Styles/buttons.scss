@@ -71,13 +71,33 @@
 }
 
 .choose_workout_exercise_save {
-    @include choose_workout_exercise_button(2px solid rgb(91, 195, 91), rgb(0, 198, 0), rgb(41, 251, 41));
+    @include choose_workout_exercise_button(2px solid rgb(91, 195, 91), rgb(0, 198, 0), white);
 }
 
 .prerotate {
-    transition: transform 0.3 ease;
+    transition: transform 0.5 ease;
 }
 
 .rotate_button {
     transform: rotate(180deg);
 }
+
+.expand_button {
+    @include day_header_button(#5E48FF, #48EAFF, 1rem);
+}
+
+.add_exercise_to_day_button {
+    @include day_header_button(#5E48FF, white, 1.1rem);
+}
+
+.workout_exercise_button {
+    @include day_header_button(#FFB948, white, 1rem);
+    width: 6rem;
+    height: 2rem;       
+
+    @media screen and (max-width: $phone) {
+        gap: 0;
+        width: 2rem;
+    }
+}
+

@@ -20,7 +20,7 @@ const CreateWorkoutDescription = ({id, name, register}) => {
       };
 
     return (
-        <textarea rows={rows} contentEditable id={id} placeholder={name} {...register(id)} onChange={(e) => setText(e.target.value)}
+        <textarea rows={rows} id={id} placeholder={name} {...register(id)} onChange={(e) => setText(e.target.value)}
             className={`create_workout_description ${mode === 'light' ? 'light_input' : 'dark_input'}`}>
 
         </textarea>

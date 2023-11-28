@@ -201,6 +201,12 @@
         height: 1.2rem;
         width: 1.2rem;
     }
+
+    .workout_header_button_loader {
+        height: 1.2rem;
+        width: 1.2rem;
+        color: white;
+    }
 }
 
 @mixin choose_workout_exercise_button($border, $bg-color, $text-color) {
@@ -239,6 +245,45 @@
             height: 1.7rem;
             width: 1.7rem;
             fill: white;
+        }
+    }
+}
+
+@mixin day_header_button($bg-color, $text-color, $icon_dims) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    border-radius: 8px;
+    border: 3px solid $text-color;
+    color: $text-color;
+    background-color: $bg-color;
+    width: 6rem;
+    height: 2.5rem;
+    cursor: pointer;
+
+    p {
+        margin: 0;
+        @media screen and (max-width: $phone) {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: $phone) {
+        background: none;
+        border: none;
+        width: 2.5rem;
+    }
+
+    .day_header_button_icon, .workout_exercise_icon {
+        fill: $text-color;
+        height: $icon_dims;
+        width: $icon_dims;
+
+        @media screen and (max-width: $phone) {
+            height: 1.5rem;
+            width: 1.5rem;
         }
     }
 }

@@ -76,25 +76,25 @@
   }
 }
 
-.exercise_steps_image, .create_workout_exercise_steps_image {
+.exercise_steps_image, .create_workout_exercise_steps_image, .workout_exercise_details .workout_exercise_details_instructions {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.5rem;
 }
 @media screen and (max-width: 27rem) {
-  .exercise_steps_image, .create_workout_exercise_steps_image {
+  .exercise_steps_image, .create_workout_exercise_steps_image, .workout_exercise_details .workout_exercise_details_instructions {
     flex-direction: column;
   }
 }
-.exercise_steps_image img, .create_workout_exercise_steps_image img {
+.exercise_steps_image img, .create_workout_exercise_steps_image img, .workout_exercise_details .workout_exercise_details_instructions img {
   width: 27rem;
   height: 27rem;
   border-radius: 12px;
   border: 2px solid #488eff;
 }
 @media screen and (max-width: 27rem) {
-  .exercise_steps_image img, .create_workout_exercise_steps_image img {
+  .exercise_steps_image img, .create_workout_exercise_steps_image img, .workout_exercise_details .workout_exercise_details_instructions img {
     width: 100%;
     height: 20rem;
   }
@@ -105,6 +105,10 @@
 }
 .create_workout_exercise p {
   font-size: 16px;
+}
+
+.choose_workout_wrapper {
+  margin-bottom: 0.75rem;
 }
 
 .choose_workout_exercise_header {
@@ -120,10 +124,10 @@
   gap: 0.1rem;
 }
 
-.create_workout_exercise_steps_image p {
+.create_workout_exercise_steps_image p, .workout_exercise_details .workout_exercise_details_instructions p {
   font-size: 16px;
 }
-.create_workout_exercise_steps_image img {
+.create_workout_exercise_steps_image img, .workout_exercise_details .workout_exercise_details_instructions img {
   width: 20rem;
   height: 20rem;
 }
@@ -207,6 +211,49 @@
   gap: 0.5rem;
   align-items: center;
 }
-.day_wrapper .day_header h2 {
-  margin-bottom: 0;
+
+.workout_exercise_wrapper {
+  border-radius: 8px;
+  background-color: #FFB948;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  color: white;
+}
+@media screen and (max-width: 27rem) {
+  .workout_exercise_wrapper {
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+  }
+}
+
+.workout_exercise_details_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.workout_exercise_details_header .workout_exercise_name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 18px;
+  width: 65%;
+}
+@media screen and (max-width: 80rem) {
+  .workout_exercise_details_header .workout_exercise_name {
+    font-size: 16px;
+  }
+}
+.workout_exercise_details_header .workout_exercise_buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.workout_exercise_details {
+  display: inline;
+}
+.workout_exercise_details p > span {
+  font-weight: 500;
 }

@@ -1,28 +1,65 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../Styles/workouts.css';
 import ChooseWorkoutExercise from './ChooseWorkoutExercise';
 import UtilityButton from './buttons/UtilityButton';
 import { FaPlus } from "react-icons/fa";
 import ExpandButton from './buttons/ExpandButton';
+import ExerciseDayTitle from './inputs/ExerciseDayTitle';
+import { useForm } from 'react-hook-form';
+import WorkoutExercise from './WorkoutExercise';
 
-const CreateWorkoutDay = ({handleAddExercise, handleRemoveExercise, day, dayIndex}) => {
+const CreateWorkoutDay = ({handleEditExercise, handleAddExercise, handleRemoveExercise, handleChangeDayName, day, dayIndex}) => {
 
     const [openFind, setOpenFind] = useState(false);
+    const [expand, setExpand] = useState(false);
+    const {
+        register,
+        getValues,
+        watch,
+    } = useForm({
+        defaultValues: {
+            title: '',
+        }
+    });
+
+    useEffect(() => {
+        console.log(getValues('title'));
+        handleChangeDayName(dayIndex, getValues('title'));
+    }, [watch('title')])
 
     const handleOpenFind = () => {
-        setOpenFind(prev => !prev);
+        setOpenFind(true);
     }
+
+    const handleCloseFind = () => {
+        setOpenFind(false);
+    }
+
+    const handleExpand = () => {
+        setExpand(prev => !prev);
+    }
+
+    console.log(day.items);
 
     return (
         <div className='day_wrapper'>
             <div className='day_header'>
                 <h2>{day.dayName}</h2>
                 <div className='day_header_buttons'>
-                    <UtilityButton title='Add' icon={<FaPlus />} styles=''/>
-                    <ExpandButton />
+                    {!openFind && <UtilityButton onClick={handleOpenFind} title='Add' icon={<FaPlus className='day_header_button_icon'/>} styles='add_exercise_to_day_button'/>}
+                    <ExpandButton onClick={handleExpand} btnStyles='expand_button' iconStyles='day_header_button_icon'/>
                 </div>
             </div>
-            <ChooseWorkoutExercise />
+            {openFind && <ChooseWorkoutExercise handleExpand={handleExpand} handleCloseFind={handleCloseFind} handleAddExercise={handleAddExercise} dayIndex={dayIndex}/>}
+            {expand && (
+                <>
+                    <ExerciseDayTitle id='title' register={register}/>
+                    {day.items.length !== 0 && day.items.map((exercise, index) => {
+                        console.log(exercise);
+                        return <WorkoutExercise handleEditExercise={(exercise) => handleEditExercise(dayIndex, exercise)} handleRemoveExercise={() => handleRemoveExercise(dayIndex, index)} exercise={exercise} key={index}/>
+                    })}
+                </>
+            )}
         </div>
     )
 }

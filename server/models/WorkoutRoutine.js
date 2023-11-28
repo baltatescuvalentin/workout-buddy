@@ -4,32 +4,67 @@ const workoutRoutine = mongoose.Schema({
     name: String,
     description: String,
     monday: {
-        type: Array,
-        default: [],
+        name: {
+            type: String,
+        },
+        exercises: {
+            type: Array,
+            default: [],
+        }
     },
     tuesday: {
-        type: Array,
-        default: [],
+        name: {
+            type: String,
+        },
+        exercises: {
+            type: Array,
+            default: [],
+        }
     },
     wednesday: {
-        type: Array,
-        default: [],
+        name: {
+            type: String,
+        },
+        exercises: {
+            type: Array,
+            default: [],
+        }
     },
     thursday: {
-        type: Array,
-        default: [],
+        name: {
+            type: String,
+        },
+        exercises: {
+            type: Array,
+            default: [],
+        }
     },
     friday: {
-        type: Array,
-        default: [],
+        name: {
+            type: String,
+        },
+        exercises: {
+            type: Array,
+            default: [],
+        }
     },
     saturday: {
-        type: Array,
-        default: [],
+        name: {
+            type: String,
+        },
+        exercises: {
+            type: Array,
+            default: [],
+        }
     },
     sunday: {
-        type: Array,
-        default: [],
+        name: {
+            type: String,
+        },
+        exercises: {
+            type: Array,
+            default: [],
+        }
     }
 })
 

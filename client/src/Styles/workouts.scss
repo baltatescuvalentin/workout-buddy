@@ -120,6 +120,10 @@
     }
 }
 
+.choose_workout_wrapper {
+    margin-bottom: 0.75rem;
+}
+
 .choose_workout_exercise_header {
     display: flex;
     flex-direction: row;
@@ -230,9 +234,59 @@
             gap: 0.5rem;
             align-items: center;
         }
-
-        h2 {
-            margin-bottom: 0;
-        }
     }
 }
+
+.workout_exercise_wrapper {
+    border-radius: 8px;
+    background-color: $exercise_color;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    color: white;
+    
+    @media screen and (max-width: $phone) {
+        margin-left: 0.2rem;
+        margin-right: 0.2rem;
+    }
+}
+
+.workout_exercise_details_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .workout_exercise_name {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 18px;
+        width: 65%;
+
+        @media screen and (max-width: $large) {
+            font-size: 16px;
+        }
+    }
+
+    .workout_exercise_buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.2rem;
+    }
+
+    
+}
+
+.workout_exercise_details {
+    display: inline;
+
+    p > span {
+        font-weight: 500;
+    }
+
+    .workout_exercise_details_instructions {
+        @extend .create_workout_exercise_steps_image;
+    }
+}
+

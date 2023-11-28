@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import '../../Styles/workouts.css';
 import FindExerciseInput from '../../components/inputs/FindExerciseInput';
 import ExercisesResultsList from '../../components/ExercisesResultsList';

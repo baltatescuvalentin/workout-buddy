@@ -73,6 +73,7 @@
     font-size: 16px;
     width: 15rem;
     background-color: $logo-color;
+    color: white;
 }
 
 .exercise_sets_reps {
@@ -83,10 +84,16 @@
     height: 2rem;
     font-family: $font;
     background-color: $logo-color;
+    color: white;
     font-size: 18px;
     &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
         -webkit-appearance: none;
     }
+}
+
+.edit_exercise_input {
+    @extend .exercise_sets_reps;
+    background-color: $exercise_color;
 }
 
 .light_input {
@@ -104,6 +111,18 @@
     margin-top: 0.75rem;
     width: 93%;
     border: none;
+}
+
+.create_exercise_day_title {
+    outline: none;
+    font-size: 18px;
+    width: 90%;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: $logo-color;
+    color: white;
+    margin-bottom: 0.2rem;
 }
 
 .create_workout_description {

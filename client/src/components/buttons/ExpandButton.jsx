@@ -1,20 +1,19 @@
 import '../../Styles/buttons.css';
 import { FaArrowDown, FaArrowUp  } from "react-icons/fa";
-import RotatingButton from './RotatingButton';
-import UtilityButton from './UtilityButton';
+import { useState } from 'react';
 
-
-const ExpandButton = ({btnStyles, iconStyles}) => {
+const ExpandButton = ({btnStyles, iconStyles, onClick}) => {
 
     const [isRotated, setIsRotated] = useState(false);
 
     const handleClick = () => {
-        setIsRotated(!isRotated);
+        setIsRotated(prev => !prev);
     };
 
     return (
-        <button onClick={handleClick} className={`prerotate ${isRotated ? 'rotated_button' : ''} ${styles}`}>
-            {isRotated ? arrowUp : arrowDown}
+        <button onClick={() => { handleClick(); onClick(); }} className={`prerotate ${isRotated ? 'rotated_button' : ''} ${btnStyles}`}>
+            <p>{isRotated ? 'Fold' : 'Expand'}</p>
+            {isRotated ? <FaArrowUp className={`${iconStyles}`}/> : <FaArrowDown className={`${iconStyles}`}/>}
         </button>
     )
 }

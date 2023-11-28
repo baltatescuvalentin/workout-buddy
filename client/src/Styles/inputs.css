@@ -93,9 +93,10 @@
   font-size: 16px;
   width: 15rem;
   background-color: #488eff;
+  color: white;
 }
 
-.exercise_sets_reps {
+.exercise_sets_reps, .edit_exercise_input {
   outline: none;
   border: none;
   border-bottom: solid 3px #488eff;
@@ -103,10 +104,15 @@
   height: 2rem;
   font-family: "Poppins", sans-serif;
   background-color: #488eff;
+  color: white;
   font-size: 18px;
 }
-.exercise_sets_reps::-webkit-inner-spin-button, .exercise_sets_reps::-webkit-outer-spin-button {
+.exercise_sets_reps::-webkit-inner-spin-button, .edit_exercise_input::-webkit-inner-spin-button, .exercise_sets_reps::-webkit-outer-spin-button, .edit_exercise_input::-webkit-outer-spin-button {
   -webkit-appearance: none;
+}
+
+.edit_exercise_input {
+  background-color: #FFB948;
 }
 
 .create_workout_title {
@@ -116,6 +122,18 @@
   margin-top: 0.75rem;
   width: 93%;
   border: none;
+}
+
+.create_exercise_day_title {
+  outline: none;
+  font-size: 18px;
+  width: 90%;
+  border: none;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #488eff;
+  color: white;
+  margin-bottom: 0.2rem;
 }
 
 .create_workout_description {
