@@ -180,7 +180,7 @@
     }
 }
 
-.create_workout_form_wrapper {
+.create_workout_form_wrapper, .myworkouts_wrapper {
     margin-top: 1.5rem;
     border-radius: 12px;
     padding: 2rem;
@@ -207,34 +207,38 @@
     }
 }
 
-.days_wrapper {
+.days_wrapper, .myworkouts_workouts {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
     color: white;
 }
 
-.day_wrapper {
+.day_wrapper, .myworkouts_workout_wrapper {
     border-radius: 12px;
     //border: 4px solid $logo-color;
     background-color: $logo-color;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
-    gap: 0.25rem;
 
-    .day_header {
+    .day_header, .myworkouts_workout_header {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
 
-        .day_header_buttons {
+        .day_header_buttons, .myworkouts_workout_buttons {
             display: flex;
             flex-direction: row;
             gap: 0.5rem;
             align-items: center;
         }
     }
+}
+
+.myworkouts_workout_wrapper {
+    margin-top: 1rem;
+    background-color: $exercise_color;
 }
 
 .workout_exercise_wrapper {
@@ -272,7 +276,11 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 0.2rem;
+        gap: 0.5rem;
+
+        @media screen and (max-width: $phone) {
+            gap: 0.1rem;
+        }
     }
 
     

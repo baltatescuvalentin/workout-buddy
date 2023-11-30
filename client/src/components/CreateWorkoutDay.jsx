@@ -46,7 +46,7 @@ const CreateWorkoutDay = ({handleEditExercise, handleAddExercise, handleRemoveEx
             <div className='day_header'>
                 <h2>{day.dayName}</h2>
                 <div className='day_header_buttons'>
-                    {!openFind && <UtilityButton onClick={handleOpenFind} title='Add' icon={<FaPlus className='day_header_button_icon'/>} styles='add_exercise_to_day_button'/>}
+                    {!openFind && <UtilityButton onClick={handleOpenFind} icon={<FaPlus className='day_header_button_icon'/>} styles='add_exercise_to_day_button'/>}
                     <ExpandButton onClick={handleExpand} btnStyles='expand_button' iconStyles='day_header_button_icon'/>
                 </div>
             </div>

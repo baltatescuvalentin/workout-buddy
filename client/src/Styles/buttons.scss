@@ -83,16 +83,20 @@
 }
 
 .expand_button {
-    @include day_header_button(#5E48FF, #48EAFF, 1rem);
+    @include day_header_button(#5E48FF, #48EAFF, 1.1rem);
 }
 
 .add_exercise_to_day_button {
     @include day_header_button(#5E48FF, white, 1.1rem);
 }
 
+.myworkouts_header_button {
+    @include day_header_button($exercise_color, white, 1.1rem);
+}
+
 .workout_exercise_button {
-    @include day_header_button(#FFB948, white, 1rem);
-    width: 6rem;
+    @include day_header_button(#FFB948, white, 1.2rem);
+    width: 2rem;
     height: 2rem;       
 
     @media screen and (max-width: $phone) {
@@ -101,3 +105,33 @@
     }
 }
 
+.workout_routine_step_buttons_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.workout_routine_step_button {
+    border: none;
+    border-radius: 8px;
+    border: 3px solid cyan;
+    background-color: $logo-color;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    width: 8rem;
+    height: 3rem;
+    font-size: 20px;
+    cursor: pointer;
+
+    .workout_exercise_button_icon {
+        fill: white;
+        height: 1.2rem;
+        width: 1.2rem;
+    }
+}

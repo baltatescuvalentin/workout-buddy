@@ -15,6 +15,8 @@ import FindExercise from './Scenes/workouts/FindExercise';
 import axios from 'axios';
 import WorkoutsMain from './Scenes/workouts/WorkoutsMain';
 import CreateWorkout from './Scenes/workouts/CreateWorkout';
+import MyWorkouts from './Scenes/workouts/MyWorkouts';
+import WorkoutRoutineView from './components/WorkoutRoutineView';
 
 function App() {
 
@@ -72,6 +74,8 @@ function App() {
               <Route index element={<WorkoutsMain />} />
               <Route path='findexercise' element={<FindExercise />}/>
               <Route path='create_workout' element={<CreateWorkout />} />
+              <Route path='myworkouts' element={<MyWorkouts />} />
+              <Route path='myworkouts/:id/:day' element={<WorkoutRoutineView />} />
             </Route>
           </Route>
           <Route path='/register' element={<Register />} />

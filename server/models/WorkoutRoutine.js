@@ -3,67 +3,94 @@ import mongoose from "mongoose";
 const workoutRoutine = mongoose.Schema({
     name: String,
     description: String,
-    monday: {
-        name: {
-            type: String,
-        },
-        exercises: {
-            type: Array,
-            default: [],
-        }
+    userId: {
+        required: [true, "We need the user ID!"],
+        type: String,
     },
-    tuesday: {
-        name: {
-            type: String,
+    days: {
+        monday: {
+            dayName: {
+                type: String,
+            },
+            name: {
+                type: String,
+            },
+            exercises: {
+                type: Array,
+                default: [],
+            }
         },
-        exercises: {
-            type: Array,
-            default: [],
-        }
-    },
-    wednesday: {
-        name: {
-            type: String,
+        tuesday: {
+            dayName: {
+                type: String,
+            },
+            name: {
+                type: String,
+            },
+            exercises: {
+                type: Array,
+                default: [],
+            }
         },
-        exercises: {
-            type: Array,
-            default: [],
-        }
-    },
-    thursday: {
-        name: {
-            type: String,
+        wednesday: {
+            dayName: {
+                type: String,
+            },
+            name: {
+                type: String,
+            },
+            exercises: {
+                type: Array,
+                default: [],
+            }
         },
-        exercises: {
-            type: Array,
-            default: [],
-        }
-    },
-    friday: {
-        name: {
-            type: String,
+        thursday: {
+            dayName: {
+                type: String,
+            },
+            name: {
+                type: String,
+            },
+            exercises: {
+                type: Array,
+                default: [],
+            }
         },
-        exercises: {
-            type: Array,
-            default: [],
-        }
-    },
-    saturday: {
-        name: {
-            type: String,
+        friday: {
+            dayName: {
+                type: String,
+            },
+            name: {
+                type: String,
+            },
+            exercises: {
+                type: Array,
+                default: [],
+            }
         },
-        exercises: {
-            type: Array,
-            default: [],
-        }
-    },
-    sunday: {
-        name: {
-            type: String,
+        saturday: {
+            dayName: {
+                type: String,
+            },
+            name: {
+                type: String,
+            },
+            exercises: {
+                type: Array,
+                default: [],
+            }
         },
-        exercises: {
-            type: Array,
-            default: [],
+        sunday: {
+            dayName: {
+                type: String,
+            },
+            name: {
+                type: String,
+            },
+            exercises: {
+                type: Array,
+                default: [],
+            }
         }
     }
 })

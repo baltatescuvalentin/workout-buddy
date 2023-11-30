@@ -49,12 +49,13 @@ const Login = () => {
         required: 'Password is required'
     }
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         setLoading(true);
 
-        const response = axios.post('http://localhost:3001/auth/login', data);
+        //const response = axios.post('http://localhost:3001/auth/login', data);
             
-        response.then((response) => {
+        await axios.post('http://localhost:3001/auth/login', data)
+            .then((response) => {
                 toast.success('Logged in')
                 navigate('/');
                 dispatch(setLogin({

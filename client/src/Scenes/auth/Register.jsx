@@ -68,12 +68,13 @@ const Register = () => {
         }
     };
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         setLoading(true);
 
-        const response = axios.post('http://localhost:3001/auth/register', data);
+        //const response = axios.post('http://localhost:3001/auth/register', data);
             
-        response.then(() => {
+        await axios.post('http://localhost:3001/auth/register', data)
+            .then(() => {
                 toast.success('Account successfully created')
                 navigate('/login');
             })

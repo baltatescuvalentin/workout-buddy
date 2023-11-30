@@ -5,25 +5,15 @@ export const createWorkoutRoutine = async (req, res) => {
         const {
             name,
             description,
-            monday,
-            tuesday,
-            wednesday,
-            thursday,
-            friday,
-            saturday,
-            sunday
+            userId,
+            days,
         } = req.body;
 
         const workoutRoutine = new WorkoutRoutine({
             name,
             description,
-            monday,
-            tuesday,
-            wednesday,
-            thursday,
-            friday,
-            saturday,
-            sunday
+            userId,
+            days
         });
 
         const savedWorkout = await workoutRoutine.save();
@@ -113,6 +103,58 @@ export const updateWorkoutRoutine = async (req, res) => {
 
         res.status(200).json({
             user: updatedWorkoutRoutine,
+        })
+    }
+    catch(error) {
+        res.status(500).json({
+            error: error.message,
+        })
+    }
+}
+
+export const getUserWorkouts = async (req, res) => {
+    try {
+        const {
+            id
+        } = req.params;
+
+        const userWorkouts = await WorkoutRoutine.find({
+           userId: id
+        });
+
+        if(!userWorkouts) {
+            return res.status(200).json({
+                workouts: [],
+            })
+        }
+
+        res.status(200).json({
+            workouts: userWorkouts,
+        })
+    }
+    catch(error) {
+        res.status(500).json({
+            error: error.message,
+        })
+    }
+}
+
+export const getWorkoutById = async (req, res) => {
+    try {
+        const {
+            id,
+        } = req.params;
+
+        const workout = await WorkoutRoutine.findById(id);
+
+        if(!workout) {
+            return res.status(404).json({
+                message: 'Workout not found!',
+            })
+        }
+
+        res.status(200).json({
+            workout: workout,
         })
     }
     catch(error) {

@@ -29,6 +29,7 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const jwt = useSelector(state => state.token);
+    const user = useSelector(state => state.user);
 
     const {
         handleSubmit: handleSubmitInfo,
@@ -132,34 +133,44 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
         const data = {
             name: getValues('name'),
             description: getValues('description'),
-            monday: {
-                name: workout[0].name,
-                exercises: workout[0].items,
-            },
-            tuesday: {
-                name: workout[1].name,
-                exercises: workout[1].items,
-            },
-            wednesday: {
-                name: workout[2].name,
-                exercises: workout[2].items,
-            },
-            thursday: {
-                name: workout[3].name,
-                exercises: workout[3].items,
-            },
-            friday: {
-                name: workout[4].name,
-                exercises: workout[4].items,
-            },
-            saturday: {
-                name: workout[5].name,
-                exercises: workout[5].items,
-            },
-            sunday: {
-                name: workout[6].name,
-                exercises: workout[6].items,
-            },
+            userId: user._id,
+            days: {
+                monday: {
+                    dayName: 'monday',
+                    name: workout[0].name,
+                    exercises: workout[0].items,
+                },
+                tuesday: {
+                    dayName: 'tuesday',
+                    name: workout[1].name,
+                    exercises: workout[1].items,
+                },
+                wednesday: {
+                    dayName: 'wednesday',
+                    name: workout[2].name,
+                    exercises: workout[2].items,
+                },
+                thursday: {
+                    dayName: 'thursday',
+                    name: workout[3].name,
+                    exercises: workout[3].items,
+                },
+                friday: {
+                    dayName: 'friday',
+                    name: workout[4].name,
+                    exercises: workout[4].items,
+                },
+                saturday: {
+                    dayName: 'saturday',
+                    name: workout[5].name,
+                    exercises: workout[5].items,
+                },
+                sunday: {
+                    dayName: 'sunday',
+                    name: workout[6].name,
+                    exercises: workout[6].items,
+                },
+            }
         };
 
         const options = {
@@ -169,21 +180,23 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
             }
         }
 
-        axios.post('http://localhost:3001/workoutroutine/create', data, options)
+        await axios.post('http://localhost:3001/workoutroutine/create', data, options)
             .then(() => {
                 toast.success('Workout succesfully created 💪!');
                 handleActiveForm();
             })
             .catch((error) => {
-                if(error.response.status === 403) {
-                    navigate('/login');
-                    toast.error('Not logged in!');
-                }
-                if(error.error) {
-                    setError(error.error);
-                }
-                else if(error.message) {
-                    setError(error.message);
+                if(error) {
+                    if(error.response.status === 403) {
+                        navigate('/login');
+                        toast.error('Not logged in!');
+                    }
+                    if(error.error) {
+                        setError(error.error);
+                    }
+                    else if(error.message) {
+                        setError(error.message);
+                    }
                 }
             })
             .finally(() => {
@@ -225,7 +238,7 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
             </div>
             <div className='create_workout_buttons_header'>
                 <div className='create_workout_form_header_buttons'>
-                    <CreateWorkoutHeaderButton onClick={saveToDB} title={!loading && 'Save'} icon={loading ? <ClipLoader workout_header_button_loader/> : <FaSave className='workout_header_button_icon'/>} styles='create_workout_form_header_save_button'/>
+                    <CreateWorkoutHeaderButton onClick={saveToDB} title={!loading && 'Save'} icon={loading ? <ClipLoader className='workout_header_button_loader'/> : <FaSave className='workout_header_button_icon'/>} styles='create_workout_form_header_save_button'/>
                     <CreateWorkoutHeaderButton onClick={handleActiveForm} title='Cancel'  styles='create_workout_form_header_cancel_button'/>
                 </div>
             </div>

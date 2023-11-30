@@ -62,11 +62,13 @@ const ResetPassword = () => {
         setLoading(true);
         const email = getValues('email');
         console.log(email);
-        const response = axios.post(`http://localhost:3001/auth/user`, {
+        /*const response = axios.post(`http://localhost:3001/auth/user`, {
             email,
-        });
+        });*/
 
-        response.then((response) => {
+        axios.post(`http://localhost:3001/auth/user`, {
+            email,
+        }).then((response) => {
             if(response.status === 200) {
                 setStep(2);
             }

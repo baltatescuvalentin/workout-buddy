@@ -3,8 +3,7 @@ import '../Styles/workouts.css';
 import '../Styles/buttons.css';
 import WorkoutExerciseInput from './inputs/WorkoutExerciseInput';
 import UtilityButton from './buttons/UtilityButton';
-import { FaRegTimesCircle, FaSave } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+import { FaSave, FaTimes, FaRegTrashAlt } from "react-icons/fa";
 
 const WorkoutExerciseEdit = ({exercise, handleEdit, handleRemoveExercise, handleEditExercise}) => {
 
@@ -36,9 +35,9 @@ const WorkoutExerciseEdit = ({exercise, handleEdit, handleRemoveExercise, handle
             <div className='workout_exercise_details_header'>
                 <p className='workout_exercise_name'>{exercise.exercise.name}</p>
                 <div className='workout_exercise_buttons'>
-                    <UtilityButton onClick={saveEdit} title='Save' icon={<FaSave className='workout_exercise_icon' />} styles='workout_exercise_button'/>
-                    <UtilityButton onClick={handleRemoveExercise} title='Delete' icon={<MdDelete className='workout_exercise_icon'/>} styles='workout_exercise_button'/>
-                    <UtilityButton onClick={handleEdit} title='Cancel' icon={<FaRegTimesCircle className='workout_exercise_icon'/>} styles='workout_exercise_button'/>
+                    <UtilityButton onClick={saveEdit} icon={<FaSave className='workout_exercise_icon' />} styles='workout_exercise_button'/>
+                    <UtilityButton onClick={handleRemoveExercise} icon={<FaRegTrashAlt className='workout_exercise_icon'/>} styles='workout_exercise_button'/>
+                    <UtilityButton onClick={handleEdit} icon={<FaTimes className='workout_exercise_icon'/>} styles='workout_exercise_button'/>
                 </div>
             </div>
             <div className='workout_exercise_details'>

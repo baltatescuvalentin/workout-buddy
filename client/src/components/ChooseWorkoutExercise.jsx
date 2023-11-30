@@ -1,9 +1,9 @@
 import { useState } from "react";
 import '../Styles/workouts.css';
 import { useForm } from "react-hook-form";
-import FindExerciseInput from '../components/inputs/FindExerciseInput';
-import ExercisesResultsList from '../components/ExercisesResultsList';
-import ChosenExercise from '../components/ChosenExercise';
+import FindExerciseInput from './inputs/FindExerciseInput';
+import ExercisesResultsList from './ExercisesResultsList';
+import ChosenExercise from './ChosenExercise';
 import WorkoutExerciseInput from "./inputs/WorkoutExerciseInput";
 import { filterExercises } from "../utils/functions/workouts";
 import { useSelector } from "react-redux";

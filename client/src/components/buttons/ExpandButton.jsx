@@ -12,7 +12,7 @@ const ExpandButton = ({btnStyles, iconStyles, onClick}) => {
 
     return (
         <button onClick={() => { handleClick(); onClick(); }} className={`prerotate ${isRotated ? 'rotated_button' : ''} ${btnStyles}`}>
-            <p>{isRotated ? 'Fold' : 'Expand'}</p>
+            
             {isRotated ? <FaArrowUp className={`${iconStyles}`}/> : <FaArrowDown className={`${iconStyles}`}/>}
         </button>
     )

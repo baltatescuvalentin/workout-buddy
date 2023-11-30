@@ -3,8 +3,8 @@ import '../Styles/workouts.css';
 import '../Styles/buttons.css';
 import UtilityButton from './buttons/UtilityButton';
 import ExpandButton from './buttons/ExpandButton';
-import { FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
+import { AiFillEdit } from "react-icons/ai";
 
 const WorkoutExerciseDetails = ({exercise, handleRemoveExercise, handleEdit}) => {
 
@@ -21,8 +21,8 @@ const WorkoutExerciseDetails = ({exercise, handleRemoveExercise, handleEdit}) =>
             <div className='workout_exercise_details_header'>
                 <p className='workout_exercise_name'>{exercise.exercise.name}</p>
                 <div className='workout_exercise_buttons'>
-                    <UtilityButton onClick={handleEdit} title='Edit' icon={<FaEdit className='workout_exercise_icon'/>} styles='workout_exercise_button'/>
-                    <UtilityButton onClick={handleRemoveExercise} title='Delete' icon={<MdDelete className='workout_exercise_icon'/>} styles='workout_exercise_button'/>
+                    <UtilityButton onClick={handleEdit} icon={<AiFillEdit className='workout_exercise_icon'/>} styles='workout_exercise_button'/>
+                    <UtilityButton onClick={handleRemoveExercise} icon={<FaRegTrashAlt className='workout_exercise_icon'/>} styles='workout_exercise_button'/>
                     <ExpandButton btnStyles='workout_exercise_button' iconStyles='workout_exercise_icon' onClick={handleDetails}/>
                 </div>
             </div>

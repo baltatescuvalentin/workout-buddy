@@ -7,6 +7,7 @@ import { filterExercises } from '../../utils/functions/workouts';
 import ChosenExercise from '../../components/ChosenExercise';
 import ChooseWorkoutExercise from '../../components/ChooseWorkoutExercise';
 
+
 const FindExercise = () => {
 
     const [exerciseInput, setExerciseInput] = useState("");
@@ -45,8 +46,6 @@ const FindExercise = () => {
 
                 {chosenExercise && <ChosenExercise exercise={chosenExercise} wrapper_styling='exercise_wrapper' instructions_styling='exercise_steps_image'/>}
             </div>
-
-            <ChooseWorkoutExercise />
         </div>
     )
 }
