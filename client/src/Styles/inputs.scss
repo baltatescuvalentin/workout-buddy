@@ -91,6 +91,14 @@
     }
 }
 
+.info_input {
+    @extend .exercise_sets_reps;
+    width: 60%;
+    border-bottom: 2px solid $logo-color;
+    background-color: inherit;
+    text-align: center;
+}
+
 .edit_exercise_input {
     @extend .exercise_sets_reps;
     background-color: $exercise_color;

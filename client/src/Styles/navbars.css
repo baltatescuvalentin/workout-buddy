@@ -438,6 +438,7 @@ html {
 .pages_navbar_wrapper {
   width: 35rem;
   height: 100vh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -508,6 +509,7 @@ html {
   position: absolute;
   z-index: 999;
   height: 100vh;
+  height: 100svh;
 }
 @media screen and (max-width: 56rem) {
   .mobile_navbar_wrapper, .mobile_navbar_active, .mobile_navbar_hidden {

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import '../Styles/workouts.css';
-import { FaArrowLeft, FaArrowRight  } from "react-icons/fa";
 import UtilityButton from './buttons/UtilityButton';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -56,7 +55,14 @@ const WorkoutRoutineView = () => {
                         return <span key={target}>{target} </span>
                     })}</p>
                     <p>Equipment: <span>{currentDay.exercises[step].exercise.equipment}</span></p>
-                    
+                    <div className='view_exercise_steps_image'>
+                        <div>
+                            {currentDay.exercises[step].exercise.instructions.map((instr, index) => {
+                                return <p key={index}>{index+1}. {instr}</p>
+                            })}
+                        </div>
+                        <img src={currentDay.exercises[step].exercise.gifUrl} alt="Exercise instruction" loading='lazy'/>
+                    </div>
                     <div className='workout_routine_step_buttons_wrapper'>
                         {
                             step > 0 ? <UtilityButton styles='workout_routine_step_button' title='Previous' onClick={prevStep} /> : <div></div>

@@ -96,7 +96,7 @@
   color: white;
 }
 
-.exercise_sets_reps, .edit_exercise_input {
+.exercise_sets_reps, .edit_exercise_input, .info_input {
   outline: none;
   border: none;
   border-bottom: solid 3px #488eff;
@@ -107,8 +107,15 @@
   color: white;
   font-size: 18px;
 }
-.exercise_sets_reps::-webkit-inner-spin-button, .edit_exercise_input::-webkit-inner-spin-button, .exercise_sets_reps::-webkit-outer-spin-button, .edit_exercise_input::-webkit-outer-spin-button {
+.exercise_sets_reps::-webkit-inner-spin-button, .edit_exercise_input::-webkit-inner-spin-button, .info_input::-webkit-inner-spin-button, .exercise_sets_reps::-webkit-outer-spin-button, .edit_exercise_input::-webkit-outer-spin-button, .info_input::-webkit-outer-spin-button {
   -webkit-appearance: none;
+}
+
+.info_input {
+  width: 60%;
+  border-bottom: 2px solid #488eff;
+  background-color: inherit;
+  text-align: center;
 }
 
 .edit_exercise_input {

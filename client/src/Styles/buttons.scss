@@ -105,12 +105,22 @@
     }
 }
 
-.workout_routine_step_buttons_wrapper {
+.workout_routine_step_buttons_wrapper, .info_buttons {
+    margin-top: 1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+}
+
+.info_buttons {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    @media screen and (max-width: $phone) {
+        justify-content: space-evenly;
+    }
 }
 
 .workout_routine_step_button {
@@ -134,4 +144,12 @@
         height: 1.2rem;
         width: 1.2rem;
     }
+}
+
+.info_cancel_button {
+    @include info_button($border: gray, $text-color: gray, $icon: red);
+}
+
+.info_save_button {
+    @include info_button($border: green, $bg-color: linear-gradient(30deg, lime, $logo-color), $text-color: white, $icon: white);
 }

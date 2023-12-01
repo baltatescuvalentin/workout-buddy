@@ -145,6 +145,7 @@
     position: absolute;
     z-index: 9999;
     height: 100vh;
+    height: 100svh;
     transition: left 0.5s linear;
 }
 
@@ -284,5 +285,28 @@
             height: 1.5rem;
             width: 1.5rem;
         }
+    }
+}
+
+@mixin info_button($border, $bg-color: 'inherit', $text-color, $icon) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    border: 2px solid $border;
+    border-radius: 8px;
+    background: $bg-color;
+    color: $text-color;
+    width: 7rem;
+    height: 2.2rem;
+    font-size: 18px;
+    cursor: pointer;
+    font-family: $font;
+
+    .info_cancel_button_icon {
+        fill: $icon;
+        height: 1.2rem;
+        width: 1.2rem;
     }
 }
