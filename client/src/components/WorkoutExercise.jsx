@@ -3,7 +3,7 @@ import '../Styles/workouts.css';
 import WorkoutExerciseEdit from './WorkoutExerciseEdit';
 import WorkoutExerciseDetails from './WorkoutExerciseDetails';
 
-const WorkoutExercise = ({exercise, handleEditExercise, handleRemoveExercise}) => {
+const WorkoutExercise = ({exercise, handleEditExercise, handleRemoveExercise, shouldEdit}) => {
 
     const [edit, setEdit] = useState(false);
 
@@ -12,6 +12,10 @@ const WorkoutExercise = ({exercise, handleEditExercise, handleRemoveExercise}) =
     }
 
     console.log(exercise);
+
+    if(shouldEdit === false) {
+        return <WorkoutExerciseDetails exercise={exercise} handleRemoveExercise={handleRemoveExercise} handleEdit={handleEdit} shouldEdit={shouldEdit}/>
+    }
 
     return (
         <div>

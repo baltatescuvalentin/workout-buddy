@@ -192,6 +192,25 @@
     }
 }
 
+.info_subtitle {
+    color: $logo-color;
+    margin-left: 1rem;
+}
+
+.identity_input_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    @media screen and (max-width: $phone) {
+        width: 90%;
+
+        .identity_wrapper {
+            justify-content: flex-start;
+        }
+    }
+}
+
 .identity_wrapper {
     display: flex;
     flex-direction: row;
@@ -205,10 +224,18 @@
         height: 2.2rem;
         width: 2.2rem;
         cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .identity_wrapper_icon_calculator {
+        @extend .identity_wrapper_icon;
+        fill: $logo-color
     }
 
     .identity_wrapper_icon_chosen {
         @extend .identity_wrapper_icon;
         fill: greenyellow;
+        transform: scale(1.2);
     }
+
 }

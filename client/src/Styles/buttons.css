@@ -273,13 +273,13 @@
     width: 2.5rem;
   }
 }
-.expand_button .day_header_button_icon, .expand_button .workout_exercise_icon {
+.expand_button .day_header_button_icon, .expand_button .workout_exercise_icon, .expand_button .calculator_expand_icon {
   fill: #48EAFF;
   height: 1.1rem;
   width: 1.1rem;
 }
 @media screen and (max-width: 27rem) {
-  .expand_button .day_header_button_icon, .expand_button .workout_exercise_icon {
+  .expand_button .day_header_button_icon, .expand_button .workout_exercise_icon, .expand_button .calculator_expand_icon {
     height: 1.5rem;
     width: 1.5rem;
   }
@@ -313,13 +313,13 @@
     width: 2.5rem;
   }
 }
-.add_exercise_to_day_button .day_header_button_icon, .add_exercise_to_day_button .workout_exercise_icon {
+.add_exercise_to_day_button .day_header_button_icon, .add_exercise_to_day_button .workout_exercise_icon, .add_exercise_to_day_button .calculator_expand_icon {
   fill: white;
   height: 1.1rem;
   width: 1.1rem;
 }
 @media screen and (max-width: 27rem) {
-  .add_exercise_to_day_button .day_header_button_icon, .add_exercise_to_day_button .workout_exercise_icon {
+  .add_exercise_to_day_button .day_header_button_icon, .add_exercise_to_day_button .workout_exercise_icon, .add_exercise_to_day_button .calculator_expand_icon {
     height: 1.5rem;
     width: 1.5rem;
   }
@@ -353,13 +353,13 @@
     width: 2.5rem;
   }
 }
-.myworkouts_header_button .day_header_button_icon, .myworkouts_header_button .workout_exercise_icon {
+.myworkouts_header_button .day_header_button_icon, .myworkouts_header_button .workout_exercise_icon, .myworkouts_header_button .calculator_expand_icon {
   fill: white;
   height: 1.1rem;
   width: 1.1rem;
 }
 @media screen and (max-width: 27rem) {
-  .myworkouts_header_button .day_header_button_icon, .myworkouts_header_button .workout_exercise_icon {
+  .myworkouts_header_button .day_header_button_icon, .myworkouts_header_button .workout_exercise_icon, .myworkouts_header_button .calculator_expand_icon {
     height: 1.5rem;
     width: 1.5rem;
   }
@@ -395,13 +395,13 @@
     width: 2.5rem;
   }
 }
-.workout_exercise_button .day_header_button_icon, .workout_exercise_button .workout_exercise_icon {
+.workout_exercise_button .day_header_button_icon, .workout_exercise_button .workout_exercise_icon, .workout_exercise_button .calculator_expand_icon {
   fill: white;
   height: 1.2rem;
   width: 1.2rem;
 }
 @media screen and (max-width: 27rem) {
-  .workout_exercise_button .day_header_button_icon, .workout_exercise_button .workout_exercise_icon {
+  .workout_exercise_button .day_header_button_icon, .workout_exercise_button .workout_exercise_icon, .workout_exercise_button .calculator_expand_icon {
     height: 1.5rem;
     width: 1.5rem;
   }
@@ -496,4 +496,83 @@
   fill: white;
   height: 1.2rem;
   width: 1.2rem;
+}
+
+.calculator_expand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 3px solid #48EAFF;
+  color: #48EAFF;
+  background-color: inherit;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+}
+.calculator_expand p {
+  margin: 0;
+}
+@media screen and (max-width: 27rem) {
+  .calculator_expand p {
+    display: none;
+  }
+}
+@media screen and (max-width: 27rem) {
+  .calculator_expand {
+    background: none;
+    border: none;
+    width: 2.5rem;
+  }
+}
+.calculator_expand .day_header_button_icon, .calculator_expand .workout_exercise_icon, .calculator_expand .calculator_expand_icon {
+  fill: #48EAFF;
+  height: 1.1rem;
+  width: 1.1rem;
+}
+@media screen and (max-width: 27rem) {
+  .calculator_expand .day_header_button_icon, .calculator_expand .workout_exercise_icon, .calculator_expand .calculator_expand_icon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+.calculator_option_button {
+  width: auto;
+  height: 2rem;
+  background-color: rgb(183, 171, 171);
+  border-radius: 8px;
+  border: solid px gray;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}
+
+.calculator_custom_calculate_button {
+  border-radius: 4px;
+  background-color: #488eff;
+  color: white;
+  height: 2.5rem;
+  width: 7rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.calculator_custom_calculate_button_disabled {
+  border-radius: 4px;
+  background-color: gray;
+  color: white;
+  height: 2.5rem;
+  width: 7rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: not-allowed;
 }

@@ -189,6 +189,25 @@
   }
 }
 
+.info_subtitle {
+  color: #488eff;
+  margin-left: 1rem;
+}
+
+.identity_input_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media screen and (max-width: 27rem) {
+  .identity_input_wrapper {
+    width: 90%;
+  }
+  .identity_input_wrapper .identity_wrapper {
+    justify-content: flex-start;
+  }
+}
+
 .identity_wrapper {
   display: flex;
   flex-direction: row;
@@ -197,12 +216,17 @@
   justify-content: center;
   width: 100%;
 }
-.identity_wrapper .identity_wrapper_icon, .identity_wrapper .identity_wrapper_icon_chosen {
+.identity_wrapper .identity_wrapper_icon, .identity_wrapper .identity_wrapper_icon_chosen, .identity_wrapper .identity_wrapper_icon_calculator {
   fill: white;
   height: 2.2rem;
   width: 2.2rem;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.identity_wrapper .identity_wrapper_icon_calculator {
+  fill: #488eff;
 }
 .identity_wrapper .identity_wrapper_icon_chosen {
   fill: greenyellow;
+  transform: scale(1.2);
 }

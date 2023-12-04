@@ -276,7 +276,7 @@
         width: 2.5rem;
     }
 
-    .day_header_button_icon, .workout_exercise_icon {
+    .day_header_button_icon, .workout_exercise_icon, .calculator_expand_icon {
         fill: $text-color;
         height: $icon_dims;
         width: $icon_dims;
@@ -309,4 +309,18 @@
         height: 1.2rem;
         width: 1.2rem;
     }
+}
+
+@mixin calculate_custom_button($bg-color, $cursor) {
+    border-radius: 4px;
+    background-color: $bg-color;
+    color: white;
+    height: 2.5rem;
+    width: 7rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: $cursor;
 }

@@ -6,7 +6,7 @@ import ExpandButton from './buttons/ExpandButton';
 import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
 import { AiFillEdit } from "react-icons/ai";
 
-const WorkoutExerciseDetails = ({exercise, handleRemoveExercise, handleEdit}) => {
+const WorkoutExerciseDetails = ({exercise, handleRemoveExercise, handleEdit, shouldEdit}) => {
 
     const [details, setDetails] = useState(false);
 
@@ -21,8 +21,15 @@ const WorkoutExerciseDetails = ({exercise, handleRemoveExercise, handleEdit}) =>
             <div className='workout_exercise_details_header'>
                 <p className='workout_exercise_name'>{exercise.exercise.name}</p>
                 <div className='workout_exercise_buttons'>
-                    <UtilityButton onClick={handleEdit} icon={<AiFillEdit className='workout_exercise_icon'/>} styles='workout_exercise_button'/>
-                    <UtilityButton onClick={handleRemoveExercise} icon={<FaRegTrashAlt className='workout_exercise_icon'/>} styles='workout_exercise_button'/>
+                    {
+                        shouldEdit === false ? <></> : (
+                            <>
+                                <UtilityButton onClick={handleEdit} icon={<AiFillEdit className='workout_exercise_icon'/>} styles='workout_exercise_button'/>
+                                <UtilityButton onClick={handleRemoveExercise} icon={<FaRegTrashAlt className='workout_exercise_icon'/>} styles='workout_exercise_button'/>
+                            </>
+                        )
+                    }
+                    
                     <ExpandButton btnStyles='workout_exercise_button' iconStyles='workout_exercise_icon' onClick={handleDetails}/>
                 </div>
             </div>
@@ -41,7 +48,7 @@ const WorkoutExerciseDetails = ({exercise, handleRemoveExercise, handleEdit}) =>
                             <p>Do the following instructions for 
                                 {exercise.sets && exercise.reps && <> <span>{exercise.sets} sets</span> and <span>{exercise.reps} reps</span> </>}
                                 {exercise.sets && exercise.reps && exercise.minutes && <> or </>}
-                                {exercise.minutes && <><span>{exercise.minutes} minutes</span></>}
+                                {exercise.minutes && <><span> {exercise.minutes} minutes</span></>}
                             </p>
                         )}
                     </div>

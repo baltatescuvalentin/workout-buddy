@@ -255,3 +255,12 @@ html {
 .cancel_scroll {
     overflow-y: hidden;
 }
+
+.calculator_loader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 0.75rem;
+}

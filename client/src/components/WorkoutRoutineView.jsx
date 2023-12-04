@@ -29,7 +29,7 @@ const WorkoutRoutineView = () => {
                     setCurrentDay(response.data.workout.days[`${day}`]);
                 })
                 .catch((error) => {
-                    console.log(error.message || error.error);
+                    console.log(error);
                 })
         }
 

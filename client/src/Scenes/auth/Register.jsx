@@ -10,12 +10,16 @@ import AuthSubmitButton from '../../components/buttons/AuthSubmitButton';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { setLogin } from '../../state';
 
 const Register = () => {
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    const dispatch = useDispatch();
 
     const {
         register,
@@ -74,9 +78,13 @@ const Register = () => {
         //const response = axios.post('http://localhost:3001/auth/register', data);
             
         await axios.post('http://localhost:3001/auth/register', data)
-            .then(() => {
-                toast.success('Account successfully created')
-                navigate('/login');
+            .then((response) => {
+                toast.success('Account successfully created');
+                dispatch(setLogin({
+                    user: response.data.user,
+                    token: ""
+                }))
+                navigate('/additionalinfo');
             })
             .catch((error) => {
                 setError('This email is already used!');

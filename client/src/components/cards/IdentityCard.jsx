@@ -5,9 +5,9 @@ import { IoFemale } from "react-icons/io5";
 import { IoMaleFemaleOutline } from "react-icons/io5";
 import { PiGenderIntersexBold } from 'react-icons/pi';
 
-const IdentityCard = ({setValue}) => {
+const IdentityCard = ({value, setValue}) => {
 
-    const [chosen, setChosen] = useState(null);
+    const [chosen, setChosen] = useState(value || null);
 
     const chooseMale = () => {
         setValue('sex', 'male');

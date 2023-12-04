@@ -17,6 +17,8 @@ import WorkoutsMain from './Scenes/workouts/WorkoutsMain';
 import CreateWorkout from './Scenes/workouts/CreateWorkout';
 import MyWorkouts from './Scenes/workouts/MyWorkouts';
 import WorkoutRoutineView from './components/WorkoutRoutineView';
+import FitnessCalculator from './Scenes/fitness/FitnessCalculator';
+import FitnessMain from './Scenes/fitness/FitnessMain';
 
 function App() {
 
@@ -76,6 +78,10 @@ function App() {
               <Route path='create_workout' element={<CreateWorkout />} />
               <Route path='myworkouts' element={<MyWorkouts />} />
               <Route path='myworkouts/:id/:day' element={<WorkoutRoutineView />} />
+            </Route>
+            <Route path='/fitness' element={<SharedLayout />} >
+              <Route index element={<FitnessMain />} />
+              <Route path='calculator' element={<FitnessCalculator />} />
             </Route>
           </Route>
           <Route path='/register' element={<Register />} />

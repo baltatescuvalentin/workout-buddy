@@ -153,3 +153,27 @@
 .info_save_button {
     @include info_button($border: green, $bg-color: linear-gradient(30deg, lime, $logo-color), $text-color: white, $icon: white);
 }
+
+.calculator_expand {
+    @include day_header_button(inherit, #48EAFF, 1.1rem);
+}
+
+.calculator_option_button {
+    width: auto;
+    height: 2rem;
+    background-color: rgb(183, 171, 171);
+    border-radius: 8px;
+    border: solid px gray;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+
+}
+
+.calculator_custom_calculate_button {
+    @include calculate_custom_button($logo-color, pointer);
+}
+
+.calculator_custom_calculate_button_disabled {
+    @include calculate_custom_button(gray, not-allowed);
+}

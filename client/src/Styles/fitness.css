@@ -1,0 +1,123 @@
+@import 'https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap';
+.calculators_wrapper {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.calculator_wrapper {
+  border-radius: 16px;
+  border: solid 2px rgb(91, 80, 80);
+  width: 100%;
+}
+
+.calculator_header {
+  background-color: rgba(128, 128, 128, 0.621);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: white;
+}
+.calculator_header p {
+  font-size: 22px;
+  font-weight: 600;
+}
+@media screen and (max-width: 27rem) {
+  .calculator_header p {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 27rem) {
+  .calculator_header {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+.calculator_content_wrapper {
+  margin: 1rem;
+}
+.calculator_content_wrapper h3 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.calculator_buttons_wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+@media screen and (max-width: 27rem) {
+  .calculator_buttons_wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.calculator_custom_inputs_wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+@media screen and (max-width: 27rem) {
+  .calculator_custom_inputs_wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.calculator_loader_icon {
+  margin: inherit;
+}
+
+.calculator_result {
+  min-height: 3rem;
+}
+.calculator_result h4 {
+  margin: 0;
+}
+
+.calculator_custom_wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+@media screen and (max-width: 27rem) {
+  .calculator_custom_wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-left: 0.3rem;
+  }
+}
+
+.calculator_inputs, .calculator_inputs_with_gender {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+@media screen and (max-width: 27rem) {
+  .calculator_inputs, .calculator_inputs_with_gender {
+    justify-content: flex-start;
+  }
+}
+
+.calculator_inputs_with_gender {
+  align-items: flex-start;
+}
+
+.calculator_input_wrapper p {
+  margin-bottom: 0;
+}

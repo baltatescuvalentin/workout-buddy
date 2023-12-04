@@ -161,6 +161,13 @@ const HomePage = () => {
                 Consistency and accountability are paramount on any fitness quest. Workout Buddy acts as a daily tracker, allowing users to log and monitor their progress systematically. Users can record a variety of metrics daily, such as weight, calorie intake, water consumption, exercise duration, and other fitness-related activities. With a user-friendly interface, the platform simplifies the process of maintaining a log of daily accomplishments. The tracking system empowers users to track their goals, observe trends, and make data-driven adjustments to their fitness regimen. By consolidating data on a day-to-day basis, Workout Buddy enables users to chart their evolution, identify patterns, and stay motivated on their fitness journey.
                 </p>
                 <WorkoutsRedirectButton title='Check it out!' path="" />
+                <p className="subtitle">
+                    3. Summary and Stats
+                </p>
+                <p>
+                    While you do a good job workout out and keeping a track of your daily macros and body changes you need a way to see how far you've come. So to be proud of what you did we give you the possibility to see various stats over time with the help of charts and tables. You will know your high and lows to learn from the past so the future you will be close to your ideal vision.
+                </p>
+                <WorkoutsRedirectButton title='Check it out!' path="" />
                 <p>
                 Workout Buddy serves as an invaluable tool, offering not only fitness calculators for critical health measurements but also a user-friendly tracking system for continuous progress monitoring. It equips individuals with the necessary insights and tools to make informed decisions, establish habits, and maintain consistent progress toward their fitness objectives.
                 </p>

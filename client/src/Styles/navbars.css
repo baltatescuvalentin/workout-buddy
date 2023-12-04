@@ -397,6 +397,14 @@ html {
   overflow-y: hidden;
 }
 
+.calculator_loader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .homepage_navbar {
   margin-left: 5rem;
   display: flex;

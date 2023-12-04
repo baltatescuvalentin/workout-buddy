@@ -22,7 +22,11 @@ export const registerUser = async (req, res) => {
         });
     
         const savedUser = await newUser.save();
-        res.status(201).json(savedUser);
+        const userFiltered = { ...savedUser._doc };
+        delete userFiltered.password;
+        res.status(201).json({
+            user: userFiltered,
+        });
     }
     catch(error) {
         res.status(500).json({
