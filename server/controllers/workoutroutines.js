@@ -76,13 +76,7 @@ export const updateWorkoutRoutine = async (req, res) => {
         const {
             name,
             description,
-            monday,
-            tuesday,
-            wednesday,
-            thursday,
-            friday,
-            saturday,
-            sunday
+            days,
         } = req.body;
 
         const { id } = req.params;
@@ -90,13 +84,7 @@ export const updateWorkoutRoutine = async (req, res) => {
         const updatedWorkoutRoutine = await WorkoutRoutine.findByIdAndUpdate(id, {
             name,
             description,
-            monday,
-            tuesday,
-            wednesday,
-            thursday,
-            friday,
-            saturday,
-            sunday,
+            days
         }, {
             new: true,
         });

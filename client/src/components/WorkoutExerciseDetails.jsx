@@ -45,7 +45,7 @@ const WorkoutExerciseDetails = ({exercise, handleRemoveExercise, handleEdit, sho
                     <p>Equipment: <span>{exercise.exercise.equipment}</span></p>
                     <div>
                         {((exercise.sets && exercise.reps) || exercise.minutes) && (
-                            <p>Do the following instructions for 
+                            <p className='intruction_sets_reps_text'>Do the following instructions for 
                                 {exercise.sets && exercise.reps && <> <span>{exercise.sets} sets</span> and <span>{exercise.reps} reps</span> </>}
                                 {exercise.sets && exercise.reps && exercise.minutes && <> or </>}
                                 {exercise.minutes && <><span> {exercise.minutes} minutes</span></>}

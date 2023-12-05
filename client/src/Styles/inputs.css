@@ -122,7 +122,7 @@
   background-color: #FFB948;
 }
 
-.create_workout_title {
+.create_workout_title, .create_workout_title_edit {
   outline: none;
   font-size: 26px;
   font-weight: 600;
@@ -131,10 +131,21 @@
   border: none;
 }
 
+.create_workout_title_edit {
+  border-bottom: 2px solid #488eff;
+  width: 99%;
+}
+@media screen and (max-width: 27rem) {
+  .create_workout_title_edit {
+    width: 98%;
+  }
+}
+
 .create_exercise_day_title {
   outline: none;
   font-size: 18px;
   width: 90%;
+  margin-left: 0.5rem;
   border: none;
   font-size: 20px;
   font-weight: 600;
@@ -143,7 +154,7 @@
   margin-bottom: 0.2rem;
 }
 
-.create_workout_description {
+.create_workout_description, .create_workout_description_edit {
   outline: none;
   resize: none;
   width: 93%;
@@ -153,20 +164,33 @@
   overflow-y: auto;
   font-size: 20px;
 }
-.create_workout_description::-webkit-scrollbar {
+.create_workout_description::-webkit-scrollbar, .create_workout_description_edit::-webkit-scrollbar {
   width: 10px;
 }
-.create_workout_description::-webkit-scrollbar-track {
+.create_workout_description::-webkit-scrollbar-track, .create_workout_description_edit::-webkit-scrollbar-track {
   background-color: rgb(80, 80, 80);
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
-.create_workout_description::-webkit-scrollbar-thumb {
+.create_workout_description::-webkit-scrollbar-thumb, .create_workout_description_edit::-webkit-scrollbar-thumb {
   background-color: #488eff;
   box-shadow: inset 0 0 6px rgba(124, 60, 60, 0.3);
 }
 @media screen and (max-width: 27rem) {
-  .create_workout_description {
+  .create_workout_description, .create_workout_description_edit {
     max-width: auto;
+  }
+}
+
+.create_workout_description_edit {
+  border: 2px solid #488eff;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  width: 98%;
+}
+@media screen and (max-width: 27rem) {
+  .create_workout_description_edit {
+    width: 95%;
   }
 }
 

@@ -1,5 +1,7 @@
 import { useFieldArray, useForm } from 'react-hook-form';
 import '../Styles/workouts.css';
+import '../Styles/buttons.css';
+import '../Styles/inputs.css';
 import CreateWorkoutTitle from './inputs/CreateWorkoutTitle';
 import CreateWorkoutDescription from './inputs/CreateWorkoutDescription';
 import CreateWorkoutHeaderButton from './buttons/UtilityButton';
@@ -16,13 +18,13 @@ import { useSelector } from 'react-redux';
 const CreateWorkoutForm = ({handleActiveForm}) => {
 
     const [workout, setWorkout] = useState([
-        { dayName: 'Monday', name: '', items: [] },
-        { dayName: 'Tuesday', name: '', items: [] },
-        { dayName: 'Wednesday', name: '', items: [] },
-        { dayName: 'Thursday', name: '', items: [] },
-        { dayName: 'Friday', name: '', items: [] },
-        { dayName: 'Saturday', name: '', items: [] },
-        { dayName: 'Sunday', name: '', items: [] },
+        { dayName: 'Monday', name: '', exercises: [] },
+        { dayName: 'Tuesday', name: '', exercises: [] },
+        { dayName: 'Wednesday', name: '', exercises: [] },
+        { dayName: 'Thursday', name: '', exercises: [] },
+        { dayName: 'Friday', name: '', exercises: [] },
+        { dayName: 'Saturday', name: '', exercises: [] },
+        { dayName: 'Sunday', name: '', exercises: [] },
     ]);
 
     const [error, setError] = useState(null);
@@ -53,13 +55,13 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
     // } = useForm({
     //     defaultValues: {
     //         days: [
-    //             { dayName: 'Monday', name: '', items: [] },
-    //             { dayName: 'Tuesday', name: '', items: [] },
-    //             { dayName: 'Wednesday', name: '', items: [] },
-    //             { dayName: 'Thursday', name: '', items: [] },
-    //             { dayName: 'Friday', name: '', items: [] },
-    //             { dayName: 'Saturday', name: '', items: [] },
-    //             { dayName: 'Sunday', name: '', items: [] },
+    //             { dayName: 'Monday', name: '', exercises: [] },
+    //             { dayName: 'Tuesday', name: '', exercises: [] },
+    //             { dayName: 'Wednesday', name: '', exercises: [] },
+    //             { dayName: 'Thursday', name: '', exercises: [] },
+    //             { dayName: 'Friday', name: '', exercises: [] },
+    //             { dayName: 'Saturday', name: '', exercises: [] },
+    //             { dayName: 'Sunday', name: '', exercises: [] },
     //           ],
     //     }
     // });
@@ -85,7 +87,7 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
             const updatedWorkout = [...prevWorkout];
             updatedWorkout[dayIndex] = {
                 ...updatedWorkout[dayIndex],
-                items: [...updatedWorkout[dayIndex].items, exercise]
+                exercises: [...updatedWorkout[dayIndex].exercises, exercise]
             }
             return updatedWorkout;
         })
@@ -96,7 +98,7 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
             const updatedWorkout = [...prevWorkout];
             updatedWorkout[dayIndex] = {
                 ...updatedWorkout[dayIndex],
-                items: updatedWorkout[dayIndex].items.filter((_, index) => index !== itemIndex)
+                exercises: updatedWorkout[dayIndex].exercises.filter((_, index) => index !== itemIndex)
             }
             return updatedWorkout;
         })
@@ -107,7 +109,7 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
             const updatedWorkout = [...prevWorkout];
             updatedWorkout[dayIndex] = {
                 ...updatedWorkout[dayIndex],
-                items: updatedWorkout[dayIndex].items.map((exercise) => {
+                exercises: updatedWorkout[dayIndex].exercises.map((exercise) => {
                     if(exercise.id === editedExercise.id) {
                         return {
                             ...exercise,
@@ -138,37 +140,37 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
                 monday: {
                     dayName: 'monday',
                     name: workout[0].name,
-                    exercises: workout[0].items,
+                    exercises: workout[0].exercises,
                 },
                 tuesday: {
                     dayName: 'tuesday',
                     name: workout[1].name,
-                    exercises: workout[1].items,
+                    exercises: workout[1].exercises,
                 },
                 wednesday: {
                     dayName: 'wednesday',
                     name: workout[2].name,
-                    exercises: workout[2].items,
+                    exercises: workout[2].exercises,
                 },
                 thursday: {
                     dayName: 'thursday',
                     name: workout[3].name,
-                    exercises: workout[3].items,
+                    exercises: workout[3].exercises,
                 },
                 friday: {
                     dayName: 'friday',
                     name: workout[4].name,
-                    exercises: workout[4].items,
+                    exercises: workout[4].exercises,
                 },
                 saturday: {
                     dayName: 'saturday',
                     name: workout[5].name,
-                    exercises: workout[5].items,
+                    exercises: workout[5].exercises,
                 },
                 sunday: {
                     dayName: 'sunday',
                     name: workout[6].name,
-                    exercises: workout[6].items,
+                    exercises: workout[6].exercises,
                 },
             }
         };
@@ -212,13 +214,13 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
 
     // const handleAddExercise = (dayIndex, exercise) => {
     //     const currentDays = getValuesDays('days');
-    //     currentDays[dayIndex].items.push(exercise);
+    //     currentDays[dayIndex].exercises.push(exercise);
     //     setValueDays('days', currentDays);
     // }
 
     // const handleRemoveExercise = (dayIndex, exerciseIndex) => {
     //     const currentDays = getValuesDays('days');
-    //     const filteredDays = currentDays[dayIndex].items.filter((exercise, index) => index !== exerciseIndex);
+    //     const filteredDays = currentDays[dayIndex].exercises.filter((exercise, index) => index !== exerciseIndex);
     //     setValueDays('days', filteredDays);
     // }
 
@@ -227,11 +229,11 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
     return (
         <div className='create_workout_form_wrapper'>
             <CreateWorkoutTitle id='name' name='Name...' register={registerInfo}/>
-            <CreateWorkoutDescription id='description' name='Description...' register={registerInfo} />
+            <CreateWorkoutDescription id='description' name='Description...' register={registerInfo} styles='create_workout_description'/>
             <h2>{error}</h2>
             <div className='days_wrapper'>
                 {workout.map((day, dayIndex) => {
-                    console.log(`day ${dayIndex}: ${day.items[0]}`);
+                    console.log(`day ${dayIndex}: ${day.exercises[0]}`);
                     return <CreateWorkoutDay handleEditExercise={handleEditExercise} handleAddExercise={handleAddExercise} handleChangeDayName={handleChangeDayName} handleRemoveExercise={handleRemoveExercise} day={day} dayIndex={dayIndex} key={dayIndex}/>
                 }
                 )}

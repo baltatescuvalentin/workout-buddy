@@ -121,10 +121,21 @@
     border: none;
 }
 
+.create_workout_title_edit {
+    @extend .create_workout_title;
+    border-bottom: 2px solid $logo-color;
+    width: 99%;
+
+    @media screen and (max-width: $phone) {
+        width: 98%;
+    }
+}
+
 .create_exercise_day_title {
     outline: none;
     font-size: 18px;
     width: 90%;
+    margin-left: 0.5rem;
     border: none;
     font-size: 20px;
     font-weight: 600;
@@ -159,6 +170,19 @@
 
     @media screen and (max-width: $phone) {
         max-width: auto;
+    }
+}
+
+.create_workout_description_edit {
+    @extend .create_workout_description;
+    border: 2px solid $logo-color;
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    width: 98%;
+
+    @media screen and (max-width: $phone) {
+        width: 95%;
     }
 }
 

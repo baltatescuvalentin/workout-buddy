@@ -17,6 +17,10 @@ const WorkoutExercise = ({exercise, handleEditExercise, handleRemoveExercise, sh
         return <WorkoutExerciseDetails exercise={exercise} handleRemoveExercise={handleRemoveExercise} handleEdit={handleEdit} shouldEdit={shouldEdit}/>
     }
 
+    if(shouldEdit === true) {
+        return <WorkoutExerciseEdit handleEditExercise={handleEditExercise} exercise={exercise} handleRemoveExercise={handleRemoveExercise} handleEdit={handleEdit}/>
+    }
+
     return (
         <div>
             {edit ? <WorkoutExerciseEdit handleEditExercise={handleEditExercise} exercise={exercise} handleRemoveExercise={handleRemoveExercise} handleEdit={handleEdit}/> : <WorkoutExerciseDetails exercise={exercise} handleRemoveExercise={handleRemoveExercise} handleEdit={handleEdit}/>}

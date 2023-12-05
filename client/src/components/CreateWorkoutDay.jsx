@@ -18,7 +18,7 @@ const CreateWorkoutDay = ({handleEditExercise, handleAddExercise, handleRemoveEx
         watch,
     } = useForm({
         defaultValues: {
-            title: '',
+            title: day.name || '',
         }
     });
 
@@ -39,7 +39,7 @@ const CreateWorkoutDay = ({handleEditExercise, handleAddExercise, handleRemoveEx
         setExpand(prev => !prev);
     }
 
-    console.log(day.items);
+    console.log(day.exercises);
 
     return (
         <div className='day_wrapper'>
@@ -53,8 +53,8 @@ const CreateWorkoutDay = ({handleEditExercise, handleAddExercise, handleRemoveEx
             {openFind && <ChooseWorkoutExercise handleExpand={handleExpand} handleCloseFind={handleCloseFind} handleAddExercise={handleAddExercise} dayIndex={dayIndex}/>}
             {expand && (
                 <>
-                    <ExerciseDayTitle id='title' register={register}/>
-                    {day.items.length !== 0 && day.items.map((exercise, index) => {
+                    <ExerciseDayTitle text={watch('title')} id='title' register={register}/>
+                    {day.exercises.length !== 0 && day.exercises.map((exercise, index) => {
                         console.log(exercise);
                         return <WorkoutExercise handleEditExercise={(exercise) => handleEditExercise(dayIndex, exercise)} handleRemoveExercise={() => handleRemoveExercise(dayIndex, index)} exercise={exercise} key={index}/>
                     })}

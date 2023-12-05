@@ -35,7 +35,7 @@
         }
 
         span {
-            color :$logo-color;
+            color: $logo-color;
             font-weight: 600;
         }
     }
@@ -234,6 +234,11 @@
     padding-left: 0.75rem;
     padding-right: 0.75rem;
 
+    @media screen and (max-width: $phone) {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+    }
+
     .day_title {
         font-size: 22px;
         font-weight: 600;
@@ -261,6 +266,7 @@
             overflow: hidden;
             white-space: nowrap;
             width: 65%;
+            margin-left: 0.5rem;
         }
 
         .day_header_buttons, .myworkouts_workout_buttons {
@@ -295,6 +301,12 @@
     flex-direction: column;
     gap: 0.75rem;
 
+    h2, h3 {
+        margin: 0;
+        margin-left: 1rem;
+        color: white;
+    }
+
     &:last-child {
         margin-bottom: 0.75rem;
     }
@@ -324,10 +336,11 @@
         overflow: hidden;
         white-space: nowrap;
         font-size: 18px;
-        width: 65%;
+        max-width: 25rem;
 
-        @media screen and (max-width: $large) {
+        @media screen and (max-width: $phone) {
             font-size: 16px;
+            max-width: 10rem;
         }
     }
 
@@ -357,3 +370,10 @@
     }
 }
 
+.intruction_sets_reps_text {
+    span {
+        color: $logo-color;
+        font-size: 18px;
+        font-weight: 700;
+    }
+}

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import '../../Styles/inputs.css';
 import { useState, useEffect } from 'react';
 
-const CreateWorkoutDescription = ({id, name, register}) => {
+const CreateWorkoutDescription = ({id, name, register, defaultValue, styles}) => {
 
     const mode = useSelector(state => state.mode);
     const [rows, setRows] = useState(1);
@@ -20,8 +20,8 @@ const CreateWorkoutDescription = ({id, name, register}) => {
       };
 
     return (
-        <textarea rows={rows} id={id} placeholder={name} {...register(id)} onChange={(e) => setText(e.target.value)}
-            className={`create_workout_description ${mode === 'light' ? 'light_input' : 'dark_input'}`}>
+        <textarea rows={rows} id={id} placeholder={name} defaultValue={defaultValue} {...register(id)} onChange={(e) => setText(e.target.value)}
+            className={`${styles} ${mode === 'light' ? 'light_input' : 'dark_input'}`}>
 
         </textarea>
     )

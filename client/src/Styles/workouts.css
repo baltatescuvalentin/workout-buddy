@@ -206,6 +206,12 @@
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
+@media screen and (max-width: 27rem) {
+  .day_wrapper, .myworkouts_workout_wrapper {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+}
 .day_wrapper .day_title, .myworkouts_workout_wrapper .day_title {
   font-size: 22px;
   font-weight: 600;
@@ -232,6 +238,7 @@
   overflow: hidden;
   white-space: nowrap;
   width: 65%;
+  margin-left: 0.5rem;
 }
 .day_wrapper .day_header .day_header_buttons, .day_wrapper .day_header .myworkouts_workout_buttons, .day_wrapper .myworkouts_workout_header .day_header_buttons, .day_wrapper .myworkouts_workout_header .myworkouts_workout_buttons, .myworkouts_workout_wrapper .day_header .day_header_buttons, .myworkouts_workout_wrapper .day_header .myworkouts_workout_buttons, .myworkouts_workout_wrapper .myworkouts_workout_header .day_header_buttons, .myworkouts_workout_wrapper .myworkouts_workout_header .myworkouts_workout_buttons {
   display: flex;
@@ -262,6 +269,11 @@
   flex-direction: column;
   gap: 0.75rem;
 }
+.my_workouts_days h2, .my_workouts_days h3 {
+  margin: 0;
+  margin-left: 1rem;
+  color: white;
+}
 .my_workouts_days:last-child {
   margin-bottom: 0.75rem;
 }
@@ -291,11 +303,12 @@
   overflow: hidden;
   white-space: nowrap;
   font-size: 18px;
-  width: 65%;
+  max-width: 25rem;
 }
-@media screen and (max-width: 80rem) {
+@media screen and (max-width: 27rem) {
   .workout_exercise_details_header .workout_exercise_name {
     font-size: 16px;
+    max-width: 10rem;
   }
 }
 .workout_exercise_details_header .workout_exercise_buttons {
@@ -315,4 +328,9 @@
 }
 .workout_exercise_details p > span {
   font-weight: 500;
+}
+.intruction_sets_reps_text span {
+  color: #488eff;
+  font-size: 18px;
+  font-weight: 700;
 }
