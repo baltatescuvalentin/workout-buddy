@@ -20,6 +20,7 @@ import WorkoutRoutineView from './components/WorkoutRoutineView';
 import FitnessCalculator from './Scenes/fitness/FitnessCalculator';
 import FitnessMain from './Scenes/fitness/FitnessMain';
 import WorkoutRoutineEdit from './components/WorkoutRoutineEdit';
+import Tracker from './Scenes/fitness/Tracker';
 
 function App() {
 
@@ -84,6 +85,7 @@ function App() {
             <Route path='/fitness' element={<SharedLayout />} >
               <Route index element={<FitnessMain />} />
               <Route path='calculator' element={<FitnessCalculator />} />
+              <Route path='tracker' element={<Tracker />} />
             </Route>
           </Route>
           <Route path='/register' element={<Register />} />

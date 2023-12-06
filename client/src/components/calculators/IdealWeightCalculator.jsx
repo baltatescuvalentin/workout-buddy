@@ -115,7 +115,7 @@ const IdealWeightCalculator = () => {
             {
                 details && (
                     <div className='calculator_content_wrapper'>
-                        <p>Find four different ideal weight scores according to four different well-known equations which are Hamwi, Devine, Miller, Robinson. There are two parameters which are age and height(cm) values.</p>
+                        <p>Find your ideal weight score. There are two parameters which are age and height(cm) values.</p>
                         <div className='calculator_buttons_wrapper'>
                             {
                                 checkForInfo() && (<CalculatorOptionButton onClick={accountOption} title='Calculate with account info'/>)
