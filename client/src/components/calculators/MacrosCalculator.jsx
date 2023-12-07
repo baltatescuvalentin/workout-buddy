@@ -56,6 +56,9 @@ const MacrosCalculator = () => {
             if(watch('sex') === "") {
                 return false;
             }
+            if(watch('age') === "" || watch('height') === "" || watch('weight') === "" || watch('goal') === "" || watch('activityLevel') === "") {
+                return false;
+            }
             if(parseInt(watch('age')) < 2) {
                 return false;
             }

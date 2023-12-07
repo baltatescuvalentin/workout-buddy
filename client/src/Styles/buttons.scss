@@ -177,3 +177,49 @@
 .calculator_custom_calculate_button_disabled {
     @include calculate_custom_button(gray, not-allowed);
 }
+
+.tracker_buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.2rem;
+
+    .tracker_button {
+        background: inherit;
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .tracker_button_icon {
+        fill: $logo-color;
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+
+    .tracker_button_icon_cancel {
+        @extend .tracker_button_icon;
+        fill: red;
+    }
+}
+
+.tracker_calculate_button {
+    height: 2.5rem;
+    border-radius: 4px;
+    background-color: $logo-color;
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+
+    @media screen and (max-width: $phone) {
+        font-size: 16px;
+    }
+}
+
+.tracker_calculate_button_disabled {
+    @extend .tracker_calculate_button;
+    background-color: grey;
+    cursor: not-allowed;
+}

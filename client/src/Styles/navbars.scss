@@ -129,10 +129,11 @@
 .mobile_navbar_wrapper {
     display: none;
     width: 100vw;
-    position: absolute;
+    position: fixed;
+    top: 0;
     z-index: 999;
     height: 100vh;
-    height: 100svh;
+    
 
     @media screen and (max-width: $medium) {
         display: block;

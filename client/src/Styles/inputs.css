@@ -199,17 +199,12 @@
   border: none;
   background-color: inherit;
   border-bottom: solid 2px #488eff;
-  width: 5rem;
+  width: 5.5rem;
   font-size: 20px;
   color: #488eff;
 }
 .calculator_input::-webkit-inner-spin-button, .calculator_input::-webkit-outer-spin-button {
   -webkit-appearance: none;
-}
-@media screen and (max-width: 27rem) {
-  .calculator_input {
-    width: 100%;
-  }
 }
 
 .activity_wrapper {
@@ -233,4 +228,17 @@
   .activity_dropdown {
     width: 100%;
   }
+}
+
+.tracker_input {
+  outline: none;
+  border: none;
+  background-color: inherit;
+  width: 6rem;
+  color: #488eff;
+  font-size: 20px;
+  border-bottom: 2px solid #488eff;
+}
+.tracker_input::-webkit-inner-spin-button, .tracker_input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }

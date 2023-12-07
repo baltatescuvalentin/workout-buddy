@@ -56,6 +56,9 @@ const BodyFatCalculator = () => {
             if(watch('sex') === "") {
                 return false;
             }
+            if(watch('age') === "" || watch('height') === "" || watch('weight') === "" || watch('neck') === "" || watch('waist') === "") {
+                return false;
+            }
             if(parseInt(watch('age')) < 2) {
                 return false;
             }

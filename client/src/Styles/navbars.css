@@ -515,10 +515,10 @@ html {
 .mobile_navbar_wrapper, .mobile_navbar_active, .mobile_navbar_hidden {
   display: none;
   width: 100vw;
-  position: absolute;
+  position: fixed;
+  top: 0;
   z-index: 999;
   height: 100vh;
-  height: 100svh;
 }
 @media screen and (max-width: 56rem) {
   .mobile_navbar_wrapper, .mobile_navbar_active, .mobile_navbar_hidden {

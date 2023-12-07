@@ -203,7 +203,6 @@
     justify-content: center;
     
     @media screen and (max-width: $phone) {
-        width: 90%;
 
         .identity_wrapper {
             justify-content: flex-start;

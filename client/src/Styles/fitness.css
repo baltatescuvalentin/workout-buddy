@@ -120,6 +120,7 @@
 
 .calculator_input_wrapper p {
   margin-bottom: 0;
+  width: auto;
 }
 
 .mycalendar_wrapper {
@@ -128,4 +129,43 @@
   align-items: center;
   justify-content: center;
   margin-top: 1rem;
+}
+
+.trackers_wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+.trackers_wrapper .trackers_body_measurements {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.trackers_wrapper .trackers_calories {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tracker_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.tracker_header .tracker_title_input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+.tracker_header .tracker_title_input p {
+  font-size: 20px;
+  font-weight: 600;
+  color: #488eff;
+  margin: 0;
+}
+.tracker_header .tracker_title_input .tracker_value {
+  font-weight: 500;
 }

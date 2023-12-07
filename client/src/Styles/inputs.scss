@@ -194,13 +194,10 @@
     border: none;
     background-color: inherit;
     border-bottom: solid 2px $logo-color;
-    width: 5rem;
+    width: 5.5rem;
     font-size: 20px;
     color: $logo-color;
 
-    @media screen and (max-width: $phone) {
-        width: 100%;
-    }
 }
 
 .activity_wrapper {
@@ -222,5 +219,18 @@
     
     @media screen and (max-width: $phone) {
         width: 100%;
+    }
+}
+
+.tracker_input {
+    outline: none;
+    border: none;
+    background-color: inherit;
+    width: 6rem;
+    color: $logo-color;
+    font-size: 20px;
+    border-bottom: 2px solid $logo-color;
+    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
     }
 }

@@ -75,6 +75,9 @@ const BMICalculator = () => {
 
     useEffect(() => {
         const ready = () => {
+            if(watch('age') === "" || watch('height') === "" || watch('weight') === "") {
+                return false;
+            }
             if(parseInt(watch('age')) < 1) {
                 return false;
             }

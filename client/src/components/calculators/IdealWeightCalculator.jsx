@@ -67,6 +67,9 @@ const IdealWeightCalculator = () => {
             if(watch('sex') === "") {
                 return false;
             }
+            if(watch('height') === "") {
+                return false;
+            }
             if(parseInt(watch('height')) < 130 || parseInt(watch('height')) > 230) {
                 return false;
             }

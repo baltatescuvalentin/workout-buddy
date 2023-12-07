@@ -200,9 +200,6 @@
   justify-content: center;
 }
 @media screen and (max-width: 27rem) {
-  .identity_input_wrapper {
-    width: 90%;
-  }
   .identity_input_wrapper .identity_wrapper {
     justify-content: flex-start;
   }
