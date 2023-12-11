@@ -577,25 +577,41 @@
   cursor: not-allowed;
 }
 
-.tracker_buttons {
+.tracker_buttons, .calories_tracker_food_buttons {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.2rem;
 }
-.tracker_buttons .tracker_button {
+.tracker_buttons .tracker_button, .calories_tracker_food_buttons .tracker_button {
   background: inherit;
   outline: none;
   border: none;
   cursor: pointer;
+  border-radius: 8px;
 }
-.tracker_buttons .tracker_button_icon, .tracker_buttons .tracker_button_icon_cancel {
+.tracker_buttons .tracker_button_icon, .calories_tracker_food_buttons .tracker_button_icon {
   fill: #488eff;
   height: 1.5rem;
   width: 1.5rem;
 }
-.tracker_buttons .tracker_button_icon_cancel {
+.tracker_buttons .tracker_button_icon_disabled, .calories_tracker_food_buttons .tracker_button_icon_disabled {
+  fill: grey;
+  height: 1.5rem;
+  width: 1.5rem;
+  cursor: not-allowed;
+}
+.tracker_buttons .tracker_button_icon_cancel, .calories_tracker_food_buttons .tracker_button_icon_cancel {
   fill: red;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+@media screen and (max-width: 27rem) {
+  .calories_tracker_food_buttons {
+    justify-content: flex-end;
+    flex-direction: column;
+  }
 }
 
 .tracker_calculate_button, .tracker_calculate_button_disabled {

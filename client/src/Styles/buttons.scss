@@ -189,6 +189,7 @@
         outline: none;
         border: none;
         cursor: pointer;
+        border-radius: 8px;
     }
 
     .tracker_button_icon {
@@ -197,9 +198,26 @@
         width: 1.5rem;
     }
 
+    .tracker_button_icon_disabled {
+        fill: grey;
+        height: 1.5rem;
+        width: 1.5rem;
+        cursor: not-allowed;
+    }
+
     .tracker_button_icon_cancel {
-        @extend .tracker_button_icon;
         fill: red;
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+}
+
+.calories_tracker_food_buttons {
+    @extend .tracker_buttons;
+    
+    @media screen and (max-width: $phone) {
+        justify-content: flex-end;
+        flex-direction: column;
     }
 }
 

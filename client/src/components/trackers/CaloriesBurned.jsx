@@ -9,17 +9,17 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Loader from '../Loader';
 import { useForm } from 'react-hook-form';
-import CaloriesTrackerFood from '../CaloriesTrackerFood';
+import CaloriesTrackerActivity from '../CaloriesTrackerActivity';
 
-const CaloriesIntake = ({calsArray}) => {
+const CaloriesBurned = ({calsArray}) => {
 
-    const [addFood, setAddFood] = useState(false);
+    const [addActivity, setAddActivity] = useState(false);
     const mode = useSelector(state => state.mode);
     const [searchInput, setSearchInput] = useState("");
     const [searchLoader, setSearchLoader] = useState(false);
     const [foodResults, setFoodResults] = useState([]);
     const [addOption, setAddOption] = useState("");
-    const [chosenFood, setChosenFood] = useState("");
+    const [chosenActivity, setChosenActivity] = useState("");
     const [caloriesArray, setCaloriesArray] = useState([]);
     const [validCustomInputs, setValidCustomInputs] = useState(false);
     const [showCustom, setShowCustom] = useState(false);
@@ -31,34 +31,34 @@ const CaloriesIntake = ({calsArray}) => {
         reset
     } = useForm({
         defaultValues: {
-            foodName: '',
-            quantity: 0,
+            activity: '',
+            time: 0,
             calories: 0,
         }
     })
 
     const handleOpenAdd = () => {
-        setAddFood(true);
+        setAddActivity(true);
     }
     
-    const customAddFood = () => {
+    const customAddActivity = () => {
         setAddOption('custom');
         reset();
-        setChosenFood("");
+        setChosenActivity("");
         setShowCustom(true);
     }
 
-    const searchAddFood = () => {
+    const searchAddActivity = () => {
         setAddOption('search');
         setFoodResults([]);
         reset();
     }
 
     const handleCloseAdd = () => {
-        setAddFood(false);
+        setAddActivity(false);
         setAddOption("");
         setFoodResults([]);
-        setChosenFood("");
+        setChosenActivity("");
         reset();
     }
 
@@ -67,23 +67,23 @@ const CaloriesIntake = ({calsArray}) => {
         setFoodResults([]);
     }
 
-    const handleFoodSearch = (event) => {
+    const handleActivitySearch = (event) => {
         if(event.key === 'Enter') {
             findFood();
         }
     }
 
-    const addToCaloriesArray = (foodName, quantity, calories) => {
+    const addToCaloriesArray = (activity, time, calories) => {
         setCaloriesArray([...caloriesArray, {
-            foodName: foodName,
-            quantity: quantity,
+            activity: activity,
+            time: time,
             calories: calories,
         }])
     }
 
-    const addNewFood = (foodName, time, calories) => {
-        addToCaloriesArray(foodName, time, calories);
-        setChosenFood("");
+    const addNewActivity = (activity, time, calories) => {
+        addToCaloriesArray(activity, time, calories);
+        setChosenActivity("");
         setShowCustom(false);
     }
 
@@ -105,38 +105,39 @@ const CaloriesIntake = ({calsArray}) => {
 
     useEffect(() => {
         const customValidInputs = () => {
-            return watch('foodName') && (watch('calories') > 0) && (watch('quantity') > 0);
+            return watch('activity') && (watch('calories') > 0) && (watch('time') > 0);
         }
 
         setValidCustomInputs(customValidInputs());
-    }, [watch('foodName'), watch('calories'), watch('quantity')]);
+    }, [watch('activity'), watch('calories'), watch('time')]);
 
     const searchCalories = useMemo(() => {
-        if(watch('quantity') === 0) {
+        if(watch('time') === 0) {
             return 0;
         }
         
-        const currentCalories = ((watch('quantity') * chosenFood.calories) / 100).toFixed(2);
+        const currentCalories = ((watch('time') * chosenActivity.calories_per_hour) / 60).toFixed(2);
         return currentCalories;
-    }, [watch('quantity'), chosenFood.calories, watch]);
+    }, [watch('time'), chosenActivity.calories_per_hour, watch]);
 
+    console.log(`burned:`);
     console.log(caloriesArray);
-    console.log(validCustomInputs);
 
     const findFood = async () => {
         setSearchLoader(true);
 
         const options = {
             method: 'GET',
-            url: 'https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition',
+            url: 'https://calories-burned-by-api-ninjas.p.rapidapi.com/v1/caloriesburned',
             params: {
-              query: searchInput
+                activity: searchInput
             },
             headers: {
               'X-RapidAPI-Key': 'f5b195d257msh77ce462a18d0527p16570ajsn40652ebe82e7',
-              'X-RapidAPI-Host': 'nutrition-by-api-ninjas.p.rapidapi.com'
+              'X-RapidAPI-Host': 'calories-burned-by-api-ninjas.p.rapidapi.com'
             }
           };
+          
 
           await axios.request(options)
             .then((response) => {
@@ -150,38 +151,39 @@ const CaloriesIntake = ({calsArray}) => {
             })
     }
 
-    const calorieIntakeValue = useMemo(() => {
+    const calorieBurnedValue = useMemo(() => {
         let value = caloriesArray.reduce((acc, curr) => {
             return acc + parseFloat(curr.calories);
         }, 0);
         value = value.toFixed(2);
+        console.log(`memo ${value}`)
         return value;
     }, [caloriesArray]);
 
     return (
         <div>
             <div className='calories_intake_header'>
-                <p>{calorieIntakeValue > 0 ? calorieIntakeValue : '0'} Calories intake</p>
+                <p>{calorieBurnedValue > 0 ? calorieBurnedValue : '0'} Calories Burned</p>
                 <div className='tracker_buttons'>
                     {
-                        addFood ? 
+                        addActivity ? 
                             <UtilityButton styles='tracker_button' onClick={handleCloseAdd} icon={<FaTimes className='tracker_button_icon'/>}/> 
                         : <UtilityButton styles='tracker_button' onClick={handleOpenAdd} icon={<FaEdit className='tracker_button_icon'/>}/>
                     }
                 </div>
             </div>
             {
-                addFood && (
+                addActivity && (
                     <>
                         <div className='calories_intake_add_option'>
-                            <UtilityButton onClick={customAddFood} styles='tracker_calculate_button' title='Add custom data' />
-                            <UtilityButton onClick={searchAddFood} styles='tracker_calculate_button' title='Search food' />
+                            <UtilityButton onClick={customAddActivity} styles='tracker_calculate_button' title='Add custom data' />
+                            <UtilityButton onClick={searchAddActivity} styles='tracker_calculate_button' title='Search activity' />
                         </div>
                         {
                             addOption === 'search' ? (
                                 <>
                                     <div className='calories_intake_input_wrapper'>
-                                        <input placeholder='&#128269; Search' onKeyDown={handleFoodSearch} onChange={(e) => setSearchInput(e.target.value)} className={`calories_intake_food_search ${mode === 'light' ? 'light input' : 'dark_input'}`}/>
+                                        <input placeholder='&#128269; Search' onKeyDown={handleActivitySearch} onChange={(e) => setSearchInput(e.target.value)} className={`calories_intake_food_search ${mode === 'light' ? 'light input' : 'dark_input'}`}/>
                                         <div className='tracker_buttons'>
                                             <UtilityButton onClick={closeAddOptions} styles='tracker_button' icon={<FaTimes className='tracker_button_icon'/>}/>
                                         </div>
@@ -192,22 +194,23 @@ const CaloriesIntake = ({calsArray}) => {
                                             (foodResults.length > 0 && (
                                                 <div className='calories_intake_search_result_list'>
                                                     {
-                                                        foodResults.map((food) => <p onClick={() => setChosenFood(food)} key={food.name} className='calories_intake_result'>{food.name} - {food.calories} cals per 100g</p>)
+                                                        foodResults.map((activity) => 
+                                                            <p onClick={() => setChosenActivity(activity)} key={activity.name} className='calories_intake_result'>{activity.name} - {activity.calories_per_hour} cals per hour</p>)
                                                     }
                                                 </div>
                                             ))
                                         }
                                         {
-                                            chosenFood && (
+                                            chosenActivity && (
                                                 <div className='calories_tracker_food_wrapper'>
                                                     <div className='calories_tracker_food_elements_wrapper'>
                                                         <div className='calories_tracker_food_element'>
-                                                            <p>Food</p>
-                                                            <p>{chosenFood.name}</p>
+                                                            <p>Activity</p>
+                                                            <p>{chosenActivity.name}</p>
                                                         </div>
                                                         <div className='calories_tracker_food_element'>
-                                                            <p>Quantity </p>
-                                                            <input className='calories_intake_input_quantity' type='number' {...register('quantity')}/>
+                                                            <p>Time </p>
+                                                            <input className='calories_intake_input_quantity' type='number' {...register('time')}/>
                                                         </div>
                                                         <div className='calories_tracker_food_element'>
                                                             <p>Calories </p>
@@ -215,9 +218,9 @@ const CaloriesIntake = ({calsArray}) => {
                                                         </div>
                                                     </div>
                                                     <div className='tracker_buttons'>
-                                                        <UtilityButton disabled={watch('quantity') > 0 ? false : true}
-                                                            onClick={() => addNewFood(chosenFood.name, getValues('quantity'), searchCalories)} 
-                                                            styles='tracker_button' icon={<FaPlus className={`${watch('quantity') > 0 ? 'tracker_button_icon' : 'tracker_button_icon_disabled'}`} />}/>
+                                                        <UtilityButton disabled={watch('time') > 0 ? false : true}
+                                                            onClick={() => addNewActivity(chosenActivity.name, getValues('time'), searchCalories)} 
+                                                            styles='tracker_button' icon={<FaPlus className={`${watch('time') > 0 ? 'tracker_button_icon' : 'tracker_button_icon_disabled'}`} />}/>
                                                     </div>
                                                     
                                                 </div>
@@ -230,12 +233,12 @@ const CaloriesIntake = ({calsArray}) => {
                                     <div className='calories_tracker_food_wrapper'>
                                         <div className='calories_tracker_food_elements_wrapper'>
                                             <div className='calories_tracker_food_element'>
-                                                <p>Food</p>
-                                                <input type='text' className='calories_intake_input_foodname' {...register('foodName')} placeholder='Food name' />
+                                                <p>Activity</p>
+                                                <input type='text' className='calories_intake_input_foodname' {...register('activity')} placeholder='Activity' />
                                             </div>
                                             <div className='calories_tracker_food_element'>
-                                                <p>Quantity </p>
-                                                <input className='calories_intake_input_quantity' type='number' {...register('quantity')} />
+                                                <p>Time </p>
+                                                <input className='calories_intake_input_quantity' type='number' {...register('time')} />
                                             </div>
                                             <div className='calories_tracker_food_element'>
                                                 <p>Calories </p>
@@ -244,7 +247,7 @@ const CaloriesIntake = ({calsArray}) => {
                                         </div>
                                         <div className='tracker_buttons'>
                                             <UtilityButton disabled={!validCustomInputs}
-                                                onClick={() => addNewFood(getValues('foodName'), getValues('quantity'), getValues('calories'))} 
+                                                onClick={() => addNewActivity(getValues('activity'), getValues('time'), getValues('calories'))} 
                                                 styles='tracker_button' icon={<FaPlus className={`${validCustomInputs ? 'tracker_button_icon' : 'tracker_button_icon_disabled'}`} />}/>
                                         </div>
                                     </div>
@@ -256,7 +259,7 @@ const CaloriesIntake = ({calsArray}) => {
             <div className='calories_tracker_foods_wrapper'>
                 {
                     caloriesArray.length > 0 && (
-                        caloriesArray.map((track, index) => <CaloriesTrackerFood key={index} index={index} trackerItem={track} removeFromCaloriesArray={removeFromCaloriesArray} editToCaloriesArray={editToCaloriesArray}/>)
+                        caloriesArray.map((track, index) => <CaloriesTrackerActivity key={index} index={index} trackerItem={track} removeFromCaloriesArray={removeFromCaloriesArray} editToCaloriesArray={editToCaloriesArray}/>)
                     )
                 }  
             </div>
@@ -264,4 +267,4 @@ const CaloriesIntake = ({calsArray}) => {
     )
 }
 
-export default CaloriesIntake;
+export default CaloriesBurned;

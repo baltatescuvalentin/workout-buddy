@@ -76,6 +76,17 @@
     color: white;
 }
 
+.calories_intake_food_search {
+    @extend .find_exercise_input;
+    font-size: 18px;
+    width: 50%;
+    margin-bottom: 0.5rem;
+
+    @media screen and (max-width: $phone) {
+        width: 80%;
+    }
+}
+
 .exercise_sets_reps {
     outline: none;
     border: none;
@@ -102,6 +113,20 @@
 .edit_exercise_input {
     @extend .exercise_sets_reps;
     background-color: $exercise_color;
+}
+
+.calories_intake_input_foodname {
+    @extend .exercise_sets_reps;
+    background-color: inherit;
+    width: 12rem;
+    color: $logo-color;
+}
+
+.calories_intake_input_quantity {
+    @extend .exercise_sets_reps;
+    background-color: inherit;
+    width: 4rem;
+    color: $logo-color;
 }
 
 .light_input {

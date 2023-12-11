@@ -173,8 +173,7 @@
 
 .mobile_menu_wrapper {
     border-radius: 8px;
-    background-color: $mobile-menu-color;
-    width: 93%;
+    width: 92%;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     margin-top: 0.3rem;
@@ -193,10 +192,29 @@
     }
 }
 
-.mobile_menu_icon {
+.mobile_menu_wrapper_light {
+    @extend .mobile_menu_wrapper;
+    border: 2px solid $light-theme-text;
+    background-color: $light-theme-background;
+}
+
+.mobile_menu_wrapper_dark {
+    @extend .mobile_menu_wrapper;
+    border: 2px solid $dark-theme-text;
+    background-color: $dark-theme-background;
+}
+
+.mobile_menu_icon_dark {
     width: 2.6rem;
     height: 2.6rem;
-    fill: grey;
+    fill: $dark-theme-text;
+    margin: 0.2rem;
+}
+
+.mobile_menu_icon_light {
+    width: 2.6rem;
+    height: 2.6rem;
+    fill: $light-theme-text;
     margin: 0.2rem;
 }
 

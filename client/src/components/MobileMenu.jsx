@@ -11,12 +11,13 @@ const MobileMenu = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const mNavbar = useSelector(state => state.mNavbar);
+    const mode = useSelector(state => state.mode);
     console.log(`mNavbar: ${mNavbar}`);
 
     return (
-        <div className='mobile_menu_wrapper'>
-            <GiHamburgerMenu onClick={() => dispatch(setMNavbar({mNavbar: true}))} className='mobile_menu_icon'/>
-            <FaUserCircle onClick={() => navigate('/profile')} className='mobile_menu_icon' />
+        <div className={`${mode === 'light' ? 'mobile_menu_wrapper_light' : 'mobile_menu_wrapper_dark'}`}>
+            <GiHamburgerMenu onClick={() => dispatch(setMNavbar({mNavbar: true}))} className={`${mode === 'light' ? 'mobile_menu_icon_light' : 'mobile_menu_icon_dark'}`}/>
+            <FaUserCircle onClick={() => navigate('/profile')} className={`${mode === 'light' ? 'mobile_menu_icon_light' : 'mobile_menu_icon_dark'}`} />
         </div>
     )
 }

@@ -11,6 +11,8 @@ import BodyMeasurementTracker from '../../components/trackers/BodyMeasurementTra
 import WHRTracker from '../../components/trackers/WHRTracker';
 import BMITracker from '../../components/trackers/BMITracker';
 import BodyFatTracker from '../../components/trackers/BodyFatTracker';
+import CaloriesIntake from '../../components/trackers/CaloriesIntake';
+import CaloriesBurned from '../../components/trackers/CaloriesBurned';
 
 const Tracker = () => {
 
@@ -94,7 +96,8 @@ const Tracker = () => {
                         </div>
                         <h2>Calories</h2>
                         <div className='trackers_calories'>
-                            
+                            <CaloriesIntake />
+                            <CaloriesBurned />
                         </div>
                     </div>
                 </div>

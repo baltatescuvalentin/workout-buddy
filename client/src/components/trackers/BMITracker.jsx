@@ -14,6 +14,7 @@ const BMITracker = ({id, register, setValue, watch, getValues, value}) => {
     const [edit, setEdit] = useState(false);
     const [inputsReady, setInputsReady] = useState(false);
     const [bmiValue, setBmiValue] = useState(value);
+    const [calculate, setCalculate] = useState(false);
 
     const {
         register: registerBMI,
@@ -31,6 +32,26 @@ const BMITracker = ({id, register, setValue, watch, getValues, value}) => {
     const changeEdit = () => {
         setEdit(prev => !prev);
         reset();
+    }
+
+    const openEdit = () => {
+        setEdit(prev => !prev);
+        setCalculate(false);
+        reset();
+    }
+
+    const closeEdit = () => {
+        setEdit(prev => !prev);
+        setCalculate(false);
+        reset();
+    }
+
+    const handleCalculate = () => {
+        setCalculate(prev => !prev);
+    }
+
+    const changeValue = (e) => {
+        setBmiValue(e.target.value);
     }
 
     useEffect(() => {
@@ -97,21 +118,32 @@ const BMITracker = ({id, register, setValue, watch, getValues, value}) => {
                         <div className='tracker_header'>
                             <div className='tracker_title_input'>
                                 <p>BMI</p>
-                                <input className='tracker_input' type='number' id={id} value={bmiValue} {...register(id)}/>
+                                {
+                                    calculate ? <p>{bmiValue}</p> : <input className='tracker_input' type='number' value={bmiValue} onChange={changeValue}/>
+                                }
                             </div>
                             <div className='tracker_buttons'>
                                 <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaSave className='tracker_button_icon'/>}/>
                                 <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaTimes className='tracker_button_icon_cancel'/>}/>
                             </div>
                         </div>
-                        <div className='calculator_custom_wrapper'>
-                            <div className='calculator_inputs'>
-                                <CalculatorInput id='age' inputStyle='calculator_input' title='Age' register={registerBMI}/>
-                                <CalculatorInput id='weight' inputStyle='calculator_input' title='Weight' register={registerBMI}/>
-                                <CalculatorInput id='height' inputStyle='calculator_input' title='Height' register={registerBMI}/>
-                            </div>
-                            <UtilityButton styles={`${inputsReady === true ? 'calculator_custom_calculate_button' : 'calculator_custom_calculate_button_disabled'}`} title='Calculate' onClick={getBMI} disabled={!inputsReady}/>
-                        </div>
+                        {
+                            calculate ? (
+                                <div className='calculator_custom_wrapper'>
+                                    <div className='calculator_inputs'>
+                                        <CalculatorInput id='age' inputStyle='calculator_input' title='Age' register={registerBMI}/>
+                                        <CalculatorInput id='weight' inputStyle='calculator_input' title='Weight' register={registerBMI}/>
+                                        <CalculatorInput id='height' inputStyle='calculator_input' title='Height' register={registerBMI}/>
+                                    </div>
+                                    <div className='tracker_custom_buttons'>
+                                        <UtilityButton styles={`${inputsReady === true ? 'calculator_custom_calculate_button' : 'calculator_custom_calculate_button_disabled'}`} title='Calculate' onClick={getBMI} disabled={!inputsReady}/>
+                                        <UtilityButton onClick={handleCalculate} styles='tracker_calculate_button' title='Your value' />
+                                    </div>
+                                </div>
+                            ) : (
+                                <UtilityButton onClick={handleCalculate} styles='tracker_calculate_button' title='Calculate value' />
+                            )
+                        }
                     </>
                 ) : (
                     <>

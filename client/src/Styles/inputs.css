@@ -74,7 +74,7 @@
   font-size: 18px;
 }
 
-.find_exercise_input, .find_workout_exercise_input {
+.find_exercise_input, .calories_intake_food_search, .find_workout_exercise_input {
   outline: none;
   width: 25rem;
   height: 3rem;
@@ -84,7 +84,7 @@
   border-bottom: solid 3px #488eff;
 }
 @media screen and (max-width: 27rem) {
-  .find_exercise_input, .find_workout_exercise_input {
+  .find_exercise_input, .calories_intake_food_search, .find_workout_exercise_input {
     width: 100%;
   }
 }
@@ -96,7 +96,18 @@
   color: white;
 }
 
-.exercise_sets_reps, .edit_exercise_input, .info_input {
+.calories_intake_food_search {
+  font-size: 18px;
+  width: 50%;
+  margin-bottom: 0.5rem;
+}
+@media screen and (max-width: 27rem) {
+  .calories_intake_food_search {
+    width: 80%;
+  }
+}
+
+.exercise_sets_reps, .calories_intake_input_quantity, .calories_intake_input_foodname, .edit_exercise_input, .info_input {
   outline: none;
   border: none;
   border-bottom: solid 3px #488eff;
@@ -107,7 +118,7 @@
   color: white;
   font-size: 18px;
 }
-.exercise_sets_reps::-webkit-inner-spin-button, .edit_exercise_input::-webkit-inner-spin-button, .info_input::-webkit-inner-spin-button, .exercise_sets_reps::-webkit-outer-spin-button, .edit_exercise_input::-webkit-outer-spin-button, .info_input::-webkit-outer-spin-button {
+.exercise_sets_reps::-webkit-inner-spin-button, .calories_intake_input_quantity::-webkit-inner-spin-button, .calories_intake_input_foodname::-webkit-inner-spin-button, .edit_exercise_input::-webkit-inner-spin-button, .info_input::-webkit-inner-spin-button, .exercise_sets_reps::-webkit-outer-spin-button, .calories_intake_input_quantity::-webkit-outer-spin-button, .calories_intake_input_foodname::-webkit-outer-spin-button, .edit_exercise_input::-webkit-outer-spin-button, .info_input::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
@@ -120,6 +131,18 @@
 
 .edit_exercise_input {
   background-color: #FFB948;
+}
+
+.calories_intake_input_foodname {
+  background-color: inherit;
+  width: 12rem;
+  color: #488eff;
+}
+
+.calories_intake_input_quantity {
+  background-color: inherit;
+  width: 4rem;
+  color: #488eff;
 }
 
 .create_workout_title, .create_workout_title_edit {

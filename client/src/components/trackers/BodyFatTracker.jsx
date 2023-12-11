@@ -14,6 +14,7 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value}) => {
     const [edit, setEdit] = useState(false);
     const [inputsReady, setInputsReady] = useState(false);
     const [bodyFatValue, setBodyFatValue] = useState(value);
+    const [calculate, setCalculate] = useState(false);
 
     const {
         register: registerBF,
@@ -37,6 +38,27 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value}) => {
     const changeEdit = () => {
         setEdit(prev => !prev);
         reset();
+        handleCalculate();
+    }
+
+    const openEdit = () => {
+        setEdit(prev => !prev);
+        setCalculate(false);
+        reset();
+    }
+
+    const closeEdit = () => {
+        setEdit(prev => !prev);
+        setCalculate(false);
+        reset();
+    }
+
+    const handleCalculate = () => {
+        setCalculate(prev => !prev);
+    }
+
+    const changeValue = (e) => {
+        setBodyFatValue(e.target.value);
     }
 
     useEffect(() => {
@@ -71,7 +93,7 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value}) => {
         setInputsReady(inputsReady());
     }, [watchBF('height'), watchBF('sex'), watchBF('age'), watchBF('weight'), watchBF('hip'), watchBF('waist'), watchBF('neck')]);
 
-    const getBopdyFat = () => {
+    const getBodyFat = () => {
         calculateBodyFat(getValuesBF('age'), getValuesBF('sex'), getValuesBF('weight'), getValuesBF('height'),
             getValuesBF('neck'), getValuesBF('waist'), getValuesBF('hip'));
         console.log(watch('bodyFat'));
@@ -119,35 +141,45 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value}) => {
                         <div className='tracker_header'>
                             <div className='tracker_title_input'>
                                 <p>Body Fat %</p>
-                                <input className='tracker_input' type='number' id={id} value={bodyFatValue} {...register(id)}/>
+                                {
+                                    calculate ? <p>{bodyFatValue}</p> : <input className='tracker_input' type='number' value={bodyFatValue} onChange={changeValue}/>
+                                }
                             </div>
                             <div className='tracker_buttons'>
-                                <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaSave className='tracker_button_icon'/>}/>
-                                <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaTimes className='tracker_button_icon_cancel'/>}/>
+                                <UtilityButton styles='tracker_button' onClick={closeEdit} icon={<FaSave className='tracker_button_icon'/>}/>
+                                <UtilityButton styles='tracker_button' onClick={closeEdit} icon={<FaTimes className='tracker_button_icon_cancel'/>}/>
                             </div>
                         </div>
-                        <div className='calculator_custom_wrapper'>
-                            <div className='calculator_inputs_with_gender'>
-                                <CalculatorInput id='age' inputStyle='calculator_input' title='Age' register={registerBF}/>
-                                <IdentityInput setValue={setValueBF} />
-                                <CalculatorInput id='weight' inputStyle='calculator_input' title='Weight' register={registerBF}/>
-                                <CalculatorInput id='height' inputStyle='calculator_input' title='Height' register={registerBF}/>
-                                <CalculatorInput id='neck' inputStyle='calculator_input' title='Neck' register={registerBF}/>
-                                <CalculatorInput id='waist' inputStyle='calculator_input' title='Waist' register={registerBF}/>
-                                <CalculatorInput id='hip' inputStyle='calculator_input' title='Hip' register={registerBF}/>
-                            </div>
-                            <UtilityButton styles={`${inputsReady === true ? 'calculator_custom_calculate_button' : 'calculator_custom_calculate_button_disabled'}`} title='Calculate' onClick={getBopdyFat} disabled={!inputsReady}/>
-                        </div>
+                        {
+                            calculate ? (
+                                <div className='calculator_custom_wrapper'>
+                                    <div className='calculator_inputs_with_gender'>
+                                        <CalculatorInput id='age' inputStyle='calculator_input' title='Age' register={registerBF}/>
+                                        <IdentityInput setValue={setValueBF} />
+                                        <CalculatorInput id='weight' inputStyle='calculator_input' title='Weight' register={registerBF}/>
+                                        <CalculatorInput id='height' inputStyle='calculator_input' title='Height' register={registerBF}/>
+                                        <CalculatorInput id='neck' inputStyle='calculator_input' title='Neck' register={registerBF}/>
+                                        <CalculatorInput id='waist' inputStyle='calculator_input' title='Waist' register={registerBF}/>
+                                        <CalculatorInput id='hip' inputStyle='calculator_input' title='Hip' register={registerBF}/>
+                                    </div>
+                                    <div className='tracker_custom_buttons'>
+                                        <UtilityButton styles={`${inputsReady === true ? 'calculator_custom_calculate_button' : 'calculator_custom_calculate_button_disabled'}`} title='Calculate' onClick={getBodyFat} disabled={!inputsReady}/>
+                                        <UtilityButton onClick={handleCalculate} styles='tracker_calculate_button' title='Your value' />
+                                    </div>
+                                    
+                                </div>
+                            ) : <UtilityButton onClick={handleCalculate} styles='tracker_calculate_button' title='Calculate value' />
+                        }
                     </>
                 ) : (
                     <>
                         <div className='tracker_header'>
                             <div className='tracker_title_input'>
                                 <p>Body Fat %</p>
-                                <p className='tracker_value'>{value}</p>
+                                <p className='tracker_value'>{bodyFatValue}</p>
                             </div>
                             <div className='tracker_buttons'>
-                                <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaEdit className='tracker_button_icon'/>}/>
+                                <UtilityButton styles='tracker_button' onClick={openEdit} icon={<FaEdit className='tracker_button_icon'/>}/>
                             </div>
                         </div>
                     </>
