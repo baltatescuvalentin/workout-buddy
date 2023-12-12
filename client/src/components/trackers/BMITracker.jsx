@@ -9,7 +9,7 @@ import UtilityButton from '../buttons/UtilityButton';
 import CalculatorInput from '../inputs/CalculatorInput';
 
 
-const BMITracker = ({id, register, setValue, watch, getValues, value}) => {
+const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTracker}) => {
 
     const [edit, setEdit] = useState(false);
     const [inputsReady, setInputsReady] = useState(false);
@@ -32,6 +32,12 @@ const BMITracker = ({id, register, setValue, watch, getValues, value}) => {
     const changeEdit = () => {
         setEdit(prev => !prev);
         reset();
+    }
+
+    const saveToDB = () => {
+        setEdit(prev => !prev);
+        reset();
+        saveToTracker();
     }
 
     const openEdit = () => {
@@ -123,7 +129,7 @@ const BMITracker = ({id, register, setValue, watch, getValues, value}) => {
                                 }
                             </div>
                             <div className='tracker_buttons'>
-                                <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaSave className='tracker_button_icon'/>}/>
+                                <UtilityButton styles='tracker_button' onClick={saveToDB} icon={<FaSave className='tracker_button_icon'/>}/>
                                 <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaTimes className='tracker_button_icon_cancel'/>}/>
                             </div>
                         </div>

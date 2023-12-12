@@ -406,6 +406,15 @@ html {
   margin-top: 0.75rem;
 }
 
+.pages_loader {
+  margin-top: 2.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .homepage_navbar {
   margin-left: 5rem;
   display: flex;

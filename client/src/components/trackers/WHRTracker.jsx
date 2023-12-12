@@ -5,13 +5,18 @@ import { FaSave, FaEdit, FaTimes } from "react-icons/fa";
 import UtilityButton from '../buttons/UtilityButton';
 import { useEffect, useState } from 'react';
 
-const WHRTracker = ({id, register, value, getValues, setValue, watch}) => {
+const WHRTracker = ({id, register, value, getValues, setValue, watch, saveToTracker}) => {
 
     const [edit, setEdit] = useState(false);
     const [calculable, setCalculable] = useState(false);
 
     const changeEdit = () => {
         setEdit(prev => !prev)
+    }
+
+    const savetToDB = () => {
+        setEdit(prev => !prev);
+        saveToTracker();
     }
 
     const calculateWHR = () => {

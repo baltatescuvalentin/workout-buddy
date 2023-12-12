@@ -3,15 +3,22 @@ import '../../Styles/fitness.css';
 import '../../Styles/buttons.css';
 import '../../Styles/inputs.css';
 import { FaSave, FaEdit, FaTimes } from "react-icons/fa";
+import { FaTrashCan } from "react-icons/fa6";
 import { MdOutlineCancel } from "react-icons/md";
 import UtilityButton from '../buttons/UtilityButton';
 
-const BodyMeasurementTracker = ({id, register, value, title, metric}) => {
+const BodyMeasurementTracker = ({id, register, value, title, metric, saveToTracker}) => {
 
     const [edit, setEdit] = useState(false);
+    const [trackerValue, setTrackerValue] = useState(value);
 
     const changeEdit = () => {
         setEdit(prev => !prev)
+    }
+
+    const saveToDB = () => {
+        setEdit(prev => !prev);
+        saveToTracker();
     }
 
     return (
@@ -20,10 +27,11 @@ const BodyMeasurementTracker = ({id, register, value, title, metric}) => {
                 <div className='tracker_header'>
                     <div className='tracker_title_input'>
                         <p>{title}</p>
-                        <input className='tracker_input' type='number' id={id} value={value} {...register(id)}/>
+                        <input className='tracker_input' type='number' {...register(id)} id={id} value={value} />
                     </div>
                     <div className='tracker_buttons'>
-                        <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaSave className='tracker_button_icon'/>}/>
+                        <UtilityButton styles='tracker_button' onClick={saveToDB} icon={<FaSave className='tracker_button_icon'/>}/>
+                        {/* <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaTrashCan className='tracker_button_icon_cancel'/>}/> */}
                         <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaTimes className='tracker_button_icon_cancel'/>}/>
                     </div>
                 </div>

@@ -9,6 +9,7 @@ import authRoutes from './routes/auth.js';
 import exercisesRoutes from './routes/exercises.js';
 import workoutExercisesRoutes from './routes/workoutexercises.js';
 import workoutRoutineRoutes from './routes/workoutroutines.js';
+import trackerRoutes from './routes/trackers.js';
 
 dotenv.config();
 const app = express();
@@ -24,6 +25,7 @@ app.use('/auth', authRoutes);
 app.use('/exercises', exercisesRoutes);
 app.use('/workoutexercise', workoutExercisesRoutes);
 app.use('/workoutroutine', workoutRoutineRoutes);
+app.use('/tracker', trackerRoutes);
 
 const PORT = process.env.PORT || 5001;
 

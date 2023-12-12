@@ -264,3 +264,12 @@ html {
     width: 100%;
     margin-top: 0.75rem;
 }
+
+.pages_loader {
+    margin-top: 2.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

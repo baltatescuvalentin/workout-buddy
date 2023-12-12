@@ -7,7 +7,7 @@ import { FaTrashCan } from "react-icons/fa6";
 import UtilityButton from './buttons/UtilityButton';
 import { useForm } from 'react-hook-form';
 
-const CaloriesTrackerActivity = ({index, trackerItem, removeFromCaloriesArray, editToCaloriesArray}) => {
+const CaloriesTrackerActivity = ({index, trackerItem, removeFromCaloriesArray, editToCaloriesArray, saveToTracker}) => {
 
     const [edit, setEdit] = useState(false);
     const [caloriesItem, setCalorieItem] = useState(trackerItem);
@@ -38,6 +38,7 @@ const CaloriesTrackerActivity = ({index, trackerItem, removeFromCaloriesArray, e
 
         editToCaloriesArray(index, data);
         handleEdit();
+        //saveToTracker();
     }
 
     return (

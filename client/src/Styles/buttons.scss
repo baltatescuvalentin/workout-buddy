@@ -241,3 +241,21 @@
     background-color: grey;
     cursor: not-allowed;
 }
+
+.tracker_track_button {
+    border: none;
+    outline: none;
+    background-color: $logo-color;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 12rem;
+    height: 3rem;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+
+    p {
+        font-size: 28px;
+        font-weight: 600;
+    }
+}

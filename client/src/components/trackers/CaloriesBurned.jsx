@@ -11,7 +11,7 @@ import Loader from '../Loader';
 import { useForm } from 'react-hook-form';
 import CaloriesTrackerActivity from '../CaloriesTrackerActivity';
 
-const CaloriesBurned = ({calsArray}) => {
+const CaloriesBurned = ({saveToTracker, calsArray}) => {
 
     const [addActivity, setAddActivity] = useState(false);
     const mode = useSelector(state => state.mode);
@@ -20,7 +20,7 @@ const CaloriesBurned = ({calsArray}) => {
     const [foodResults, setFoodResults] = useState([]);
     const [addOption, setAddOption] = useState("");
     const [chosenActivity, setChosenActivity] = useState("");
-    const [caloriesArray, setCaloriesArray] = useState([]);
+    const [caloriesArray, setCaloriesArray] = useState(calsArray || []);
     const [validCustomInputs, setValidCustomInputs] = useState(false);
     const [showCustom, setShowCustom] = useState(false);
 
@@ -73,32 +73,47 @@ const CaloriesBurned = ({calsArray}) => {
         }
     }
 
+    // const addToCaloriesArray = (activity, time, calories) => {
+    //     setCaloriesArray([...caloriesArray, {
+    //         activity: activity,
+    //         time: time,
+    //         calories: calories,
+    //     }])
+    // }
+
     const addToCaloriesArray = (activity, time, calories) => {
-        setCaloriesArray([...caloriesArray, {
-            activity: activity,
-            time: time,
-            calories: calories,
-        }])
+        setCaloriesArray(prevArray => {
+            let newArray = [...prevArray, {
+                activity: activity,
+                time: time,
+                calories: calories,
+            }];
+            saveToTracker(newArray);
+            return newArray;
+        })
     }
 
     const addNewActivity = (activity, time, calories) => {
         addToCaloriesArray(activity, time, calories);
         setChosenActivity("");
         setShowCustom(false);
+        //saveToTracker(caloriesArray);
     }
 
     const removeFromCaloriesArray = (index) => {
         setCaloriesArray(prevArray => {
             let updatedArray = [...prevArray];
             updatedArray = updatedArray.filter((_, arrayIndex) => index !== arrayIndex);
+            saveToTracker(updatedArray);
             return updatedArray;
         })
     }
 
     const editToCaloriesArray = (index, newData) => {
         setCaloriesArray(prevArray => {
-            const updatedArray = [...prevArray];
+            let updatedArray = [...prevArray];
             updatedArray[index] = newData;
+            saveToTracker(updatedArray);
             return updatedArray;
         })
     }
@@ -259,7 +274,7 @@ const CaloriesBurned = ({calsArray}) => {
             <div className='calories_tracker_foods_wrapper'>
                 {
                     caloriesArray.length > 0 && (
-                        caloriesArray.map((track, index) => <CaloriesTrackerActivity key={index} index={index} trackerItem={track} removeFromCaloriesArray={removeFromCaloriesArray} editToCaloriesArray={editToCaloriesArray}/>)
+                        caloriesArray.map((track, index) => <CaloriesTrackerActivity key={index} saveToTracker={() => saveToTracker(caloriesArray)} index={index} trackerItem={track} removeFromCaloriesArray={removeFromCaloriesArray} editToCaloriesArray={editToCaloriesArray}/>)
                     )
                 }  
             </div>

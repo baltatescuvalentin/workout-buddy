@@ -9,7 +9,7 @@ import UtilityButton from '../buttons/UtilityButton';
 import CalculatorInput from '../inputs/CalculatorInput';
 import IdentityInput from '../inputs/IdentityInput';
 
-const BodyFatTracker = ({id, register, setValue, watch, getValues, value}) => {
+const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveToTracker}) => {
 
     const [edit, setEdit] = useState(false);
     const [inputsReady, setInputsReady] = useState(false);
@@ -51,6 +51,13 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value}) => {
         setEdit(prev => !prev);
         setCalculate(false);
         reset();
+    }
+
+    const saveToDB = () => {
+        setEdit(prev => !prev);
+        setCalculate(false);
+        reset();
+        saveToTracker();
     }
 
     const handleCalculate = () => {
@@ -146,7 +153,7 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value}) => {
                                 }
                             </div>
                             <div className='tracker_buttons'>
-                                <UtilityButton styles='tracker_button' onClick={closeEdit} icon={<FaSave className='tracker_button_icon'/>}/>
+                                <UtilityButton styles='tracker_button' onClick={saveToDB} icon={<FaSave className='tracker_button_icon'/>}/>
                                 <UtilityButton styles='tracker_button' onClick={closeEdit} icon={<FaTimes className='tracker_button_icon_cancel'/>}/>
                             </div>
                         </div>
