@@ -125,7 +125,7 @@ const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTrac
                             <div className='tracker_title_input'>
                                 <p>BMI</p>
                                 {
-                                    calculate ? <p>{bmiValue}</p> : <input className='tracker_input' type='number' value={bmiValue} onChange={changeValue}/>
+                                    calculate ? <p>{getValues(id)}</p> : <input className='tracker_input' type='number' value={watch(id)} {...register(id)}/>
                                 }
                             </div>
                             <div className='tracker_buttons'>

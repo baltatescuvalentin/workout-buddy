@@ -85,8 +85,8 @@ const CaloriesBurned = ({saveToTracker, calsArray}) => {
         setCaloriesArray(prevArray => {
             let newArray = [...prevArray, {
                 activity: activity,
-                time: time,
-                calories: calories,
+                time: parseFloat(time),
+                calories: parseFloat(calories),
             }];
             saveToTracker(newArray);
             return newArray;
@@ -97,6 +97,7 @@ const CaloriesBurned = ({saveToTracker, calsArray}) => {
         addToCaloriesArray(activity, time, calories);
         setChosenActivity("");
         setShowCustom(false);
+        reset();
         //saveToTracker(caloriesArray);
     }
 
@@ -131,8 +132,8 @@ const CaloriesBurned = ({saveToTracker, calsArray}) => {
             return 0;
         }
         
-        const currentCalories = ((watch('time') * chosenActivity.calories_per_hour) / 60).toFixed(2);
-        return currentCalories;
+        const currentCalories = ((watch('time') * parseFloat(chosenActivity.calories_per_hour)) / 60).toFixed(2);
+        return parseFloat(currentCalories);
     }, [watch('time'), chosenActivity.calories_per_hour, watch]);
 
     console.log(`burned:`);
@@ -234,7 +235,7 @@ const CaloriesBurned = ({saveToTracker, calsArray}) => {
                                                     </div>
                                                     <div className='tracker_buttons'>
                                                         <UtilityButton disabled={watch('time') > 0 ? false : true}
-                                                            onClick={() => addNewActivity(chosenActivity.name, getValues('time'), searchCalories)} 
+                                                            onClick={() => addNewActivity(chosenActivity.name, parseFloat(getValues('time')), parseFloat(searchCalories))} 
                                                             styles='tracker_button' icon={<FaPlus className={`${watch('time') > 0 ? 'tracker_button_icon' : 'tracker_button_icon_disabled'}`} />}/>
                                                     </div>
                                                     

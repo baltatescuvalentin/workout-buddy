@@ -32,8 +32,8 @@ const CaloriesTrackerActivity = ({index, trackerItem, removeFromCaloriesArray, e
     const saveToArray = () => {
         const data = {
             activity: getValues('activity'),
-            time: getValues('time'),
-            calories: getValues('calories'),
+            time: parseFloat(getValues('time')),
+            calories: parseFloat(getValues('calories')),
         }
 
         editToCaloriesArray(index, data);

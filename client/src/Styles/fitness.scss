@@ -159,6 +159,10 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .tracker_content_wrapper {
@@ -370,4 +374,45 @@
     align-items: center;
     justify-content: flex-end;
     width: 100%;
+}
+
+.summary_charts_wrapper {
+    width: 100%;
+
+    h2 {
+        margin-left: 1.5rem;
+    }
+}
+
+.custom_tooltip {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.summary_table {
+    border-collapse: separate;
+    border-spacing: 4px;
+    border: none;
+
+    th, td, tr {
+        border: none;
+        border-radius: 8px;
+        width: 6rem;
+        height: 2rem;
+        font-size: 18px;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    th:nth-child(even) {
+        background-color: $logo-color;
+    }
+    
+    td:nth-child(even) {
+        background-color: $exercise_color;
+    }
 }

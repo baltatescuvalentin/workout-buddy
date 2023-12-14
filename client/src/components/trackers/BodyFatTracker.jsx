@@ -149,7 +149,7 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveTo
                             <div className='tracker_title_input'>
                                 <p>Body Fat %</p>
                                 {
-                                    calculate ? <p>{bodyFatValue}</p> : <input className='tracker_input' type='number' value={bodyFatValue} onChange={changeValue}/>
+                                    calculate ? <p>{getValues(id)}</p> : <input className='tracker_input' type='number' value={watch(id)} {...register(id)}/>
                                 }
                             </div>
                             <div className='tracker_buttons'>

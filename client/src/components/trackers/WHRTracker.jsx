@@ -42,10 +42,10 @@ const WHRTracker = ({id, register, value, getValues, setValue, watch, saveToTrac
                         <div className='tracker_header'>
                             <div className='tracker_title_input'>
                                 <p>WHR</p>
-                                <input className='tracker_input' type='number' id={id} value={value} {...register(id)}/>
+                                <input className='tracker_input' type='number' id={id} value={watch(id)} {...register(id)}/>
                             </div>
                             <div className='tracker_buttons'>
-                                <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaSave className='tracker_button_icon'/>}/>
+                                <UtilityButton styles='tracker_button' onClick={savetToDB} icon={<FaSave className='tracker_button_icon'/>}/>
                                 <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaTimes className='tracker_button_icon_cancel'/>}/>
                             </div>
                         </div>

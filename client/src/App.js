@@ -21,6 +21,7 @@ import FitnessCalculator from './Scenes/fitness/FitnessCalculator';
 import FitnessMain from './Scenes/fitness/FitnessMain';
 import WorkoutRoutineEdit from './components/WorkoutRoutineEdit';
 import Tracker from './Scenes/fitness/Tracker';
+import Summary from './Scenes/fitness/Summary';
 
 function App() {
 
@@ -86,6 +87,7 @@ function App() {
               <Route index element={<FitnessMain />} />
               <Route path='calculator' element={<FitnessCalculator />} />
               <Route path='tracker' element={<Tracker />} />
+              <Route path='summary' element={<Summary />} />
             </Route>
           </Route>
           <Route path='/register' element={<Register />} />

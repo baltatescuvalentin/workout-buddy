@@ -85,8 +85,8 @@ const CaloriesIntake = ({saveToTracker, calsArray}) => {
         setCaloriesArray(prevArray => {
             let newArray = [...prevArray, {
                 foodName: foodName,
-                quantity: quantity,
-                calories: calories,
+                quantity: parseFloat(quantity),
+                calories: parseFloat(calories),
             }];
             saveToTracker(newArray);
             return newArray;
@@ -97,6 +97,7 @@ const CaloriesIntake = ({saveToTracker, calsArray}) => {
         addToCaloriesArray(foodName, quantity, calories);
         setChosenFood("");
         setShowCustom(false);
+        reset();
         //saveToTracker(caloriesArray);
     }
 
@@ -131,8 +132,8 @@ const CaloriesIntake = ({saveToTracker, calsArray}) => {
             return 0;
         }
         
-        const currentCalories = ((watch('quantity') * chosenFood.calories) / 100).toFixed(2);
-        return currentCalories;
+        const currentCalories = ((watch('quantity') * parseFloat(chosenFood.calories)) / 100).toFixed(2);
+        return parseFloat(currentCalories);
     }, [watch('quantity'), chosenFood.calories, watch]);
 
     console.log(caloriesArray);
@@ -231,7 +232,7 @@ const CaloriesIntake = ({saveToTracker, calsArray}) => {
                                                     </div>
                                                     <div className='tracker_buttons'>
                                                         <UtilityButton disabled={watch('quantity') > 0 ? false : true}
-                                                            onClick={() => addNewFood(chosenFood.name, getValues('quantity'), searchCalories)} 
+                                                            onClick={() => addNewFood(chosenFood.name, getValues('quantity'), parseFloat(searchCalories))} 
                                                             styles='tracker_button' icon={<FaPlus className={`${watch('quantity') > 0 ? 'tracker_button_icon' : 'tracker_button_icon_disabled'}`} />}/>
                                                     </div>
                                                     
@@ -259,7 +260,7 @@ const CaloriesIntake = ({saveToTracker, calsArray}) => {
                                         </div>
                                         <div className='tracker_buttons'>
                                             <UtilityButton disabled={!validCustomInputs}
-                                                onClick={() => addNewFood(getValues('foodName'), getValues('quantity'), getValues('calories'))} 
+                                                onClick={() => addNewFood(getValues('foodName'), parseFloat(getValues('quantity')), getValues('calories'))} 
                                                 styles='tracker_button' icon={<FaPlus className={`${validCustomInputs ? 'tracker_button_icon' : 'tracker_button_icon_disabled'}`} />}/>
                                         </div>
                                     </div>
