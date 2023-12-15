@@ -17,6 +17,7 @@ import CaloriesBurned from '../../components/trackers/CaloriesBurned';
 import UtilityButton from '../../components/buttons/UtilityButton';
 import axios from 'axios';
 import Loader from '../../components/Loader';
+import NotLogged from '../../components/NotLogged';
 
 const Tracker = () => {
 
@@ -91,7 +92,7 @@ const Tracker = () => {
                 console.log(response.data.tracker?.BMI);
                 setValue('BMI', response.data.tracker?.BMI || 0);
                 setValue('bodyFat', response.data.tracker?.bodyFat || 0);
-                setValue('WHR', response.data.tracke?.WHR || 0);
+                setValue('WHR', response.data.tracker?.WHR || 0);
                 setValue('hips', response.data.tracker?.hips || 0);
                 setValue('neck', response.data.tracker?.neck || 0);
                 setValue('waist', response.data.tracker?.waist || 0);
@@ -168,6 +169,28 @@ const Tracker = () => {
             })
     }
 
+    const deleteFromTracker = async (userId, field) => {
+        const options = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`,
+            }
+        }
+        
+        const data = {
+            userId: userId,
+            field: field,
+        }
+
+        await axios.patch(`http://localhost:3001/tracker/removeFieldFromTracker`, data, options)
+            .then((response) => {
+                console.log(response.data.updated);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
     useEffect(() => {
 
         const options = {
@@ -178,6 +201,11 @@ const Tracker = () => {
         }
 
         const fetchData = async () => {
+
+            if(!user) {
+                return;
+            }
+
             await axios.get(`http://localhost:3001/tracker/getTrackedDates/${user._id}`, options)
                 .then((resposne) => {
                     const dates = [...resposne.data.dates];
@@ -222,37 +250,38 @@ const Tracker = () => {
                 </div>
                 
                 {
-                    loading ? <Loader divStyle='pages_loader' size={42} color='#488eff'/>
-                        : (!tracker && chosenDate) ? (
-                            <div className='tracker_track_message_wrapper'>
-                                <UtilityButton onClick={createTracker} title='Start Tracking' styles='tracker_track_button '/>
-                            </div>
-                        )
-                        : tracker ? (
-                            <div className='tracker_content_wrapper'>
-                                <h1>{format(new Date(chosenDate), 'EEEE, do MMM yyyy')}</h1>
-                                <h3>{error}</h3>
-                                <div className='trackers_wrapper'>
-                                    <h2>Body measurements</h2>
-                                    <div className='trackers_body_measurements'>
-                                        <BodyMeasurementTracker saveToTracker={() => editTracker(tracker._id, 'weight', getValues('weight'))} title='Weight' metric='kgs' id='weight' register={register} value={watch('weight')}/>
-                                        <BodyMeasurementTracker saveToTracker={() => editTracker(tracker._id, 'hips', getValues('hips'))} title='Hips' metric='cm' id='hips' register={register} value={watch('hips')}/>
-                                        <BodyMeasurementTracker saveToTracker={() => editTracker(tracker._id, 'waist', getValues('waist'))} title='Waist' metric='cm' id='waist' register={register} value={watch('waist')}/>
-                                        <BodyMeasurementTracker saveToTracker={() => editTracker(tracker._id, 'neck', getValues('neck'))} title='Neck' metric='cm' id='neck' register={register} value={watch('neck')}/>
-                                        <WHRTracker id='WHR' saveToTracker={() => editTracker(tracker._id, 'WHR', getValues('WHR'))} register={register} getValues={getValues} setValue={setValue} value={watch('WHR')} watch={watch}/>
-                                        <BMITracker id='BMI' saveToTracker={() => editTracker(tracker._id, 'BMI', getValues('BMI'))} register={register} getValues={getValues} setValue={setValue} value={watch('BMI')} watch={watch}/>
-                                        <BodyFatTracker id='bodyFat' saveToTracker={() => editTracker(tracker._id, 'bodyFat', getValues('bodyFat'))} register={register} getValues={getValues} setValue={setValue} value={watch('bodyFat')} watch={watch}/>
-                                    </div>
-                                    <h2>Calories</h2>
-                                    <div className='trackers_calories'>
-                                        <CaloriesIntake saveToTracker={(data) => editTracker(tracker._id, 'caloriesIntake', data)} calsArray={tracker?.caloriesIntake}/>
-                                        <CaloriesBurned saveToTracker={(data) => editTracker(tracker._id, 'caloriesBurned', data)} calsArray={tracker?.caloriesBurned}/>
-                                    </div>
+                    !user ? <NotLogged /> :
+                        loading ? <Loader divStyle='pages_loader' size={42} color='#488eff'/>
+                            : (!tracker && chosenDate) ? (
+                                <div className='tracker_track_message_wrapper'>
+                                    <UtilityButton onClick={createTracker} title='Start Tracking' styles='tracker_track_button '/>
                                 </div>
-                                <div className='tracker_delete_wrapper'>
-                                    <UtilityButton onClick={() => deleteDay(tracker._id)} title='Delete' styles='create_workout_form_header_cancel_button'/>
-                                </div>
-                            </div>) : <></>
+                            )
+                            : tracker ? (
+                                <div className='tracker_content_wrapper'>
+                                    <h1>{format(new Date(chosenDate), 'EEEE, do MMM yyyy')}</h1>
+                                    <h3>{error}</h3>
+                                    <div className='trackers_wrapper'>
+                                        <h2>Body measurements</h2>
+                                        <div className='trackers_body_measurements'>
+                                            <BodyMeasurementTracker deleteFromTracker={(field) => deleteFromTracker(user._id, field)} saveToTracker={() => editTracker(tracker._id, 'weight', getValues('weight'))} setValue={setValue} title='Weight' metric='kgs' id='weight' register={register} value={watch('weight')}/>
+                                            <BMITracker id='BMI' deleteFromTracker={(field) => deleteFromTracker(user._id, field)} saveToTracker={() => editTracker(tracker._id, 'BMI', getValues('BMI'))} register={register} getValues={getValues} setValue={setValue} value={watch('BMI')} watch={watch}/>
+                                            <BodyFatTracker id='bodyFat' deleteFromTracker={(field) => deleteFromTracker(user._id, field)} saveToTracker={() => editTracker(tracker._id, 'bodyFat', getValues('bodyFat'))} register={register} getValues={getValues} setValue={setValue} value={watch('bodyFat')} watch={watch}/>
+                                            <BodyMeasurementTracker deleteFromTracker={(field) => deleteFromTracker(user._id, field)} saveToTracker={() => editTracker(tracker._id, 'hips', getValues('hips'))} setValue={setValue} title='Hips' metric='cm' id='hips' register={register} value={watch('hips')}/>
+                                            <BodyMeasurementTracker deleteFromTracker={(field) => deleteFromTracker(user._id, field)} saveToTracker={() => editTracker(tracker._id, 'waist', getValues('waist'))} setValue={setValue} title='Waist' metric='cm' id='waist' register={register} value={watch('waist')}/>
+                                            <WHRTracker id='WHR' deleteFromTracker={(field) => deleteFromTracker(user._id, field)} saveToTracker={() => editTracker(tracker._id, 'WHR', getValues('WHR'))} register={register} getValues={getValues} setValue={setValue} value={watch('WHR')} watch={watch}/>
+                                            <BodyMeasurementTracker deleteFromTracker={(field) => deleteFromTracker(user._id, field)} saveToTracker={() => editTracker(tracker._id, 'neck', getValues('neck'))} setValue={setValue} title='Neck' metric='cm' id='neck' register={register} value={watch('neck')}/>
+                                        </div>
+                                        <h2>Calories</h2>
+                                        <div className='trackers_calories'>
+                                            <CaloriesIntake saveToTracker={(data) => editTracker(tracker._id, 'caloriesIntake', data)} calsArray={tracker?.caloriesIntake}/>
+                                            <CaloriesBurned saveToTracker={(data) => editTracker(tracker._id, 'caloriesBurned', data)} calsArray={tracker?.caloriesBurned}/>
+                                        </div>
+                                    </div>
+                                    <div className='tracker_delete_wrapper'>
+                                        <UtilityButton onClick={() => deleteDay(tracker._id)} title='Delete' styles='create_workout_form_header_cancel_button'/>
+                                    </div>
+                                </div>) : <></>
                 }
             </div>
         </div>

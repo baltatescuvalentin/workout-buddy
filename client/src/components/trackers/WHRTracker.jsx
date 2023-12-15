@@ -2,12 +2,14 @@ import '../../Styles/fitness.css';
 import '../../Styles/buttons.css';
 import '../../Styles/inputs.css';
 import { FaSave, FaEdit, FaTimes } from "react-icons/fa";
+import { FaTrashCan } from "react-icons/fa6";
 import UtilityButton from '../buttons/UtilityButton';
 import { useEffect, useState } from 'react';
 
-const WHRTracker = ({id, register, value, getValues, setValue, watch, saveToTracker}) => {
+const WHRTracker = ({id, register, value, getValues, setValue, watch, saveToTracker, deleteFromTracker}) => {
 
     const [edit, setEdit] = useState(false);
+    const [whr, setWhr] = useState(value);
     const [calculable, setCalculable] = useState(false);
 
     const changeEdit = () => {
@@ -17,6 +19,12 @@ const WHRTracker = ({id, register, value, getValues, setValue, watch, saveToTrac
     const savetToDB = () => {
         setEdit(prev => !prev);
         saveToTracker();
+    }
+
+    const deteleAction = () => {
+        setEdit(prev => !prev);
+        deleteFromTracker(id);
+        setValue(id, 0);
     }
 
     const calculateWHR = () => {
@@ -46,11 +54,11 @@ const WHRTracker = ({id, register, value, getValues, setValue, watch, saveToTrac
                             </div>
                             <div className='tracker_buttons'>
                                 <UtilityButton styles='tracker_button' onClick={savetToDB} icon={<FaSave className='tracker_button_icon'/>}/>
+                                <UtilityButton styles='tracker_button' onClick={deteleAction} icon={<FaTrashCan className='tracker_button_icon_cancel'/>}/>
                                 <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaTimes className='tracker_button_icon_cancel'/>}/>
                             </div>
                         </div>
                         <div>
-                            <p>WHR or Waist-to-Hips Ratio is an indicator of central obesity and is associated with an increased risk of cardiovascular diseases. A higher waist-to-hip ratio suggests a greater accumulation of abdominal fat.</p>
                             <button className={`${calculable ? 'tracker_calculate_button' : 'tracker_calculate_button_disabled'}`} onClick={calculateWHR} disabled={!calculable}>
                                 Calculate with tracked values
                             </button>

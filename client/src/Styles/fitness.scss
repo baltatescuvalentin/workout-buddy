@@ -390,29 +390,44 @@
     padding: 10px;
 }
 
-.summary_table {
-    border-collapse: separate;
-    border-spacing: 4px;
-    border: none;
+.summary_table_wrapper {
+    margin-left: auto;
+    margin-right: auto;
 
-    th, td, tr {
+    table.summary_table {
+        border-collapse: separate;
+        border-spacing: 4px;
         border: none;
-        border-radius: 8px;
-        width: 6rem;
-        height: 2rem;
-        font-size: 18px;
-        color: white;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-    }
-
-    th:nth-child(even) {
-        background-color: $logo-color;
-    }
+        text-align: center;
     
-    td:nth-child(even) {
-        background-color: $exercise_color;
+        th, td, tr {
+            border: none;
+            border-radius: 8px;
+            width: 7rem;
+            height: 2rem;
+            font-size: 18px;
+            color: white;
+            text-align: center;
+
+            @media screen and (max-width: $phone) {
+                font-size: 16px;
+            }
+        }
+    
+        th:nth-child(even) {
+            background-color: $logo-color;
+        }
+        
+        td:nth-child(odd) {
+            background-color: $exercise_color;
+        }
+        td:nth-child(even) {
+            background-color: $logo-color;
+        }
+        
+        th:nth-child(odd) {
+            background-color: $exercise_color;
+        }
     }
 }
+

@@ -376,26 +376,39 @@
   padding: 10px;
 }
 
-.summary_table {
+.summary_table_wrapper {
+  margin-left: auto;
+  margin-right: auto;
+}
+.summary_table_wrapper table.summary_table {
   border-collapse: separate;
   border-spacing: 4px;
   border: none;
+  text-align: center;
 }
-.summary_table th, .summary_table td, .summary_table tr {
+.summary_table_wrapper table.summary_table th, .summary_table_wrapper table.summary_table td, .summary_table_wrapper table.summary_table tr {
   border: none;
   border-radius: 8px;
-  width: 6rem;
+  width: 7rem;
   height: 2rem;
   font-size: 18px;
   color: white;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 }
-.summary_table th:nth-child(even) {
+@media screen and (max-width: 27rem) {
+  .summary_table_wrapper table.summary_table th, .summary_table_wrapper table.summary_table td, .summary_table_wrapper table.summary_table tr {
+    font-size: 16px;
+  }
+}
+.summary_table_wrapper table.summary_table th:nth-child(even) {
   background-color: #488eff;
 }
-.summary_table td:nth-child(even) {
+.summary_table_wrapper table.summary_table td:nth-child(odd) {
+  background-color: #FFB948;
+}
+.summary_table_wrapper table.summary_table td:nth-child(even) {
+  background-color: #488eff;
+}
+.summary_table_wrapper table.summary_table th:nth-child(odd) {
   background-color: #FFB948;
 }

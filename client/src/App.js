@@ -1,9 +1,9 @@
-import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import HomePage from './Scenes/homepage/HomePage';
 import './Styles/styles.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setExercices, setMNavbar, setMode } from './state';
-import { useEffect, useState } from 'react';
+import { setExercices, setLogout, setMNavbar } from './state';
+import { useEffect } from 'react';
 import Register from './Scenes/auth/Register';
 import Login from './Scenes/auth/Login';
 import ResetPassword from './Scenes/auth/ResetPassword';
@@ -22,14 +22,32 @@ import FitnessMain from './Scenes/fitness/FitnessMain';
 import WorkoutRoutineEdit from './components/WorkoutRoutineEdit';
 import Tracker from './Scenes/fitness/Tracker';
 import Summary from './Scenes/fitness/Summary';
+import Error from './Scenes/Error';
 
 function App() {
 
   const mode = useSelector(state => state.mode);
   const user = useSelector(state => state.user);
+  const token = useSelector(state => state.token);
   const exercices = useSelector(state => state.exercices);
   const mNavbar = useSelector(state => state.mNavbar);
   const dispatch = useDispatch();
+
+  const isTokenValid = (token) => {
+    if(!token) {
+      return false;
+    }
+
+    try { 
+      const decodedToken = JSON.parse(atob(token.split('.')[1]));
+      const currentTime = Math.floor(Date.now() / 1000);
+
+      return decodedToken.exp >= currentTime;
+    }
+    catch(error) {
+      console.log(error);
+    }
+  }
 
   const getExercicesFromDB = () => {
     const response = axios.get('http://localhost:3001/exercises/getExercises');
@@ -59,6 +77,11 @@ function App() {
       dispatch(setMNavbar({mNavbar: false}));
     }
 
+    const tokenValid = isTokenValid(token);
+    if(tokenValid === false) {
+      dispatch(setLogout());
+    }
+
     /*if(exercices.length === 0) {
       getExercicesFromDB();
     }
@@ -66,7 +89,7 @@ function App() {
       console.log(exercices);
     }*/
     getExercicesFromDB();
-  }, []);
+  }, [token]);
 
   return (
     <div className={`app ${mode === 'light' ? 'light' : 'dark'}`}>
@@ -94,6 +117,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/resetpassword' element={<ResetPassword />} />
           <Route path='/additionalinfo' element={<AdditionalInfo />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </div>

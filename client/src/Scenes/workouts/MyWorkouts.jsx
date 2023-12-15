@@ -3,6 +3,7 @@ import '../../Styles/workouts.css';
 import { useSelector } from 'react-redux';
 import WorkoutRoutine from '../../components/WorkoutRoutine';
 import axios from 'axios';
+import NotLogged from '../../components/NotLogged';
 
 const MyWorkouts = () => {
 
@@ -22,6 +23,11 @@ const MyWorkouts = () => {
         }
 
         const fetchData = async () => {
+
+            if(!user) {
+                return;
+            }
+
             await axios.get(`http://localhost:3001/workoutroutine/getWorkouts/${user._id}`, options)
                 .then((response) => {
                     setWorkouts([...response.data.workouts]);
@@ -50,14 +56,20 @@ const MyWorkouts = () => {
                    Here you will have all your workouts that you created where you can see, edit and use them in your workout
                    routines!
                 </p>
-                <div className='myworkouts_workouts'>
-                    {workouts.length > 0 && (
-                        workouts.map((workout, index) => {
-                            console.log(index, workout);
-                            return <WorkoutRoutine key={index} workout={workout}/>
-                        })
-                    )}
-                </div>
+                {
+                    user ? (
+                        <div className='myworkouts_workouts'>
+                            {workouts.length > 0 && (
+                                workouts.map((workout, index) => {
+                                    console.log(index, workout);
+                                    return <WorkoutRoutine key={index} workout={workout}/>
+                                })
+                            )}
+                        </div> ) : (
+                            <NotLogged />
+                        )
+                }
+                
             </div>
             
         </div>  

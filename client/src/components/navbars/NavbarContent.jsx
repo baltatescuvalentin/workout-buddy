@@ -37,27 +37,27 @@ const NavbarContent = () => {
                     <p>Home</p>
                 </div>
                 <div className='vertical_flex'>
-                    <div onClick={() => { handleMobileClick(); navigate('/')}} className='pages_navbar_item'>
+                    <div onClick={() => { handleMobileClick(); navigate('/workouts')}} className='pages_navbar_item'>
                         <MdFitnessCenter className={mode === 'light' ? 'navbar_icon_light' : 'navbar_icon_dark'} />
                         <p>Workouts</p>
                     </div>
                     <div className='category_elements'>
-                        <Link to='/workouts/findexercise' onClick={() => { handleMobileClick(); }} className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Find an exercise</Link>
-                        <Link onClick={() => { handleMobileClick(); }} className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Create workout</Link>
-                        <Link onClick={() => { handleMobileClick(); }} className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Your workouts</Link>
+                        <div to='/workouts/findexercise' onClick={() => { handleMobileClick(); navigate('/workouts/findexercise')}} className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Find an exercise</div>
+                        <div onClick={() => { handleMobileClick(); navigate('/workouts/create_workout')}} className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Create workout</div>
+                        <div onClick={() => { handleMobileClick(); navigate('/workouts/myworkouts')}} className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Your workouts</div>
                     </div>
                 </div>
                 <div className='vertical_flex'>
-                    <div onClick={() => { handleMobileClick(); navigate('/')}} className='pages_navbar_item'>
+                    <div onClick={() => { handleMobileClick(); navigate('/fitness')}} className='pages_navbar_item'>
                         <PiHeartbeatFill className={mode === 'light' ? 'navbar_icon_light' : 'navbar_icon_dark'} />
                         <p>Fitness</p>
                     </div>
                     <div className='category_elements'>
-                        <Link onClick={() => { handleMobileClick(); }} className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Fitness Calculator</Link>
-                        <Link onClick={() => { handleMobileClick(); }} className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Fitness Tracker</Link>
+                        <div onClick={() => { handleMobileClick(); navigate('/fitness/calculator')}} className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Fitness Calculator</div>
+                        <div onClick={() => { handleMobileClick(); navigate('/fitness/tracker')}} className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Fitness Tracker</div>
                     </div>
                 </div>
-                <div onClick={() => { handleMobileClick(); navigate('/')}} className='pages_navbar_item'>
+                <div onClick={() => { handleMobileClick(); navigate('/fitness/summary')}} className='pages_navbar_item'>
                     <BiSolidBarChartAlt2 className={mode === 'light' ? 'navbar_icon_light' : 'navbar_icon_dark'} />
                     <p>Summary</p>
                 </div>
@@ -69,12 +69,12 @@ const NavbarContent = () => {
                         <BsFillPersonFill className={mode === 'light' ? 'navbar_icon_light' : 'navbar_icon_dark'} />
                         <p>Profile</p>
                     </div>
-                    <Link to='/' onClick={() => { handleMobileClick(); dispatch(setLogout())}} className={`${mode === 'light' ? 'light_menu_item' : 'dark_menu_item'} link_navbar`}>Sign out</Link>
+                    <div to='/' onClick={() => { handleMobileClick(); dispatch(setLogout())}} className={`${mode === 'light' ? 'light_menu_item' : 'dark_menu_item'} link_navbar`}>Sign out</div>
                 </div>
             ) : (
                 <div className='vertical_flex'>
-                    <Link onClick={() => { handleMobileClick(); }} to='/login' className={`${mode === 'light' ? 'light_menu_item' : 'dark_menu_item'} link_navbar`}>Log in</Link>
-                    <Link onClick={() => { handleMobileClick(); }} to='/register' className={`${mode === 'light' ? 'light_menu_item' : 'dark_menu_item'} link_navbar`}>Sign in</Link>
+                    <div onClick={() => { handleMobileClick(); }} to='/login' className={`${mode === 'light' ? 'light_menu_item' : 'dark_menu_item'} link_navbar`}>Log in</div>
+                    <div onClick={() => { handleMobileClick(); }} to='/register' className={`${mode === 'light' ? 'light_menu_item' : 'dark_menu_item'} link_navbar`}>Sign in</div>
                 </div>
             )}
         </>

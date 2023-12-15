@@ -273,3 +273,58 @@ html {
     align-items: center;
     justify-content: center;
 }
+
+.error_wrapper {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+    .title {
+        font-size: 56px;
+        font-weight: bold;
+        color: tomato;
+        margin: 0;
+    }
+
+    .subtitle {
+        font-size: 42px;
+
+        @media screen and (max-width: $phone) {
+            font-size: 24px;
+        }
+    }
+
+    img {
+        height: 40rem;
+        width: 40rem;
+
+        @media screen and (max-width: $phone) {
+            height: 25rem;
+            width: 80%;
+        }
+    }
+}
+
+.not_logged_wrapper {
+
+    margin-top: 1rem;
+
+    p {
+        font-size: 20px;
+        color: inherit;
+
+        @media screen and (max-width: $phone) {
+            font-size: 16px;
+        }
+    }
+
+    .not_logged_buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+}

@@ -3,13 +3,14 @@ import '../../Styles/inputs.css';
 import '../../Styles/buttons.css';
 import { useEffect, useState } from 'react';
 import { FaSave, FaEdit, FaTimes } from "react-icons/fa";
+import { FaTrashCan } from "react-icons/fa6";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import UtilityButton from '../buttons/UtilityButton';
 import CalculatorInput from '../inputs/CalculatorInput';
 import IdentityInput from '../inputs/IdentityInput';
 
-const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveToTracker}) => {
+const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveToTracker, deleteFromTracker}) => {
 
     const [edit, setEdit] = useState(false);
     const [inputsReady, setInputsReady] = useState(false);
@@ -58,6 +59,12 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveTo
         setCalculate(false);
         reset();
         saveToTracker();
+    }
+
+    const deleteAction = () => {
+        setEdit(prev => !prev);
+        deleteFromTracker(id);
+        setValue(id, 0);
     }
 
     const handleCalculate = () => {
@@ -154,6 +161,7 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveTo
                             </div>
                             <div className='tracker_buttons'>
                                 <UtilityButton styles='tracker_button' onClick={saveToDB} icon={<FaSave className='tracker_button_icon'/>}/>
+                                <UtilityButton styles='tracker_button' onClick={deleteAction} icon={<FaTrashCan className='tracker_button_icon_cancel'/>}/>
                                 <UtilityButton styles='tracker_button' onClick={closeEdit} icon={<FaTimes className='tracker_button_icon_cancel'/>}/>
                             </div>
                         </div>
@@ -183,7 +191,7 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveTo
                         <div className='tracker_header'>
                             <div className='tracker_title_input'>
                                 <p>Body Fat %</p>
-                                <p className='tracker_value'>{bodyFatValue}</p>
+                                <p className='tracker_value'>{value}</p>
                             </div>
                             <div className='tracker_buttons'>
                                 <UtilityButton styles='tracker_button' onClick={openEdit} icon={<FaEdit className='tracker_button_icon'/>}/>

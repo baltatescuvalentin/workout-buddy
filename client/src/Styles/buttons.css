@@ -651,3 +651,34 @@
   font-size: 28px;
   font-weight: 600;
 }
+
+.error_button {
+  width: 15rem;
+  height: 5rem;
+  background-color: turquoise;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+.error_button p {
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+}
+
+.not_logged_button {
+  background-color: turquoise;
+  color: white;
+  border-radius: 4px;
+  width: 10rem;
+  height: 3rem;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+.not_logged_button p {
+  color: white;
+  font-size: 22px;
+}

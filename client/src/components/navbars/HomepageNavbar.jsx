@@ -20,7 +20,7 @@ const HomepageNavbar = () => {
                 : <img src={darkLogo} alt='Dark logo' className='navbar_logo' onClick={() => navigate('/')}/>}
             <div className='homepage_menu'>
                 <Link to='/workouts' className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Workouts</Link>
-                <Link className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Fitness</Link>
+                <Link to='/fitness' className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Fitness</Link>
                 <ThemeSwitcher />
                 {user ? (
                     <div className='homepage_menu'>

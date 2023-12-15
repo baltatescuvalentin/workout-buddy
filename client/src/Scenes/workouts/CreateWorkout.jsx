@@ -2,10 +2,13 @@ import '../../Styles/workouts.css';
 import { useState } from 'react';
 import CreateWorkoutButton from '../../components/buttons/CreateWorkoutButton';
 import CreateWorkoutForm from '../../components/CreateWorkoutForm';
+import { useSelector } from 'react-redux';
+import NotLogged from '../../components/NotLogged';
 
 const CreateWorkout = () => {
 
     const [activeCreate, setActiveCreate] = useState(false);
+    const user = useSelector(state => state.user);
 
     const handleActiveForm = () => {
         setActiveCreate(prev => !prev);
@@ -26,7 +29,10 @@ const CreateWorkout = () => {
                     vast variety of exercises the platform makes available to you and organize your week however you like,
                     we give you the freedom!
                 </p>
-                <CreateWorkoutButton activeCreate={activeCreate} handleActiveForm={handleActiveForm}/>
+                {
+                    user ? <CreateWorkoutButton activeCreate={activeCreate} handleActiveForm={handleActiveForm}/>
+                     : <NotLogged />
+                }
 
                 {activeCreate && <CreateWorkoutForm handleActiveForm={handleActiveForm}/>}
             </div>

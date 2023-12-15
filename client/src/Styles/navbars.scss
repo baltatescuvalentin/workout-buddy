@@ -105,6 +105,10 @@
     display: flex;
     flex-direction: column;
     margin-left: 6rem;
+
+    & > * {
+        cursor: pointer;
+    }
 }
 
 .link_wrapper {
@@ -116,6 +120,7 @@
     display: block;
     margin-left: 3rem;
     font-size: 26px;
+    cursor: pointer;
 }
 
 .mobile_navbar_light {

@@ -7,7 +7,7 @@ import { FaTrashCan } from "react-icons/fa6";
 import { MdOutlineCancel } from "react-icons/md";
 import UtilityButton from '../buttons/UtilityButton';
 
-const BodyMeasurementTracker = ({id, register, value, title, metric, saveToTracker}) => {
+const BodyMeasurementTracker = ({id, register, setValue, value, title, metric, saveToTracker, deleteFromTracker}) => {
 
     const [edit, setEdit] = useState(false);
     const [trackerValue, setTrackerValue] = useState(value);
@@ -21,6 +21,12 @@ const BodyMeasurementTracker = ({id, register, value, title, metric, saveToTrack
         saveToTracker();
     }
 
+    const deleteAction = () => {
+        setEdit(prev => !prev);
+        deleteFromTracker(id);
+        setValue(id, 0);
+    }
+
     return (
         <div>
             { edit ? (
@@ -31,7 +37,7 @@ const BodyMeasurementTracker = ({id, register, value, title, metric, saveToTrack
                     </div>
                     <div className='tracker_buttons'>
                         <UtilityButton styles='tracker_button' onClick={saveToDB} icon={<FaSave className='tracker_button_icon'/>}/>
-                        {/* <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaTrashCan className='tracker_button_icon_cancel'/>}/> */}
+                        <UtilityButton styles='tracker_button' onClick={deleteAction} icon={<FaTrashCan className='tracker_button_icon_cancel'/>}/>
                         <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaTimes className='tracker_button_icon_cancel'/>}/>
                     </div>
                 </div>

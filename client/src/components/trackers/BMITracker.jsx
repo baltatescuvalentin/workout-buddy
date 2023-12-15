@@ -3,13 +3,14 @@ import '../../Styles/inputs.css';
 import '../../Styles/buttons.css';
 import { useEffect, useState } from 'react';
 import { FaSave, FaEdit, FaTimes } from "react-icons/fa";
+import { FaTrashCan } from "react-icons/fa6";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import UtilityButton from '../buttons/UtilityButton';
 import CalculatorInput from '../inputs/CalculatorInput';
 
 
-const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTracker}) => {
+const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTracker, deleteFromTracker}) => {
 
     const [edit, setEdit] = useState(false);
     const [inputsReady, setInputsReady] = useState(false);
@@ -54,6 +55,12 @@ const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTrac
 
     const handleCalculate = () => {
         setCalculate(prev => !prev);
+    }
+
+    const deleteAction = () => {
+        setEdit(prev => !prev);
+        deleteFromTracker(id);
+        setValue(id, 0);
     }
 
     const changeValue = (e) => {
@@ -130,6 +137,7 @@ const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTrac
                             </div>
                             <div className='tracker_buttons'>
                                 <UtilityButton styles='tracker_button' onClick={saveToDB} icon={<FaSave className='tracker_button_icon'/>}/>
+                                <UtilityButton styles='tracker_button' onClick={deleteAction} icon={<FaTrashCan className='tracker_button_icon_cancel'/>}/>
                                 <UtilityButton styles='tracker_button' onClick={changeEdit} icon={<FaTimes className='tracker_button_icon_cancel'/>}/>
                             </div>
                         </div>

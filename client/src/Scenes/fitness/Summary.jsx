@@ -6,6 +6,7 @@ import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import Loader from '../../components/Loader';
 import TableTracker from '../../components/TableTracker';
+import NotLogged from '../../components/NotLogged';
 
 const CustomTooltip = ({ active, payload, type }) => {
 
@@ -34,7 +35,7 @@ const Summary = () => {
     const [hips, setHips] = useState([]);
     const [caloriesIntake, setCaloriesIntake] = useState([]);
     const [caloriesBurned, setCaloriesBurned] = useState([]);
-    const [tableValues, setTableValues] = useState({});
+    const [tableValues, setTableValues] = useState(null);
     
     const user = useSelector(state => state.user);
     const jwt = useSelector(state => state.token);
@@ -53,6 +54,11 @@ const Summary = () => {
         })
 
         return result;
+    }
+
+    const anyValidInput = () => {
+        return hasKeys(bmi) === true || hasKeys(caloriesIntake) === true || hasKeys(caloriesBurned) === true
+            || hasKeys(weight) === true || hasKeys(bodyFat) === true || hasKeys(waist);
     }
 
     const getTableValues = (input, type) => {
@@ -80,7 +86,32 @@ const Summary = () => {
             }
         }
 
+        const getTableData = async () => {
+
+            if(!user) {
+                return;
+            }
+
+            setLoading(true);
+
+            await axios.get(`http://localhost:3001/tracker/getTrackerMetrics/${user._id}`, options) 
+                .then((response) => {
+                    setTableValues(response.data.metrics)
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                })
+        }
+
         const fetchData = async () => {
+
+            if(!user) {
+                return;
+            }
+
             setLoading(true);
 
             let BMIData = [];
@@ -146,42 +177,6 @@ const Summary = () => {
                     setHips(hipsData);
                     setCaloriesBurned(caloriesBurnedData);
                     setCaloriesIntake(caloriesIntakeData);
-                    // setTableValues({
-                    //     ...tableValues,
-                    //     bmi: getTableValues(bmi, "BMI"),
-                    // })
-                    // setTableValues({
-                    //     ...tableValues,
-                    //     weight: getTableValues(weight, "weight"),
-                    // })
-                    // setTableValues({
-                    //     ...tableValues,
-                    //     caloriesIntake: getTableValues(caloriesIntake, "caloriesIntake"),
-                    // })
-                    // setTableValues({
-                    //     ...tableValues,
-                    //     caloriesBurned: getTableValues(caloriesBurned, "caloriesBurned"),
-                    // })
-                    // setTableValues({
-                    //     ...tableValues,
-                    //     waist: getTableValues(waist, "waist"),
-                    // })
-                    // setTableValues({
-                    //     ...tableValues,
-                    //     hips: getTableValues(hips, "hips"),
-                    // })
-                    // setTableValues({
-                    //     ...tableValues,
-                    //     neck: getTableValues(neck, "neck"),
-                    // })
-                    // setTableValues({
-                    //     ...tableValues,
-                    //     bodyFat: getTableValues(bodyFat, "bodyFat"),
-                    // });
-
-                    // // test();
-                    // // console.log(tableValues);
-                    // // console.log(getTableValues(caloriesIntake, "caloriesIntake"));
                 })
                 .catch((error) => {
                     console.log(error);
@@ -191,21 +186,9 @@ const Summary = () => {
                 })
         }
 
-        const trackerMetrics = async () => {
-            
-            await axios.get(`http://localhost:3001/tracker/getTrackerMetrics/${user._id}`, options)
-                .then((response) => {
-                    console.log(response.data);
-                    setTableValues(response.data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-        }
-
+        getTableData();
         fetchData();
-        trackerMetrics();
-    }, [jwt, user._id]);
+    }, [jwt, user]);
 
     return (
         <div className='workout_wrapper'>
@@ -216,172 +199,185 @@ const Summary = () => {
                     in an easy way to understand your evolution though-out all your journey. We give you charts and a table
                     so based on them you can draw a conclusion.
                 </p>
+                <p>
+                    0 values in the table mean you did not track that metrics at all.
+                </p>
                 {
-                    loading ? <Loader divStyle='pages_loader' size={42} color='#488eff'/> : (
-                        <>
-                            {/* <TableTracker tableValues={tableValues}/> */}
-                            {
-                                hasKeys(weight) === true && (
-                                    <div className='summary_charts_wrapper'>
-                                        <h2>Weight</h2>
-                                        <ResponsiveContainer width="100%" height={300}>
-                                            <LineChart 
-                                                fill='#FFB948'
-                                                width="100%"
-                                                height={300}
-                                                data={weight}
-                                                margin={{
-                                                    top: 0,
-                                                    right: 0,
-                                                    left: -30,
-                                                    bottom: 0,
-                                                }}
-                                            >
-                                                <CartesianGrid strokeDasharray="none" stroke='red' />
-                                                <XAxis dataKey="date" hide={true}/>
-                                                <YAxis />
-                                                <Tooltip content={<CustomTooltip type='weight'/>}/>
-                                                <Line connectNulls type="monotone" dataKey="weight" stroke="#488eff" fill="#488eff"/>
-                                            </LineChart>
-                                        </ResponsiveContainer>
-                                    </div>
-                                )
-                            }
-                            {
-                                hasKeys(bmi) === true && (
-                                    <div className='summary_charts_wrapper'>
-                                        <h2>BMI</h2>
-                                        <ResponsiveContainer width="100%" height={300}>
-                                            <LineChart 
-                                                fill='#FFB948'
-                                                width="100%"
-                                                height={300}
-                                                data={bmi}
-                                                margin={{
-                                                    top: 0,
-                                                    right: 0,
-                                                    left: -30,
-                                                    bottom: 0,
-                                                }}
-                                            >
-                                                <CartesianGrid strokeDasharray="none" stroke='red' />
-                                                <XAxis dataKey="date" hide={true}/>
-                                                <YAxis />
-                                                <Tooltip content={<CustomTooltip type='BMI'/>}/>
-                                                <Line connectNulls type="monotone" dataKey="BMI" stroke="#488eff" fill="#488eff"/>
-                                            </LineChart>
-                                        </ResponsiveContainer>
-                                    </div>
-                                )
-                            }
-                            {
-                                hasKeys(bodyFat) === true && (
-                                    <div className='summary_charts_wrapper'>
-                                        <h2>Body Fat %</h2>
-                                        <ResponsiveContainer width="100%" height={300}>
-                                            <LineChart 
-                                                fill='#FFB948'
-                                                width="100%"
-                                                height={300}
-                                                data={bodyFat}
-                                                margin={{
-                                                    top: 0,
-                                                    right: 0,
-                                                    left: -30,
-                                                    bottom: 0,
-                                                }}
-                                            >
-                                                <CartesianGrid strokeDasharray="none" stroke='red' />
-                                                <XAxis dataKey="date" hide={true}/>
-                                                <YAxis />
-                                                <Tooltip content={<CustomTooltip type='bodyFat'/>}/>
-                                                <Line connectNulls type="monotone" dataKey="bodyFat" stroke="#488eff" fill="#488eff"/>
-                                            </LineChart>
-                                        </ResponsiveContainer>
-                                    </div>
-                                )
-                            }
-                            {
-                                hasKeys(caloriesIntake) === true && (
-                                    <div className='summary_charts_wrapper'>
-                                        <h2>Calories Intake</h2>
-                                        <ResponsiveContainer width="100%" height={300}>
-                                            <LineChart 
-                                                fill='#FFB948'
-                                                width="100%"
-                                                height={300}
-                                                data={caloriesIntake}
-                                                margin={{
-                                                    top: 0,
-                                                    right: 0,
-                                                    left: -10,
-                                                    bottom: 0,
-                                                }}
-                                            >
-                                                <CartesianGrid strokeDasharray="none" stroke='red' />
-                                                <XAxis dataKey="date" hide={true}/>
-                                                <YAxis />
-                                                <Tooltip content={<CustomTooltip type='caloriesIntake'/>}/>
-                                                <Line connectNulls type="monotone" dataKey="caloriesIntake" stroke="#488eff" fill="#488eff"/>
-                                            </LineChart>
-                                        </ResponsiveContainer>
-                                    </div>
-                                )
-                            }
-                            {
-                                hasKeys(caloriesBurned) === true && (
-                                    <div className='summary_charts_wrapper'>
-                                        <h2>Calories Burned</h2>
-                                        <ResponsiveContainer width="100%" height={300}>
-                                            <LineChart 
-                                                fill='#FFB948'
-                                                width="100%"
-                                                height={300}
-                                                data={caloriesBurned}
-                                                margin={{
-                                                    top: 0,
-                                                    right: 0,
-                                                    left: -10,
-                                                    bottom: 0,
-                                                }}
-                                            >
-                                                <CartesianGrid strokeDasharray="none" stroke='red' />
-                                                <XAxis dataKey="date" hide={true}/>
-                                                <YAxis />
-                                                <Tooltip content={<CustomTooltip type='caloriesBurned'/>}/>
-                                                <Line connectNulls type="monotone" dataKey="caloriesBurned" stroke="#488eff" fill="#488eff"/>
-                                            </LineChart>
-                                        </ResponsiveContainer>
-                                    </div>
-                                )
-                            }
-                            {
-                                hasKeys(waist) === true && (
-                                    <div className='summary_charts_wrapper'>
-                                        <h2>Waist</h2>
-                                        <ResponsiveContainer width="100%" height={300}>
-                                            <LineChart 
-                                                fill='#FFB948'
-                                                width="100%"
-                                                height={300}
-                                                data={waist}
-                                                margin={{
-                                                    top: 0,
-                                                    right: 0,
-                                                    left: -30,
-                                                    bottom: 0,
-                                                }}
-                                            >
-                                                <CartesianGrid strokeDasharray="none" stroke='red' />
-                                                <XAxis dataKey="date" hide={true}/>
-                                                <YAxis />
-                                                <Tooltip content={<CustomTooltip type='waist'/>}/>
-                                                <Line connectNulls type="monotone" dataKey="waist" stroke="#488eff" fill="#488eff"/>
-                                            </LineChart>
-                                        </ResponsiveContainer>
-                                    </div>
-                                )
-                            }
+                    !user ? <NotLogged /> :
+                        loading ? <Loader divStyle='pages_loader' size={42} color='#488eff'/> : (
+                            <>
+                                { anyValidInput() === false ? 
+                                    <div>
+                                        <p>If you do not see any charts that means you have not tacked a day yet.
+                                            Start tracking and later check for some data.
+                                        </p>
+                                    </div> : (
+                                    <>
+                                        <TableTracker tableValues={tableValues}/> 
+                                        {
+                                            hasKeys(weight) === true && (
+                                                <div className='summary_charts_wrapper'>
+                                                    <h2>Weight</h2>
+                                                    <ResponsiveContainer width="100%" height={300}>
+                                                        <LineChart 
+                                                            fill='#FFB948'
+                                                            width="100%"
+                                                            height={300}
+                                                            data={weight}
+                                                            margin={{
+                                                                top: 0,
+                                                                right: 0,
+                                                                left: -25,
+                                                                bottom: 0,
+                                                            }}
+                                                        >
+                                                            <CartesianGrid strokeDasharray="none" stroke='red' />
+                                                            <XAxis dataKey="date" hide={true}/>
+                                                            <YAxis />
+                                                            <Tooltip content={<CustomTooltip type='weight'/>}/>
+                                                            <Line connectNulls type="monotone" dataKey="weight" stroke="#488eff" fill="#488eff"/>
+                                                        </LineChart>
+                                                    </ResponsiveContainer>
+                                                </div>
+                                            )
+                                        }
+                                        {
+                                            hasKeys(bmi) === true && (
+                                                <div className='summary_charts_wrapper'>
+                                                    <h2>BMI</h2>
+                                                    <ResponsiveContainer width="100%" height={300}>
+                                                        <LineChart 
+                                                            fill='#FFB948'
+                                                            width="100%"
+                                                            height={300}
+                                                            data={bmi}
+                                                            margin={{
+                                                                top: 0,
+                                                                right: 0,
+                                                                left: -25,
+                                                                bottom: 0,
+                                                            }}
+                                                        >
+                                                            <CartesianGrid strokeDasharray="none" stroke='red' />
+                                                            <XAxis dataKey="date" hide={true}/>
+                                                            <YAxis />
+                                                            <Tooltip content={<CustomTooltip type='BMI'/>}/>
+                                                            <Line connectNulls type="monotone" dataKey="BMI" stroke="#488eff" fill="#488eff"/>
+                                                        </LineChart>
+                                                    </ResponsiveContainer>
+                                                </div>
+                                            )
+                                        }
+                                        {
+                                            hasKeys(bodyFat) === true && (
+                                                <div className='summary_charts_wrapper'>
+                                                    <h2>Body Fat %</h2>
+                                                    <ResponsiveContainer width="100%" height={300}>
+                                                        <LineChart 
+                                                            fill='#FFB948'
+                                                            width="100%"
+                                                            height={300}
+                                                            data={bodyFat}
+                                                            margin={{
+                                                                top: 0,
+                                                                right: 0,
+                                                                left: -25,
+                                                                bottom: 0,
+                                                            }}
+                                                        >
+                                                            <CartesianGrid strokeDasharray="none" stroke='red' />
+                                                            <XAxis dataKey="date" hide={true}/>
+                                                            <YAxis />
+                                                            <Tooltip content={<CustomTooltip type='bodyFat'/>}/>
+                                                            <Line connectNulls type="monotone" dataKey="bodyFat" stroke="#488eff" fill="#488eff"/>
+                                                        </LineChart>
+                                                    </ResponsiveContainer>
+                                                </div>
+                                            )
+                                        }
+                                        {
+                                            hasKeys(caloriesIntake) === true && (
+                                                <div className='summary_charts_wrapper'>
+                                                    <h2>Calories Intake</h2>
+                                                    <ResponsiveContainer width="100%" height={300}>
+                                                        <LineChart 
+                                                            fill='#FFB948'
+                                                            width="100%"
+                                                            height={300}
+                                                            data={caloriesIntake}
+                                                            margin={{
+                                                                top: 0,
+                                                                right: 0,
+                                                                left: -10,
+                                                                bottom: 0,
+                                                            }}
+                                                        >
+                                                            <CartesianGrid strokeDasharray="none" stroke='red' />
+                                                            <XAxis dataKey="date" hide={true}/>
+                                                            <YAxis />
+                                                            <Tooltip content={<CustomTooltip type='caloriesIntake'/>}/>
+                                                            <Line connectNulls type="monotone" dataKey="caloriesIntake" stroke="#488eff" fill="#488eff"/>
+                                                        </LineChart>
+                                                    </ResponsiveContainer>
+                                                </div>
+                                            )
+                                        }
+                                        {
+                                            hasKeys(caloriesBurned) === true && (
+                                                <div className='summary_charts_wrapper'>
+                                                    <h2>Calories Burned</h2>
+                                                    <ResponsiveContainer width="100%" height={300}>
+                                                        <LineChart 
+                                                            fill='#FFB948'
+                                                            width="100%"
+                                                            height={300}
+                                                            data={caloriesBurned}
+                                                            margin={{
+                                                                top: 0,
+                                                                right: 0,
+                                                                left: -10,
+                                                                bottom: 0,
+                                                            }}
+                                                        >
+                                                            <CartesianGrid strokeDasharray="none" stroke='red' />
+                                                            <XAxis dataKey="date" hide={true}/>
+                                                            <YAxis />
+                                                            <Tooltip content={<CustomTooltip type='caloriesBurned'/>}/>
+                                                            <Line connectNulls type="monotone" dataKey="caloriesBurned" stroke="#488eff" fill="#488eff"/>
+                                                        </LineChart>
+                                                    </ResponsiveContainer>
+                                                </div>
+                                            )
+                                        }
+                                        {
+                                            hasKeys(waist) === true && (
+                                                <div className='summary_charts_wrapper'>
+                                                    <h2>Waist</h2>
+                                                    <ResponsiveContainer width="100%" height={300}>
+                                                        <LineChart 
+                                                            fill='#FFB948'
+                                                            width="100%"
+                                                            height={300}
+                                                            data={waist}
+                                                            margin={{
+                                                                top: 0,
+                                                                right: 0,
+                                                                left: -25,
+                                                                bottom: 0,
+                                                            }}
+                                                        >
+                                                            <CartesianGrid strokeDasharray="none" stroke='red' />
+                                                            <XAxis dataKey="date" hide={true}/>
+                                                            <YAxis />
+                                                            <Tooltip content={<CustomTooltip type='waist'/>}/>
+                                                            <Line connectNulls type="monotone" dataKey="waist" stroke="#488eff" fill="#488eff"/>
+                                                        </LineChart>
+                                                    </ResponsiveContainer>
+                                                </div>
+                                            )
+                                        }
+                                    </>
+                                )}
                         </>
                     )
                 }
