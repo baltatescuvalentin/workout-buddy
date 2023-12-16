@@ -14,7 +14,6 @@ const CreateWorkoutDay = ({handleEditExercise, handleAddExercise, handleRemoveEx
     const [expand, setExpand] = useState(false);
     const {
         register,
-        getValues,
         watch,
     } = useForm({
         defaultValues: {
@@ -22,9 +21,11 @@ const CreateWorkoutDay = ({handleEditExercise, handleAddExercise, handleRemoveEx
         }
     });
 
+    let titleEffect = watch('title');
+
     useEffect(() => {
-        handleChangeDayName(dayIndex, getValues('title'));
-    }, [getValues, dayIndex, handleChangeDayName])
+        handleChangeDayName(dayIndex, titleEffect);
+    }, [titleEffect, dayIndex, handleChangeDayName])
 
     const handleOpenFind = () => {
         setOpenFind(true);

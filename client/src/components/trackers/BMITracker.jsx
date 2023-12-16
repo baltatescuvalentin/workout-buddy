@@ -50,18 +50,22 @@ const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTrac
         setValue(id, 0);
     }
 
+    let ageEffect = watchBMI('age');
+    let heightEffect =  watchBMI('height');
+    let weightEffect = watchBMI('weight');
+
     useEffect(() => {
         const ready = () => {
-            if(watchBMI('age') === "" || watchBMI('height') === "" || watchBMI('weight') === "") {
+            if(ageEffect === "" || heightEffect === "" || weightEffect === "") {
                 return false;
             }
-            if(parseInt(watchBMI('age')) < 1) {
+            if(parseInt(ageEffect) < 1) {
                 return false;
             }
-            if(parseInt(watchBMI('height')) < 130 || parseInt(watchBMI('height')) > 230) {
+            if(parseInt(heightEffect) < 130 || parseInt(heightEffect) > 230) {
                 return false;
             }
-            if(parseInt(watchBMI('weight')) < 40 || parseInt(watchBMI('weight')) > 160) {
+            if(parseInt(weightEffect) < 40 || parseInt(weightEffect) > 160) {
                 return false;
             }
     
@@ -69,7 +73,7 @@ const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTrac
         }
 
         setInputsReady(ready());
-    }, [watchBMI]);
+    }, [weightEffect, ageEffect, heightEffect]);
 
     const getBMI = () => {
         calculateBMI(getValuesBMI('age'), getValuesBMI('weight'), getValuesBMI('height'));

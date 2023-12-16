@@ -57,34 +57,22 @@ const BMICalculator = () => {
 
     }
 
-    console.log(typeof getValues('age'));
-
-    // const inputsReady = () => {
-    //     if(parseInt(watch('age')) < 1) {
-    //         return false;
-    //     }
-    //     if(parseInt(watch('height')) < 130 || parseInt(watch('height')) > 230) {
-    //         return false;
-    //     }
-    //     if(parseInt(watch('weight')) < 40 || parseInt(watch('weight')) > 160) {
-    //         return false;
-    //     }
-
-    //     return true;
-    // }
+    let ageEffect = watch('age');
+    let heightEffect =  watch('height');
+    let weightEffect = watch('weight');
 
     useEffect(() => {
         const ready = () => {
-            if(watch('age') === "" || watch('height') === "" || watch('weight') === "") {
+            if(ageEffect === "" || heightEffect === "" || weightEffect === "") {
                 return false;
             }
-            if(parseInt(watch('age')) < 1) {
+            if(parseInt(ageEffect) < 1) {
                 return false;
             }
-            if(parseInt(watch('height')) < 130 || parseInt(watch('height')) > 230) {
+            if(parseInt(heightEffect) < 130 || parseInt(heightEffect) > 230) {
                 return false;
             }
-            if(parseInt(watch('weight')) < 40 || parseInt(watch('weight')) > 160) {
+            if(parseInt(weightEffect) < 40 || parseInt(weightEffect) > 160) {
                 return false;
             }
     
@@ -92,9 +80,7 @@ const BMICalculator = () => {
         }
 
         setInputsReady(ready());
-    }, [watch]);
-
-    console.log(inputsReady);
+    }, [weightEffect, ageEffect, heightEffect]);
 
     const calculateBMI = async (age, weight, height) => {
         setLoading(true);

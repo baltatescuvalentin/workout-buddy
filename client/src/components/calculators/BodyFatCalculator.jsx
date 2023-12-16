@@ -50,37 +50,45 @@ const BodyFatCalculator = () => {
         console.log(bodyFat);
     }
 
+    let ageEffect = watch('age');
+    let heightEffect =  watch('height');
+    let weightEffect = watch('weight');
+    let neckEffect = watch('neck');
+    let waistEffect = watch('waist');
+    let hipEffect = watch('hip');
+    let sexEffect = watch('sex');
+
     useEffect(() => {
         const inputsReady = () => {
-            if(watch('sex') === "") {
+            if(sexEffect === "") {
                 return false;
             }
-            if(watch('age') === "" || watch('height') === "" || watch('weight') === "" || watch('neck') === "" || watch('waist') === "") {
+            if(ageEffect === "" || heightEffect === "" || weightEffect === "" || neckEffect === "" || waistEffect === "" || hipEffect === "") {
                 return false;
             }
-            if(parseInt(watch('age')) < 2) {
+            if(parseInt(ageEffect) < 2) {
                 return false;
             }
-            if(parseInt(watch('height')) < 130 || parseInt(watch('height')) > 230) {
+            if(parseInt(heightEffect) < 130 || parseInt(heightEffect) > 230) {
                 return false;
             }
-            if(parseInt(watch('weight')) < 40  || parseInt(watch('weight')) > 160) {
+            if(parseInt(weightEffect) < 40  || parseInt(weightEffect) > 160) {
                 return false;
             }
-            if(parseInt(watch('neck')) < 20 || parseInt(watch('neck')) > 80) {
+            if(parseInt(neckEffect) < 20 || parseInt(neckEffect) > 80) {
                 return false;
             }
-            if(parseInt(watch('waist')) < 40 || parseInt(watch('waist')) > 130) {
+            if(parseInt(waistEffect) < 40 || parseInt(waistEffect) > 130) {
                 return false;
             }
-            if(parseInt(watch('hip')) < 40 || parseInt(watch('hip')) > 130) {
+            if(parseInt(hipEffect) < 40 || parseInt(hipEffect) > 130) {
                 return false;
             }
             return true;
         }
 
         setInputsReady(inputsReady());
-    }, [watch]);
+    }, [heightEffect, ageEffect, weightEffect, neckEffect, waistEffect, hipEffect, sexEffect]);
 
     const calculateBodyFat = async (age, gender, weight, height, neck, waist, hip) => {
         setLoading(true);

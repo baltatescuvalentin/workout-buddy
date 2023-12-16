@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../Styles/workouts.css';
 import '../Styles/inputs.css';
 import '../Styles/buttons.css';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -59,7 +59,7 @@ const WorkoutRoutineEdit = () => {
         getWorkout();
     }, [id, jwt, setValue]);
 
-    const handleChangeDayName = (dayIndex, name) => {
+    const handleChangeDayName = useCallback((dayIndex, name) => {
         setCurrentWorkout(prevWorkout => {
             const updatedWorkout = [...prevWorkout];
             updatedWorkout[dayIndex] = {
@@ -68,9 +68,9 @@ const WorkoutRoutineEdit = () => {
             }
             return updatedWorkout;
         })
-    }
+    }, []);
 
-    const handleAddExercise = (dayIndex, exercise) => {
+    const handleAddExercise = useCallback((dayIndex, exercise) => {
         setCurrentWorkout(prevWorkout => {
             const updatedWorkout = [...prevWorkout];
             updatedWorkout[dayIndex] = {
@@ -79,9 +79,9 @@ const WorkoutRoutineEdit = () => {
             }
             return updatedWorkout;
         })
-    }
+    }, []);
 
-    const handleRemoveExercise = (dayIndex, itemIndex) => {
+    const handleRemoveExercise = useCallback((dayIndex, itemIndex) => {
         setCurrentWorkout(prevWorkout => {
             const updatedWorkout = [...prevWorkout];
             updatedWorkout[dayIndex] = {
@@ -90,9 +90,9 @@ const WorkoutRoutineEdit = () => {
             }
             return updatedWorkout;
         })
-    }
+    }, []);
 
-    const handleEditExercise = (dayIndex, editedExercise) => {
+    const handleEditExercise = useCallback((dayIndex, editedExercise) => {
         setCurrentWorkout(prevWorkout => {
             const updatedWorkout = [...prevWorkout];
             updatedWorkout[dayIndex] = {
@@ -114,7 +114,7 @@ const WorkoutRoutineEdit = () => {
 
             return updatedWorkout;
         })
-    }
+    }, []);
 
     const cancelEdit = () => {
         navigate(-1);

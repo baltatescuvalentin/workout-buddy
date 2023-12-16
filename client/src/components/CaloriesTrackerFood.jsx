@@ -7,23 +7,22 @@ import { FaTrashCan } from "react-icons/fa6";
 import UtilityButton from './buttons/UtilityButton';
 import { useForm } from 'react-hook-form';
 
-const CaloriesTrackerFood = ({index, trackerItem, removeFromCaloriesArray, editToCaloriesArray, saveToTracker}) => {
+const CaloriesTrackerFood = ({index, trackerItem, removeFromCaloriesArray, editToCaloriesArray}) => {
 
     const [edit, setEdit] = useState(false);
-    const [caloriesItem, setCalorieItem] = useState(trackerItem);
     const {
         register,
         watch,
         getValues,
     } = useForm({
         defaultValues: {
-            foodName: caloriesItem.foodName || '',
-            quantity: caloriesItem.quantity || 0,
-            calories: caloriesItem.calories || 0,
+            foodName: trackerItem.foodName || '',
+            quantity: trackerItem.quantity || 0,
+            calories: trackerItem.calories || 0,
         }
     })
 
-    console.log(caloriesItem);
+    console.log(trackerItem);
 
     const handleEdit = () => {
         setEdit(prev => !prev);

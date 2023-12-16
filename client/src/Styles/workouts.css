@@ -68,6 +68,9 @@
 
 .workout_exercises_results_list {
   max-height: 10rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  width: 98%;
 }
 
 .exercise_wrapper p, .create_workout_exercise p {
@@ -113,6 +116,9 @@
 }
 .create_workout_exercise p {
   font-size: 16px;
+}
+.create_workout_exercise p span {
+  color: inherit;
 }
 
 .choose_workout_wrapper {

@@ -49,32 +49,35 @@ const DailyCaloriesCalculator = () => {
         console.log(dailyCalories);
     }
 
+    let ageEffect = watch('age');
+    let heightEffect =  watch('height');
+    let weightEffect = watch('weight');
+    let sexEffect = watch('sex');
+    let activityEffect = watch('activityLevel');
+
     useEffect(() => {
         const inputsReady = () => {
-            if(watch('sex') === "") {
+            if(sexEffect === "") {
                 return false;
             }
-            if(watch('age') === "" || watch('height') === "" || watch('weight') === "" || watch('activityLevel') === "") {
+            if(ageEffect === "" || heightEffect === "" || weightEffect === "" || activityEffect === "") {
                 return false;
             }
-            if(parseInt(watch('age')) < 2) {
+            if(parseInt(ageEffect) < 2) {
                 return false;
             }
-            if(watch('activityLevel') === "") {
+            if(parseInt(heightEffect) < 130 || parseInt(heightEffect) > 230) {
                 return false;
             }
-            if(parseInt(watch('height')) < 130 || parseInt(watch('height')) > 230) {
-                return false;
-            }
-            if(parseInt(watch('weight')) < 40  || parseInt(watch('weight')) > 160) {
+            if(parseInt(weightEffect) < 40  || parseInt(weightEffect) > 160) {
                 return false;
             }
             return true;
         }
 
         setInputsReady(inputsReady());
-        console.log(watch('activityLevel'));
-    }, [watch]);
+        console.log(activityEffect);
+    }, [heightEffect, ageEffect, weightEffect, sexEffect, activityEffect]);
 
     const calculateDailyCalories = async (age, gender, height, weight, activityLevel) => {
         setLoading(true);

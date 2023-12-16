@@ -62,15 +62,18 @@ const IdealWeightCalculator = () => {
         console.log(idealWeight);
     }
 
+    let sexEffect = watch('sex');
+    let heightEffect =  watch('height');
+
     useEffect(() => {
         const inputsReady = () => {
-            if(watch('sex') === "") {
+            if(sexEffect === "") {
                 return false;
             }
-            if(watch('height') === "") {
+            if(heightEffect === "") {
                 return false;
             }
-            if(parseInt(watch('height')) < 130 || parseInt(watch('height')) > 230) {
+            if(parseInt(heightEffect) < 130 || parseInt(heightEffect) > 230) {
                 return false;
             }
 
@@ -78,9 +81,7 @@ const IdealWeightCalculator = () => {
         }
 
         setInputsReady(inputsReady());
-        console.log(watch('height'));
-        console.log(watch('sex'));
-    }, [watch]);
+    }, [sexEffect, heightEffect]);
 
     const calculateIdealWeight = async (height, gender) => {
         setLoading(true);

@@ -119,22 +119,26 @@ const CaloriesIntake = ({saveToTracker, calsArray}) => {
         })
     }
 
+    let foodNameEffect = watch('foodName');
+    let caloriesEffect = watch('calories');
+    let quantityEffect = watch('quantity');
+
     useEffect(() => {
         const customValidInputs = () => {
-            return watch('foodName') && (watch('calories') > 0) && (watch('quantity') > 0);
+            return foodNameEffect && (caloriesEffect > 0) && (quantityEffect > 0);
         }
 
         setValidCustomInputs(customValidInputs());
-    }, [watch]);
+    }, [quantityEffect, foodNameEffect, caloriesEffect]);
 
     const searchCalories = useMemo(() => {
-        if(watch('quantity') === 0) {
+        if(quantityEffect === 0) {
             return 0;
         }
         
-        const currentCalories = ((watch('quantity') * parseFloat(chosenFood.calories)) / 100).toFixed(2);
+        const currentCalories = ((quantityEffect * parseFloat(chosenFood.calories)) / 100).toFixed(2);
         return parseFloat(currentCalories);
-    }, [chosenFood.calories, watch]);
+    }, [chosenFood.calories, quantityEffect]);
 
     console.log(caloriesArray);
     console.log(validCustomInputs);

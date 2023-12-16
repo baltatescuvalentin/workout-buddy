@@ -7,7 +7,7 @@ import CreateWorkoutDescription from './inputs/CreateWorkoutDescription';
 import CreateWorkoutHeaderButton from './buttons/UtilityButton';
 import { FaSave } from "react-icons/fa";
 import CreateWorkoutDay from './CreateWorkoutDay';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { ClipLoader } from "react-spinners";
@@ -68,7 +68,7 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
     //     name: 'days',
     // });
 
-    const handleChangeDayName = (dayIndex, name) => {
+    const handleChangeDayName = useCallback((dayIndex, name) => {
         setWorkout(prevWorkout => {
             const updatedWorkout = [...prevWorkout];
             updatedWorkout[dayIndex] = {
@@ -77,9 +77,9 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
             }
             return updatedWorkout;
         })
-    }
+    }, []);
 
-    const handleAddExercise = (dayIndex, exercise) => {
+    const handleAddExercise = useCallback((dayIndex, exercise) => {
         setWorkout(prevWorkout => {
             const updatedWorkout = [...prevWorkout];
             updatedWorkout[dayIndex] = {
@@ -88,9 +88,9 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
             }
             return updatedWorkout;
         })
-    }
+    }, []);
 
-    const handleRemoveExercise = (dayIndex, itemIndex) => {
+    const handleRemoveExercise = useCallback((dayIndex, itemIndex) => {
         setWorkout(prevWorkout => {
             const updatedWorkout = [...prevWorkout];
             updatedWorkout[dayIndex] = {
@@ -99,9 +99,9 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
             }
             return updatedWorkout;
         })
-    }
+    }, []);
 
-    const handleEditExercise = (dayIndex, editedExercise) => {
+    const handleEditExercise = useCallback((dayIndex, editedExercise) => {
         setWorkout(prevWorkout => {
             const updatedWorkout = [...prevWorkout];
             updatedWorkout[dayIndex] = {
@@ -123,7 +123,7 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
 
             return updatedWorkout;
         })
-    }
+    }, []);
 
     const saveToDB = async () => {
 

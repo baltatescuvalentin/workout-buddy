@@ -56,7 +56,9 @@ const ChooseWorkoutExercise = ({handleCloseFind, handleExpand, handleAddExercise
             <div className="choose_workout_exercise_header">
                 <FindExerciseInput getExerciseInput={getExerciseInput} styling='find_workout_exercise_input'/>
                 <div>
-                    <UtilityButton onClick={handleSave} title='Save' icon={<FaSave className="choose_workout_exercise_close_icon"/>} styles='choose_workout_exercise_save'/>
+                    {
+                        chosenExercise && <UtilityButton onClick={handleSave} title='Save' icon={<FaSave className="choose_workout_exercise_close_icon"/>} styles='choose_workout_exercise_save'/>
+                    }
                     <UtilityButton onClick={handleCloseFind} title='Close' icon={<FaRegTimesCircle className="choose_workout_exercise_close_icon"/>} styles='choose_workout_exercise_close'/>
                 </div>
             </div>

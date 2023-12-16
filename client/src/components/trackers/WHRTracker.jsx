@@ -32,14 +32,17 @@ const WHRTracker = ({id, register, value, getValues, setValue, watch, saveToTrac
         setValue('WHR', WHR);
     }
 
+    let waistEffect = watch('waist');
+    let hipsEffect = watch('hips');
+
     useEffect(() => {
         const checkForTrackerValues = () => {
-            return (getValues('waist') > 0) && (getValues('hips') > 0);
+            return (waistEffect > 0) && (hipsEffect > 0);
         }
 
         setCalculable(checkForTrackerValues());
 
-    }, [watch, getValues]);
+    }, [hipsEffect, waistEffect]);
 
     return (
         <div>

@@ -51,35 +51,35 @@ const MacrosCalculator = () => {
         console.log(macros);
     }
 
+    let ageEffect = watch('age');
+    let heightEffect =  watch('height');
+    let weightEffect = watch('weight');
+    let sexEffect = watch('sex');
+    let activityEffect = watch('activityLevel');
+    let goalEffect = watch('goal');
+
     useEffect(() => {
         const inputsReady = () => {
-            if(watch('sex') === "") {
+            if(sexEffect === "") {
                 return false;
             }
-            if(watch('age') === "" || watch('height') === "" || watch('weight') === "" || watch('goal') === "" || watch('activityLevel') === "") {
+            if(ageEffect === "" || heightEffect === "" || weightEffect === "" || goalEffect === "" || activityEffect === "" || goalEffect === "") {
                 return false;
             }
-            if(parseInt(watch('age')) < 2) {
+            if(parseInt(ageEffect) < 2) {
                 return false;
             }
-            if(watch('activityLevel') === "") {
+            if(parseInt(heightEffect) < 130 || parseInt(heightEffect) > 230) {
                 return false;
             }
-            if(watch('goal') === "") {
-                return false;
-            }
-            if(parseInt(watch('height')) < 130 || parseInt(watch('height')) > 230) {
-                return false;
-            }
-            if(parseInt(watch('weight')) < 40  || parseInt(watch('weight')) > 160) {
+            if(parseInt(weightEffect) < 40  || parseInt(weightEffect) > 160) {
                 return false;
             }
             return true;
         }
 
         setInputsReady(inputsReady());
-        console.log(watch('activityLevel'));
-    }, [watch]);
+    }, [heightEffect, ageEffect, weightEffect, sexEffect, activityEffect, goalEffect]);
 
     const calculateMacros = async (age, gender, height, weight, activityLevel, goal) => {
         setLoading(true);
@@ -196,7 +196,7 @@ const MacrosCalculator = () => {
                                 
                                 (showCustom && 
                                     <div className='calculator_result'>
-                                        <h3>For your daily routine and your {`${watch('goal')}`} you need {`${macros.data.calorie}`} calories.</h3>
+                                        <h3>For your daily routine and your {`${watch('goal')}`} you need {`${macros.data.calorie.toFixed(2)}`} calories.</h3>
                                         <h4>A balanced diet needs {`${macros.data.balanced.protein.toFixed(2)}`} proteins, {`${macros.data.balanced.fat.toFixed(2)}`} fat and {`${macros.data.balanced.carbs.toFixed(2)}`} carbs.</h4>
                                         <h4>A low fat diet needs {`${macros.data.lowfat.protein.toFixed(2)}`} proteins, {`${macros.data.lowfat.fat.toFixed(2)}`} fat and {`${macros.data.lowfat.carbs.toFixed(2)}`} carbs.</h4>
                                         <h4>A low carbs diet needs {`${macros.data.lowcarbs.protein.toFixed(2)}`} proteins, {`${macros.data.lowcarbs.fat.toFixed(2)}`} fat and {`${macros.data.lowcarbs.carbs.toFixed(2)}`} carbs.</h4>

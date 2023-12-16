@@ -7,7 +7,7 @@ const ExercisesResultsList = ({exercises, setChosenExercise, styling}) => {
     return (
         <div className={`${styling}`}>
             {exercises.map((exercise) => {
-                return <p onClick={() => setChosenExercise(exercise)} key={exercise.id}>{exercise.name}</p>
+                return <p onClick={() => setChosenExercise(exercise)} key={exercise._id}>{exercise.name}</p>
             })}
         </div>
     )
