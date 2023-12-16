@@ -23,7 +23,6 @@ const Login = () => {
     const {
         register,
         handleSubmit,
-        getValues,
         reset,
         formState: {
             errors,
@@ -39,7 +38,7 @@ const Login = () => {
         reset();
 
         return () => reset();
-    }, []);
+    }, [reset]);
 
     let usernameForm = {
         required: 'Username is required'

@@ -1,4 +1,4 @@
-import { useFieldArray, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import '../Styles/workouts.css';
 import '../Styles/buttons.css';
 import '../Styles/inputs.css';
@@ -6,7 +6,6 @@ import CreateWorkoutTitle from './inputs/CreateWorkoutTitle';
 import CreateWorkoutDescription from './inputs/CreateWorkoutDescription';
 import CreateWorkoutHeaderButton from './buttons/UtilityButton';
 import { FaSave } from "react-icons/fa";
-import { MdCancel } from "react-icons/md";
 import CreateWorkoutDay from './CreateWorkoutDay';
 import { useState } from 'react';
 import axios from 'axios';
@@ -34,9 +33,7 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
     const user = useSelector(state => state.user);
 
     const {
-        handleSubmit: handleSubmitInfo,
         register: registerInfo,
-        reset: resetInfo,
         getValues,
     } = useForm({
         defaultValues: {
@@ -44,32 +41,6 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
             description: ''
         }
     })
-
-    // const {
-    //     register: registerDays,
-    //     handleSubmit: handleSubmitDays,
-    //     setValue: setValueDays,
-    //     getValues: getValuesDays,
-    //     control,
-    //     reset: resetDays,
-    // } = useForm({
-    //     defaultValues: {
-    //         days: [
-    //             { dayName: 'Monday', name: '', exercises: [] },
-    //             { dayName: 'Tuesday', name: '', exercises: [] },
-    //             { dayName: 'Wednesday', name: '', exercises: [] },
-    //             { dayName: 'Thursday', name: '', exercises: [] },
-    //             { dayName: 'Friday', name: '', exercises: [] },
-    //             { dayName: 'Saturday', name: '', exercises: [] },
-    //             { dayName: 'Sunday', name: '', exercises: [] },
-    //           ],
-    //     }
-    // });
-
-    // const { fields, append, remove } = useFieldArray({
-    //     control,
-    //     name: 'days',
-    // });
 
     const handleChangeDayName = (dayIndex, name) => {
         setWorkout(prevWorkout => {
@@ -205,26 +176,6 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
                 setLoading(false);
             })
     }
-
-    // const handleAddTitle = (dayIndex, title) => {
-    //     const currentDays = getValuesDays('days');
-    //     currentDays[dayIndex].name = title;
-    //     setValueDays('days', currentDays);
-    // }
-
-    // const handleAddExercise = (dayIndex, exercise) => {
-    //     const currentDays = getValuesDays('days');
-    //     currentDays[dayIndex].exercises.push(exercise);
-    //     setValueDays('days', currentDays);
-    // }
-
-    // const handleRemoveExercise = (dayIndex, exerciseIndex) => {
-    //     const currentDays = getValuesDays('days');
-    //     const filteredDays = currentDays[dayIndex].exercises.filter((exercise, index) => index !== exerciseIndex);
-    //     setValueDays('days', filteredDays);
-    // }
-
-    console.log(workout)
 
     return (
         <div className='create_workout_form_wrapper'>

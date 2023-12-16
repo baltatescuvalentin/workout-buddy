@@ -2,7 +2,6 @@ import { useState } from 'react';
 import '../../Styles/auth.css';
 import { IoMdMale } from "react-icons/io";
 import { IoFemale } from "react-icons/io5";
-import { IoMaleFemaleOutline } from "react-icons/io5";
 import { PiGenderIntersexBold } from 'react-icons/pi';
 
 const IdentityCard = ({value, setValue}) => {

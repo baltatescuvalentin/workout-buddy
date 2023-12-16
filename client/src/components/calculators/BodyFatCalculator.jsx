@@ -81,7 +81,7 @@ const BodyFatCalculator = () => {
         }
 
         setInputsReady(inputsReady());
-    }, [watch('height'), watch('sex'), watch('age'), watch('weight'), watch('hip'), watch('waist'), watch('neck')]);
+    }, [watch]);
 
     const calculateBodyFat = async (age, gender, weight, height, neck, waist, hip) => {
         setLoading(true);

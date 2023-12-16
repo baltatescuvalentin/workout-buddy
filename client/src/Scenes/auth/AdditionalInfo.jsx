@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setLogin } from '../../state';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { ClipLoader } from "react-spinners";
 import usePreviousLocation from '../../hooks/usePreviousLocation';
@@ -24,14 +24,12 @@ const AdditionalInfo = () => {
     const token = useSelector(state => state.token);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
     const previousLocation = usePreviousLocation();
 
     const {
         register,
         setValue,
         getValues,
-        reset,
         watch,
     } = useForm({
         defaultValues: {

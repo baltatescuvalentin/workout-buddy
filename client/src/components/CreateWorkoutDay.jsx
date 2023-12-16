@@ -25,7 +25,7 @@ const CreateWorkoutDay = ({handleEditExercise, handleAddExercise, handleRemoveEx
     useEffect(() => {
         console.log(getValues('title'));
         handleChangeDayName(dayIndex, getValues('title'));
-    }, [watch('title')])
+    }, [handleChangeDayName, getValues, dayIndex])
 
     const handleOpenFind = () => {
         setOpenFind(true);

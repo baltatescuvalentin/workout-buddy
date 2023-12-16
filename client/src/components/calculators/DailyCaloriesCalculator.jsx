@@ -75,7 +75,7 @@ const DailyCaloriesCalculator = () => {
 
         setInputsReady(inputsReady());
         console.log(watch('activityLevel'));
-    }, [watch('height'), watch('sex'), watch('age'), watch('weight'), watch('activityLevel')]);
+    }, [watch]);
 
     const calculateDailyCalories = async (age, gender, height, weight, activityLevel) => {
         setLoading(true);

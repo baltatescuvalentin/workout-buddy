@@ -15,10 +15,6 @@ const CreateWorkoutDescription = ({id, name, register, defaultValue, styles}) =>
         setRows(calculateRows(text));
     }, [text]);
 
-    const calculateRows = (text) => {
-        return text.split('\n').length + 1;
-      };
-
     return (
         <textarea rows={rows} id={id} placeholder={name} defaultValue={defaultValue} {...register(id)} onChange={(e) => setText(e.target.value)}
             className={`${styles} ${mode === 'light' ? 'light_input' : 'dark_input'}`}>

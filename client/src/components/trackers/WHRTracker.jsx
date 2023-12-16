@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react';
 const WHRTracker = ({id, register, value, getValues, setValue, watch, saveToTracker, deleteFromTracker}) => {
 
     const [edit, setEdit] = useState(false);
-    const [whr, setWhr] = useState(value);
     const [calculable, setCalculable] = useState(false);
 
     const changeEdit = () => {
@@ -40,7 +39,7 @@ const WHRTracker = ({id, register, value, getValues, setValue, watch, saveToTrac
 
         setCalculable(checkForTrackerValues());
 
-    }, [watch('waist'), watch('hips')]);
+    }, [getValues, watch]);
 
     return (
         <div>

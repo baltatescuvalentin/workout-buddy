@@ -13,15 +13,12 @@ import { FaSave } from "react-icons/fa";
 
 const ChooseWorkoutExercise = ({handleCloseFind, handleExpand, handleAddExercise, dayIndex}) => {
 
-    const [exerciseInput, setExerciseInput] = useState("");
     const [exercisesList, setExecisesList] = useState([]);
     const [chosenExercise, setChosenExercise] = useState(null);
     const exercises = useSelector(state => state.exercices);
     const {
         register,
         getValues,
-        handleSubmit,
-        reset,
     } = useForm({
         defaultValues: {
             reps: '',
@@ -31,7 +28,6 @@ const ChooseWorkoutExercise = ({handleCloseFind, handleExpand, handleAddExercise
     })
 
     const getExerciseInput = (e) => {
-        setExerciseInput(e);
         const filtered = filterExercises(e, exercises);
         setExecisesList(filtered);
     }

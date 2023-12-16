@@ -24,7 +24,6 @@ const Register = () => {
     const {
         register,
         handleSubmit,
-        getValues,
         reset,
         formState: {
             errors,
@@ -42,7 +41,7 @@ const Register = () => {
         reset();
 
         return () => reset();
-    }, []);
+    }, [reset]);
 
     let fullnameForm = {
         required: 'Firstname is required'

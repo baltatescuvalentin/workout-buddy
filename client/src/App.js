@@ -23,6 +23,7 @@ import WorkoutRoutineEdit from './components/WorkoutRoutineEdit';
 import Tracker from './Scenes/fitness/Tracker';
 import Summary from './Scenes/fitness/Summary';
 import Error from './Scenes/Error';
+import AlreadyLogged from './components/AlreadyLogged';
 
 function App() {
 
@@ -49,30 +50,32 @@ function App() {
     }
   }
 
-  const getExercicesFromDB = () => {
-    const response = axios.get('http://localhost:3001/exercises/getExercises');
-
-    response.then((response) => {
-      console.log(response);
-      const exercicesFromDB = response.data.exercises;
-      dispatch(setExercices({
-        exercices: exercicesFromDB,
-      }));
-    })
-      .catch((error) => {
-        if(error.response) {
-          console.log(error.response.data);
-        }
-        else if(error.request) {
-          console.log(error.request);
-        }
-        else {
-          console.log(error.message);
-        }
-      })
-  }
 
   useEffect(() => {
+
+    const getExercicesFromDB = () => {
+      const response = axios.get('http://localhost:3001/exercises/getExercises');
+  
+      response.then((response) => {
+        console.log(response);
+        const exercicesFromDB = response.data.exercises;
+        dispatch(setExercices({
+          exercices: exercicesFromDB,
+        }));
+      })
+        .catch((error) => {
+          if(error.response) {
+            console.log(error.response.data);
+          }
+          else if(error.request) {
+            console.log(error.request);
+          }
+          else {
+            console.log(error.message);
+          }
+        })
+    }
+
     if(mNavbar === true) {
       dispatch(setMNavbar({mNavbar: false}));
     }
@@ -89,7 +92,7 @@ function App() {
       console.log(exercices);
     }*/
     getExercicesFromDB();
-  }, [token]);
+  }, [dispatch, mNavbar, token]);
 
   return (
     <div className={`app ${mode === 'light' ? 'light' : 'dark'}`}>
@@ -113,8 +116,16 @@ function App() {
               <Route path='summary' element={<Summary />} />
             </Route>
           </Route>
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={
+            <AlreadyLogged>
+              <Register />
+              </AlreadyLogged>
+          } />
+          <Route path='/login' element={
+            <AlreadyLogged>
+              <Login />
+            </AlreadyLogged>
+          } />
           <Route path='/resetpassword' element={<ResetPassword />} />
           <Route path='/additionalinfo' element={<AdditionalInfo />} />
           <Route path="*" element={<Error />} />

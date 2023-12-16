@@ -3,7 +3,7 @@ import '../../Styles/fitness.css';
 import '../../Styles/workouts.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import Loader from '../../components/Loader';
 import TableTracker from '../../components/TableTracker';
 import NotLogged from '../../components/NotLogged';
@@ -31,15 +31,12 @@ const Summary = () => {
     const [bodyFat, setBodyFat] = useState([]);
     const [waist, setWaist] = useState([]);
     const [weight, setWeight] = useState([]);
-    const [neck, setNeck] = useState([]);
-    const [hips, setHips] = useState([]);
     const [caloriesIntake, setCaloriesIntake] = useState([]);
     const [caloriesBurned, setCaloriesBurned] = useState([]);
     const [tableValues, setTableValues] = useState(null);
     
     const user = useSelector(state => state.user);
     const jwt = useSelector(state => state.token);
-    const mode = useSelector(state => state.mode);
 
     console.log(bmi);
     console.log(caloriesIntake);
@@ -61,20 +58,7 @@ const Summary = () => {
             || hasKeys(weight) === true || hasKeys(bodyFat) === true || hasKeys(waist);
     }
 
-    const getTableValues = (input, type) => {
-        let array = [];
-        input.forEach((element) => {
-            if(element[type]) {
-                array.push(element[type]);
-            }
-        });
-
-        const max = Math.max(array);
-        const min = Math.min(array);
-        const avg = (array.reduce((acc, el) => acc + el), 0) / array.length;
-
-        return [min, avg, max];
-    }
+    
 
     console.log(tableValues);
 
@@ -173,8 +157,6 @@ const Summary = () => {
                     setBodyFat(bodyFatData);
                     setWaist(waistData);
                     setWeight(weightData);
-                    setNeck(neckData);
-                    setHips(hipsData);
                     setCaloriesBurned(caloriesBurnedData);
                     setCaloriesIntake(caloriesIntakeData);
                 })

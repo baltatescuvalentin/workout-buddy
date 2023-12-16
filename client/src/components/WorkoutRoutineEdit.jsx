@@ -57,35 +57,7 @@ const WorkoutRoutineEdit = () => {
         }
 
         getWorkout();
-    }, [id]);
-
-    console.log(currentWorkout);
-    console.log(getValues('title'));
-    console.log(watch('description'));
-
-    const editTitle = (newTitle) => {
-        setCurrentWorkout(prevState => ({
-                ...prevState,
-                title: newTitle,
-            }))
-    }
-
-    const editDescription = (newDescription) => {
-        setCurrentWorkout(prevState => ({
-                ...prevState,
-                description: newDescription,
-            }))
-    }
-
-    const editDay = (dayName, newDay) => {
-        setCurrentWorkout(prevState => ({
-            ...prevState,
-            days: {
-                ...prevState.days,
-                [dayName]: newDay,
-            }
-        }))
-    }
+    }, [id, jwt, setValue]);
 
     const handleChangeDayName = (dayIndex, name) => {
         setCurrentWorkout(prevWorkout => {
