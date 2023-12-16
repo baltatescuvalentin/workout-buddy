@@ -14,7 +14,6 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveTo
 
     const [edit, setEdit] = useState(false);
     const [inputsReady, setInputsReady] = useState(false);
-    const [bodyFatValue, setBodyFatValue] = useState(value);
     const [calculate, setCalculate] = useState(false);
 
     const {
@@ -34,13 +33,6 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveTo
             hip: 0,
         }
     });
-
-
-    const changeEdit = () => {
-        setEdit(prev => !prev);
-        reset();
-        handleCalculate();
-    }
 
     const openEdit = () => {
         setEdit(prev => !prev);
@@ -69,10 +61,6 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveTo
 
     const handleCalculate = () => {
         setCalculate(prev => !prev);
-    }
-
-    const changeValue = (e) => {
-        setBodyFatValue(e.target.value);
     }
 
     useEffect(() => {
@@ -105,7 +93,7 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveTo
         }
 
         setInputsReady(inputsReady());
-    }, [watchBF('height'), watchBF('sex'), watchBF('age'), watchBF('weight'), watchBF('hip'), watchBF('waist'), watchBF('neck')]);
+    }, [watchBF]);
 
     const getBodyFat = () => {
         calculateBodyFat(getValuesBF('age'), getValuesBF('sex'), getValuesBF('weight'), getValuesBF('height'),
@@ -135,7 +123,6 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveTo
 
           await axios.request(options)
             .then((response) => {
-                setBodyFatValue(response.data.data['Body Fat (BMI method)']);
                 setValue('bodyFat', response.data.data['Body Fat (BMI method)']);
                 console.log(response.data.data['Body Fat (BMI method)']);
             })

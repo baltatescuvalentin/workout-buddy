@@ -24,7 +24,6 @@ const Register = () => {
     const {
         register,
         handleSubmit,
-        getValues,
         reset,
         formState: {
             errors,
@@ -42,7 +41,7 @@ const Register = () => {
         reset();
 
         return () => reset();
-    }, []);
+    }, [reset]);
 
     let fullnameForm = {
         required: 'Firstname is required'
@@ -74,8 +73,6 @@ const Register = () => {
 
     const onSubmit = async (data) => {
         setLoading(true);
-
-        //const response = axios.post('http://localhost:3001/auth/register', data);
             
         await axios.post('http://localhost:3001/auth/register', data)
             .then((response) => {

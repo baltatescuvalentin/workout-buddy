@@ -4,13 +4,11 @@ import '../../Styles/buttons.css';
 import '../../Styles/inputs.css';
 import { FaSave, FaEdit, FaTimes } from "react-icons/fa";
 import { FaTrashCan } from "react-icons/fa6";
-import { MdOutlineCancel } from "react-icons/md";
 import UtilityButton from '../buttons/UtilityButton';
 
 const BodyMeasurementTracker = ({id, register, setValue, value, title, metric, saveToTracker, deleteFromTracker}) => {
 
     const [edit, setEdit] = useState(false);
-    const [trackerValue, setTrackerValue] = useState(value);
 
     const changeEdit = () => {
         setEdit(prev => !prev)

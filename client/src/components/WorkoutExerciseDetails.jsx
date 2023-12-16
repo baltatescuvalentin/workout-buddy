@@ -3,7 +3,7 @@ import '../Styles/workouts.css';
 import '../Styles/buttons.css';
 import UtilityButton from './buttons/UtilityButton';
 import ExpandButton from './buttons/ExpandButton';
-import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 import { AiFillEdit } from "react-icons/ai";
 
 const WorkoutExerciseDetails = ({exercise, handleRemoveExercise, handleEdit, shouldEdit}) => {

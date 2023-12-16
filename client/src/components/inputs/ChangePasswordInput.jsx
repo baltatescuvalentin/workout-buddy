@@ -1,5 +1,4 @@
 import '../../Styles/inputs.css';
-import AuthInput from './AuthInput';
 
 const ChangePasswordInput = ({id, placeholder, register, type, errorMessage, errors}) => {
     return (

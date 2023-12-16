@@ -80,7 +80,7 @@ const IdealWeightCalculator = () => {
         setInputsReady(inputsReady());
         console.log(watch('height'));
         console.log(watch('sex'));
-    }, [watch('height'), watch('sex')]);
+    }, [watch]);
 
     const calculateIdealWeight = async (height, gender) => {
         setLoading(true);

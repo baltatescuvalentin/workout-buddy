@@ -14,7 +14,6 @@ const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTrac
 
     const [edit, setEdit] = useState(false);
     const [inputsReady, setInputsReady] = useState(false);
-    const [bmiValue, setBmiValue] = useState(value);
     const [calculate, setCalculate] = useState(false);
 
     const {
@@ -41,18 +40,6 @@ const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTrac
         saveToTracker();
     }
 
-    const openEdit = () => {
-        setEdit(prev => !prev);
-        setCalculate(false);
-        reset();
-    }
-
-    const closeEdit = () => {
-        setEdit(prev => !prev);
-        setCalculate(false);
-        reset();
-    }
-
     const handleCalculate = () => {
         setCalculate(prev => !prev);
     }
@@ -61,10 +48,6 @@ const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTrac
         setEdit(prev => !prev);
         deleteFromTracker(id);
         setValue(id, 0);
-    }
-
-    const changeValue = (e) => {
-        setBmiValue(e.target.value);
     }
 
     useEffect(() => {
@@ -86,7 +69,7 @@ const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTrac
         }
 
         setInputsReady(ready());
-    }, [watchBMI('age'), watchBMI('height'), watchBMI('weight')]);
+    }, [watchBMI]);
 
     const getBMI = () => {
         calculateBMI(getValuesBMI('age'), getValuesBMI('weight'), getValuesBMI('height'));
@@ -112,7 +95,6 @@ const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTrac
           await axios.request(options)
             .then((response) => {
                 setValue('BMI', response.data.data.bmi);
-                setBmiValue(response.data.data.bmi);
                 console.log(response.data.data.bmi);
             })
             .catch((error) => {

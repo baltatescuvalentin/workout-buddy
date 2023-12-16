@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../Styles/workouts.css';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FaEye, FaRegTrashAlt, FaEdit } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 import ExpandButton from './buttons/ExpandButton';
 import UtilityButton from './buttons/UtilityButton';
 import WorkoutExercise from './WorkoutExercise';

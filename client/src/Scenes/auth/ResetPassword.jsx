@@ -40,7 +40,7 @@ const ResetPassword = () => {
             reset();
             setStep(1);
         }
-    }, [])
+    }, [reset])
 
     let emailForm = {
         required: 'Email is required',

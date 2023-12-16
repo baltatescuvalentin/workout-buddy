@@ -34,7 +34,7 @@ const WorkoutRoutineView = () => {
         }
 
         getDayExercise();
-    }, [id]);
+    }, [id, jwt, day]);
 
     const nextStep = () => {
         setStep(prev => prev + 1);

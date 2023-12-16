@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import '../../Styles/inputs.css';
-import { useEffect } from 'react';
 
 const FindExerciseInput = ({getExerciseInput, styling}) => {
 

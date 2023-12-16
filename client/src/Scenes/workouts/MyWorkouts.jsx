@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import '../../Styles/workouts.css';
+import '../../Styles/styles.css';
 import { useSelector } from 'react-redux';
 import WorkoutRoutine from '../../components/WorkoutRoutine';
 import axios from 'axios';
 import NotLogged from '../../components/NotLogged';
+import Loader from '../../components/Loader';
 
 const MyWorkouts = () => {
 
@@ -28,6 +30,8 @@ const MyWorkouts = () => {
                 return;
             }
 
+            setLoading(true);
+
             await axios.get(`http://localhost:3001/workoutroutine/getWorkouts/${user._id}`, options)
                 .then((response) => {
                     setWorkouts([...response.data.workouts]);
@@ -41,10 +45,13 @@ const MyWorkouts = () => {
                         console.log(error.response.message);
                     }
                 })
+                .finally(() => {
+                    setLoading(false);
+                })
         }
 
         fetchData();
-    }, []);
+    }, [jwt, user]);
 
     return (
         <div className='workout_wrapper'>
@@ -57,7 +64,9 @@ const MyWorkouts = () => {
                    routines!
                 </p>
                 {
-                    user ? (
+                    !user ? <NotLogged /> : 
+                    loading ? <Loader divStyle='pages_loader' size={42} color='#488eff'/> : 
+                    (
                         <div className='myworkouts_workouts'>
                             {workouts.length > 0 && (
                                 workouts.map((workout, index) => {
@@ -65,9 +74,8 @@ const MyWorkouts = () => {
                                     return <WorkoutRoutine key={index} workout={workout}/>
                                 })
                             )}
-                        </div> ) : (
-                            <NotLogged />
-                        )
+                        </div> 
+                    )
                 }
                 
             </div>

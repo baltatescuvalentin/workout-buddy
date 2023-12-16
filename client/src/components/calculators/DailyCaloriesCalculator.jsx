@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import '../../Styles/fitness.css';
 import ExpandButton from '../buttons/ExpandButton';
 import CalculatorOptionButton from '../buttons/CalculatorOptionButton';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Loader from '../Loader';
 import { useForm } from 'react-hook-form';
@@ -75,7 +74,7 @@ const DailyCaloriesCalculator = () => {
 
         setInputsReady(inputsReady());
         console.log(watch('activityLevel'));
-    }, [watch('height'), watch('sex'), watch('age'), watch('weight'), watch('activityLevel')]);
+    }, [watch]);
 
     const calculateDailyCalories = async (age, gender, height, weight, activityLevel) => {
         setLoading(true);

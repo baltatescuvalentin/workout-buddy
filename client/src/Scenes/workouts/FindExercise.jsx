@@ -2,22 +2,19 @@ import { useState } from 'react';
 import '../../Styles/workouts.css';
 import FindExerciseInput from '../../components/inputs/FindExerciseInput';
 import ExercisesResultsList from '../../components/ExercisesResultsList';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { filterExercises } from '../../utils/functions/workouts';
 import ChosenExercise from '../../components/ChosenExercise';
-import ChooseWorkoutExercise from '../../components/ChooseWorkoutExercise';
 
 
 const FindExercise = () => {
 
-    const [exerciseInput, setExerciseInput] = useState("");
     const [exercisesList, setExecisesList] = useState([]);
     const [chosenExercise, setChosenExercise] = useState(null);
     const exercises = useSelector(state => state.exercices);
     console.log(exercises);
 
     const getExerciseInput = (e) => {
-        setExerciseInput(e);
         const filtered = filterExercises(e, exercises);
         setExecisesList(filtered);
     }

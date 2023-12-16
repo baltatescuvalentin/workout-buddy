@@ -3,7 +3,7 @@ import '../../Styles/buttons.css';
 import '../../Styles/inputs.css';
 import '../../Styles/styles.css';
 import UtilityButton from '../buttons/UtilityButton';
-import { FaSave, FaPlus, FaTimes, FaEdit } from "react-icons/fa";
+import { FaPlus, FaTimes, FaEdit } from "react-icons/fa";
 import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -125,7 +125,7 @@ const CaloriesIntake = ({saveToTracker, calsArray}) => {
         }
 
         setValidCustomInputs(customValidInputs());
-    }, [watch('foodName'), watch('calories'), watch('quantity')]);
+    }, [watch]);
 
     const searchCalories = useMemo(() => {
         if(watch('quantity') === 0) {
@@ -134,7 +134,7 @@ const CaloriesIntake = ({saveToTracker, calsArray}) => {
         
         const currentCalories = ((watch('quantity') * parseFloat(chosenFood.calories)) / 100).toFixed(2);
         return parseFloat(currentCalories);
-    }, [watch('quantity'), chosenFood.calories, watch]);
+    }, [chosenFood.calories, watch]);
 
     console.log(caloriesArray);
     console.log(validCustomInputs);

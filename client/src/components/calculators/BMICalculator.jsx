@@ -92,7 +92,7 @@ const BMICalculator = () => {
         }
 
         setInputsReady(ready());
-    }, [watch('age'), watch('height'), watch('weight')]);
+    }, [watch]);
 
     console.log(inputsReady);
 

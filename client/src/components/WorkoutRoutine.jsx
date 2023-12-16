@@ -37,6 +37,7 @@ const WorkoutRoutine = ({workout}) => {
                 <div className='my_workouts_days'>
                     <h3>{workout.description}</h3>
                     {
+                        // eslint-disable-next-line array-callback-return
                         Object.entries(workout.days).map(([key, day]) => {
                             if(day.exercises.length) {
                                 return <WorkoutRoutineDay day={day} workoutId={workout._id} key={key} />

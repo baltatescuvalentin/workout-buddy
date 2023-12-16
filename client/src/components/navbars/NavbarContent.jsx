@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PiHeartbeatFill } from 'react-icons/pi';
 import darkLogo from '../../utils/images/dark-logo.png';
 import lightLogo from '../../utils/images/light-logo.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setLogout, setMNavbar } from '../../state';
 import ThemeSwitcher from '../ThemeSwitcher';
 

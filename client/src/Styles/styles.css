@@ -4,7 +4,6 @@
   margin-left: 20%;
   margin-right: 20%;
   margin-top: 0.5rem;
-  margin-bottom: 0.7rem;
 }
 @media screen and (max-width: 27rem) {
   .contact, .homepage_text, .homepage_image_text_mobile {

@@ -12,7 +12,6 @@ import { useDispatch } from 'react-redux';
 import { setLogin } from '../../state';
 import { toast } from 'react-hot-toast';
 
-
 const Login = () => {
 
     const navigate = useNavigate();
@@ -23,7 +22,6 @@ const Login = () => {
     const {
         register,
         handleSubmit,
-        getValues,
         reset,
         formState: {
             errors,
@@ -39,7 +37,7 @@ const Login = () => {
         reset();
 
         return () => reset();
-    }, []);
+    }, [reset]);
 
     let usernameForm = {
         required: 'Username is required'
@@ -72,6 +70,7 @@ const Login = () => {
     }
 
     return (
+        
         <div className="wrapper">
             <div className='container'>
                 <img src={loginImage} alt='Register' className='image' loading='lazy'/>
@@ -92,7 +91,7 @@ const Login = () => {
                     </p>
                 </div>
             </div>
-        </div>
+        </div> 
     )
 }
 

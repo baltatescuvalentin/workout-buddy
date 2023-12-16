@@ -16,7 +16,6 @@ const Error = () => {
             <p className='title'>Error ☹️</p>
             <p className='subtitle'>Page does not exist!</p>
             <UtilityButton styles='error_button' title='Go to Homepage' onClick={goToHome}/>
-            {/* <img src={ErrorImage} alt="Error" /> */}
         </div>
     )
 }

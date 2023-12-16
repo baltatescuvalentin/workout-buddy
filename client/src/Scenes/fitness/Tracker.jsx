@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import { format } from 'date-fns';
-//import 'react-calendar/dist/Calendar.css';
 import '../../Styles/fitness.css';
 import '../../Styles/workouts.css';
 import '../../Styles/styles.css';
@@ -31,9 +30,6 @@ const Tracker = () => {
     const mode = useSelector(state => state.mode);
     const jwt = useSelector(state => state.token);
 
-    console.log('dates');
-    console.log(trackedDates);
-
     const {
         register,
         setValue,
@@ -51,22 +47,12 @@ const Tracker = () => {
         }
     });
 
-    //const dates = ['2023-12-23', '2023-12-18'];
-
-    console.log(chosenDate);
-    console.log(tracker);
-
     const onChange = (nextValue) => {
         const formatted = format(nextValue, 'yyyy-MM-dd');
         setChosenDate(formatted);
         getDateTracker(formatted);
         setTracker(null);
     }
-
-    // const formattedSpecialDates = dates.map(dateString => {
-    //     const date = new Date(dateString);
-    //     return format(date, 'yyyy-MM-dd');
-    //   });
 
     const tileClassName = ({date}) => {
         const formattedDate = format(date, 'yyyy-MM-dd');
