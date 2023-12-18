@@ -162,6 +162,16 @@
 .tracker_content_wrapper {
   margin-top: 3rem;
 }
+.tracker_content_wrapper .tracker_content_date {
+  font-size: 34px;
+  font-weight: 600;
+  color: #488eff;
+}
+@media screen and (max-width: 27rem) {
+  .tracker_content_wrapper .tracker_content_date {
+    font-size: 28px;
+  }
+}
 
 .tracker_header {
   display: flex;

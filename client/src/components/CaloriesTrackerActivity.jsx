@@ -22,8 +22,6 @@ const CaloriesTrackerActivity = ({index, trackerItem, removeFromCaloriesArray, e
         }
     })
 
-    console.log(trackerItem);
-
     const handleEdit = () => {
         setEdit(prev => !prev);
     }

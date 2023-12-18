@@ -9,6 +9,7 @@ import axios from 'axios';
 import UtilityButton from '../buttons/UtilityButton';
 import CalculatorInput from '../inputs/CalculatorInput';
 import IdentityInput from '../inputs/IdentityInput';
+import toast from 'react-hot-toast';
 
 const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveToTracker, deleteFromTracker}) => {
 
@@ -106,7 +107,6 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveTo
     const getBodyFat = () => {
         calculateBodyFat(getValuesBF('age'), getValuesBF('sex'), getValuesBF('weight'), getValuesBF('height'),
             getValuesBF('neck'), getValuesBF('waist'), getValuesBF('hip'));
-        console.log(watch('bodyFat'));
         
     }
     
@@ -132,10 +132,14 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveTo
           await axios.request(options)
             .then((response) => {
                 setValue('bodyFat', response.data.data['Body Fat (BMI method)']);
-                console.log(response.data.data['Body Fat (BMI method)']);
             })
             .catch((error) => {
-                console.log(error);
+                if(error.response.data.message) {
+                    toast.error(error.response.data.message, { duration: 3000});
+                }
+                else {
+                    toast.error(error.error , { duration: 3000});
+                }
             })
             .finally(() => {
                 

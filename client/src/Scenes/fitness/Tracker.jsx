@@ -17,6 +17,7 @@ import UtilityButton from '../../components/buttons/UtilityButton';
 import axios from 'axios';
 import Loader from '../../components/Loader';
 import NotLogged from '../../components/NotLogged';
+import toast from 'react-hot-toast';
 
 const Tracker = () => {
 
@@ -75,7 +76,6 @@ const Tracker = () => {
         await axios.get(`http://localhost:3001/tracker/getTrackerByDay/${date}`, options)
             .then((response) => {
                 setTracker(response.data.tracker);
-                console.log(response.data.tracker?.BMI);
                 setValue('BMI', response.data.tracker?.BMI || 0);
                 setValue('bodyFat', response.data.tracker?.bodyFat || 0);
                 setValue('WHR', response.data.tracker?.WHR || 0);
@@ -85,7 +85,14 @@ const Tracker = () => {
                 setValue('weight', response.data.tracker?.weight || 0);
             })
             .catch((error) => {
-                setError(error);
+                if(error.response.data.message) {
+                    setError(error.response.data.message);
+                    toast.error(error.response.data.message, { duration: 3000});
+                }
+                else {
+                    setError(error.error);
+                    toast.error(error.error , { duration: 3000});
+                }
             })
             .finally(() => {
                 setLoading(false);
@@ -106,7 +113,14 @@ const Tracker = () => {
                 setRefresh(prev => prev + 1);
             }) 
             .catch((error) => {
-                console.log(error);
+                if(error.response.data.message) {
+                    setError(error.response.data.message);
+                    toast.error(error.response.data.message, { duration: 3000});
+                }
+                else {
+                    setError(error.error);
+                    toast.error(error.error , { duration: 3000});
+                }
             })
     }
 
@@ -129,7 +143,14 @@ const Tracker = () => {
                 setRefresh(prev => prev + 1);
             })
             .catch((error) => {
-                console.log(error);
+                if(error.response.data.message) {
+                    setError(error.response.data.message);
+                    toast.error(error.response.data.message, { duration: 3000});
+                }
+                else {
+                    setError(error.error);
+                    toast.error(error.error , { duration: 3000});
+                }
             })
     }
 
@@ -151,7 +172,14 @@ const Tracker = () => {
                 setTracker(response.data.tracker);
             })
             .catch((error) => {
-                console.log(error);
+                if(error.response.data.message) {
+                    setError(error.response.data.message);
+                    toast.error(error.response.data.message, { duration: 3000});
+                }
+                else {
+                    setError(error.error);
+                    toast.error(error.error , { duration: 3000});
+                }
             })
     }
 
@@ -170,10 +198,17 @@ const Tracker = () => {
 
         await axios.patch(`http://localhost:3001/tracker/removeFieldFromTracker`, data, options)
             .then((response) => {
-                console.log(response.data.updated);
+                
             })
             .catch((error) => {
-                console.log(error);
+                if(error.response.data.message) {
+                    setError(error.response.data.message);
+                    toast.error(error.response.data.message, { duration: 3000});
+                }
+                else {
+                    setError(error.error);
+                    toast.error(error.error , { duration: 3000});
+                }
             })
     }
 
@@ -199,7 +234,14 @@ const Tracker = () => {
                     setTrackedDates([...actualDates]);
                 })
                 .catch((error) => {
-                    console.log(error);
+                    if(error.response.data.message) {
+                        setError(error.response.data.message);
+                        toast.error(error.response.data.message, { duration: 3000});
+                    }
+                    else {
+                        setError(error.error);
+                        toast.error(error.error , { duration: 3000});
+                    }
                 })
         }
 
@@ -245,7 +287,7 @@ const Tracker = () => {
                             )
                             : tracker ? (
                                 <div className='tracker_content_wrapper'>
-                                    <h1>{format(new Date(chosenDate), 'EEEE, do MMM yyyy')}</h1>
+                                    <p className='tracker_content_date'>{format(new Date(chosenDate), 'EEEE, do MMM yyyy')}</p>
                                     <h3>{error}</h3>
                                     <div className='trackers_wrapper'>
                                         <h2>Body measurements</h2>

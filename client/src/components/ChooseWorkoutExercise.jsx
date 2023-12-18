@@ -40,9 +40,6 @@ const ChooseWorkoutExercise = ({handleCloseFind, handleExpand, handleAddExercise
             minutes: getValues('minutes'),
         };
 
-        console.log(chosenExercise);
-        console.log(exercise);
-
         handleAddExercise(dayIndex, exercise);
     }
 

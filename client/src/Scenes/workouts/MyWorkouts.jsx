@@ -6,6 +6,7 @@ import WorkoutRoutine from '../../components/WorkoutRoutine';
 import axios from 'axios';
 import NotLogged from '../../components/NotLogged';
 import Loader from '../../components/Loader';
+import toast from 'react-hot-toast';
 
 const MyWorkouts = () => {
 
@@ -38,11 +39,11 @@ const MyWorkouts = () => {
                     setLoading(false);
                 })
                 .catch((error) => {
-                    if(error.error) {
-                        console.log(error.error)
+                    if(error.response.data.message) {
+                        toast.error(error.response.data.message, { duration: 3000});
                     }
-                    else if(error.response.message) {
-                        console.log(error.response.message);
+                    else {
+                        toast.error(error.error , { duration: 3000 });
                     }
                 })
                 .finally(() => {
@@ -70,7 +71,6 @@ const MyWorkouts = () => {
                         <div className='myworkouts_workouts'>
                             {workouts.length > 0 && (
                                 workouts.map((workout, index) => {
-                                    console.log(index, workout);
                                     return <WorkoutRoutine key={index} workout={workout}/>
                                 })
                             )}

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import '../../Styles/fitness.css';
 import ExpandButton from '../buttons/ExpandButton';
 import CalculatorOptionButton from '../buttons/CalculatorOptionButton';
-
 import axios from 'axios';
 import Loader from '../Loader';
 import { useForm } from 'react-hook-form';
@@ -10,6 +9,7 @@ import CalculatorInput from '../inputs/CalculatorInput';
 import UtilityButton from '../buttons/UtilityButton';
 import IdentityInput from '../inputs/IdentityInput';
 import ActivityLevelDropdown from '../inputs/ActivityLevelDropdown';
+import toast from 'react-hot-toast';
 
 const MacrosCalculator = () => {
 
@@ -48,7 +48,6 @@ const MacrosCalculator = () => {
     const calculateCustom = () => {
         setShowCustom(true);
         calculateMacros(getValues('age'), getValues('sex'), getValues('height'), getValues('weight'), getValues('activityLevel'), getValues('goal'));
-        console.log(macros);
     }
 
     let ageEffect = watch('age');
@@ -105,7 +104,12 @@ const MacrosCalculator = () => {
                 setMacros(response.data);
             })
             .catch((error) => {
-                console.log(error);
+                if(error.response.data.message) {
+                    toast.error(error.response.data.message, { duration: 3000});
+                }
+                else {
+                    toast.error(error.error , { duration: 3000});
+                }
             })
             .finally(() => {
                 setLoading(false);

@@ -24,7 +24,7 @@ const HomepageNavbar = () => {
                 <ThemeSwitcher />
                 {user ? (
                     <div className='homepage_menu'>
-                        <Link className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Profile</Link>
+                        <Link to='/profile' className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Profile</Link>
                         <Link to='/' onClick={() => dispatch(setLogout())} className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Sign out</Link>
                     </div>
                 ) : (

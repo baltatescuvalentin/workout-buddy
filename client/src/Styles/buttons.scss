@@ -292,3 +292,8 @@
         font-size: 22px;
     }
 }
+
+.profile_button {
+    @extend .not_logged_button;
+    width: 13rem;
+}

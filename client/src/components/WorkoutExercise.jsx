@@ -11,8 +11,6 @@ const WorkoutExercise = ({exercise, handleEditExercise, handleRemoveExercise, sh
         setEdit(prev => !prev);
     }
 
-    console.log(exercise);
-
     if(shouldEdit === false) {
         return <WorkoutExerciseDetails exercise={exercise} handleRemoveExercise={handleRemoveExercise} handleEdit={handleEdit} shouldEdit={shouldEdit}/>
     }

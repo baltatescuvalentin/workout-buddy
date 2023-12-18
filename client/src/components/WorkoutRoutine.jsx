@@ -20,8 +20,6 @@ const WorkoutRoutine = ({workout}) => {
         navigate(`${location.pathname}/${workout._id}/edit`);
     }
 
-    console.log(workout.days);
-
     return (
         <div className='myworkouts_workout_wrapper'>
             <div className='myworkouts_workout_header'>

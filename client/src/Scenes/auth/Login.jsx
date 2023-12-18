@@ -62,7 +62,14 @@ const Login = () => {
                 }));
             })
             .catch((error) => {
-                setError(error.response.data.message);
+                if(error.response.data.message) {
+                    toast.error(error.response.data.message, { duration: 3000});
+                    setError(error.response.data.message);
+                }
+                else {
+                    toast.error(error.error , { duration: 3000});
+                    setError(error.error);
+                }
             })
             .finally(() => {
                 setLoading(false);

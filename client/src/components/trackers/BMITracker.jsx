@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import UtilityButton from '../buttons/UtilityButton';
 import CalculatorInput from '../inputs/CalculatorInput';
-
+import toast from 'react-hot-toast';
 
 const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTracker, deleteFromTracker}) => {
 
@@ -77,7 +77,6 @@ const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTrac
 
     const getBMI = () => {
         calculateBMI(getValuesBMI('age'), getValuesBMI('weight'), getValuesBMI('height'));
-        console.log(watch('BMI'));
     }
 
     const calculateBMI = async (age, weight, height) => {
@@ -99,10 +98,14 @@ const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTrac
           await axios.request(options)
             .then((response) => {
                 setValue('BMI', response.data.data.bmi);
-                console.log(response.data.data.bmi);
             })
             .catch((error) => {
-                console.log(error);
+                if(error.response.data.message) {
+                    toast.error(error.response.data.message, { duration: 3000});
+                }
+                else {
+                    toast.error(error.error , { duration: 3000});
+                }
             })
             .finally(() => {
                 

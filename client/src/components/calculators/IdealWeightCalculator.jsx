@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import CalculatorInput from '../inputs/CalculatorInput';
 import UtilityButton from '../buttons/UtilityButton';
 import IdentityInput from '../inputs/IdentityInput';
+import toast from 'react-hot-toast';
 
 const IdealWeightCalculator = () => {
 
@@ -19,9 +20,6 @@ const IdealWeightCalculator = () => {
     const [showCustom, setShowCustom] = useState(false);
     const [inputsReady, setInputsReady] = useState(false);
     const user = useSelector(state => state.user);
-    console.log(user);
-    console.log(user?.sex);
-    console.log(user?.height);
 
     const {
         register,
@@ -49,7 +47,6 @@ const IdealWeightCalculator = () => {
         calculateIdealWeight(user?.height, user?.sex);
         setShowCustom(false);
         reset();
-        console.log(idealWeight);
     }
 
     const customOption = () => {
@@ -59,7 +56,6 @@ const IdealWeightCalculator = () => {
     const calculateCustom = () => {
         setShowCustom(true);
         calculateIdealWeight(getValues('height'), getValues('sex'));
-        console.log(idealWeight);
     }
 
     let sexEffect = watch('sex');
@@ -103,7 +99,12 @@ const IdealWeightCalculator = () => {
                 setIdealWeight(response.data);
             })
             .catch((error) => {
-                console.log(error);
+                if(error.response.data.message) {
+                    toast.error(error.response.data.message, { duration: 3000});
+                }
+                else {
+                    toast.error(error.error , { duration: 3000});
+                }
             })
             .finally(() => {
                 setLoading(false);

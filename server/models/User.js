@@ -25,10 +25,6 @@ const userSchema = mongoose.Schema({
         min: 6,
         max: 50,
     },
-    workouts: {
-        type: Array,
-        default: [],
-    },
     sex: String,
     age: Number,
     weight: Number,

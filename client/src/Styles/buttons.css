@@ -667,7 +667,7 @@
   color: white;
 }
 
-.not_logged_button {
+.not_logged_button, .profile_button {
   background-color: turquoise;
   color: white;
   border-radius: 4px;
@@ -678,7 +678,11 @@
   outline: none;
   border: none;
 }
-.not_logged_button p {
+.not_logged_button p, .profile_button p {
   color: white;
   font-size: 22px;
+}
+
+.profile_button {
+  width: 13rem;
 }

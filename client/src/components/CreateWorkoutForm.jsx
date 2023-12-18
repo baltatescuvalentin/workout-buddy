@@ -203,26 +203,6 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
             })
     }
 
-    // const handleAddTitle = (dayIndex, title) => {
-    //     const currentDays = getValuesDays('days');
-    //     currentDays[dayIndex].name = title;
-    //     setValueDays('days', currentDays);
-    // }
-
-    // const handleAddExercise = (dayIndex, exercise) => {
-    //     const currentDays = getValuesDays('days');
-    //     currentDays[dayIndex].exercises.push(exercise);
-    //     setValueDays('days', currentDays);
-    // }
-
-    // const handleRemoveExercise = (dayIndex, exerciseIndex) => {
-    //     const currentDays = getValuesDays('days');
-    //     const filteredDays = currentDays[dayIndex].exercises.filter((exercise, index) => index !== exerciseIndex);
-    //     setValueDays('days', filteredDays);
-    // }
-
-    console.log(workout)
-
     return (
         <div className='create_workout_form_wrapper'>
             <CreateWorkoutTitle id='name' name='Name...' register={registerInfo}/>
@@ -230,7 +210,6 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
             <h2>{error}</h2>
             <div className='days_wrapper'>
                 {workout.map((day, dayIndex) => {
-                    console.log(`day ${dayIndex}: ${day.exercises[0]}`);
                     return <CreateWorkoutDay handleEditExercise={handleEditExercise} handleAddExercise={handleAddExercise} handleChangeDayName={handleChangeDayName} handleRemoveExercise={handleRemoveExercise} day={day} dayIndex={dayIndex} key={dayIndex}/>
                 }
                 )}

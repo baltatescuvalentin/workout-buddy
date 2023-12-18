@@ -7,6 +7,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import Loader from '../../components/Loader';
 import TableTracker from '../../components/TableTracker';
 import NotLogged from '../../components/NotLogged';
+import toast from 'react-hot-toast';
 
 const CustomTooltip = ({ active, payload, type }) => {
 
@@ -37,12 +38,6 @@ const Summary = () => {
     
     const user = useSelector(state => state.user);
     const jwt = useSelector(state => state.token);
-
-    console.log(bmi);
-    console.log(caloriesIntake);
-    console.log(caloriesBurned);
-    console.log(waist);
-    console.log(waist.length);
 
     function hasKeys(input) {
         const result = input.some((element) => {
@@ -79,7 +74,12 @@ const Summary = () => {
                     setTableValues(response.data.metrics)
                 })
                 .catch((error) => {
-                    console.log(error);
+                    if(error.response.data.message) {
+                        toast.error(error.response.data.message, { duration: 3000});
+                    }
+                    else {
+                        toast.error(error.error , { duration: 3000});
+                    }
                 })
                 .finally(() => {
                     setLoading(false);
@@ -105,7 +105,6 @@ const Summary = () => {
 
             await axios.get(`http://localhost:3001/tracker/getUserTrackers/${user._id}`, options)
                 .then((response) => {
-                    console.log(response.data);
                     const data = response.data.trackers;
                     data.forEach((element) => {
                         BMIData.push({
@@ -157,7 +156,12 @@ const Summary = () => {
                     setCaloriesIntake(caloriesIntakeData);
                 })
                 .catch((error) => {
-                    console.log(error);
+                    if(error.response.data.message) {
+                        toast.error(error.response.data.message, { duration: 3000});
+                    }
+                    else {
+                        toast.error(error.error , { duration: 3000});
+                    }
                 })
                 .finally(() => {
                     setLoading(false);

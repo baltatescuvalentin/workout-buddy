@@ -7,19 +7,16 @@ import { MdEmail } from 'react-icons/md';
 import { BiSolidLockAlt } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 import AuthSubmitButton from '../../components/buttons/AuthSubmitButton';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
-import { setLogin } from '../../state';
 
 const Register = () => {
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
-    const dispatch = useDispatch();
+    const location = useLocation();
 
     const {
         register,
@@ -77,11 +74,7 @@ const Register = () => {
         await axios.post('http://localhost:3001/auth/register', data)
             .then((response) => {
                 toast.success('Account successfully created');
-                dispatch(setLogin({
-                    user: response.data.user,
-                    token: ""
-                }))
-                navigate('/additionalinfo');
+                navigate('/additionalinfo', { state: { from: location }});
             })
             .catch((error) => {
                 setError('This email is already used!');

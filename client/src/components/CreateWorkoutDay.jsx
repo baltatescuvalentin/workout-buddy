@@ -39,8 +39,6 @@ const CreateWorkoutDay = ({handleEditExercise, handleAddExercise, handleRemoveEx
         setExpand(prev => !prev);
     }
 
-    console.log(day.exercises);
-
     return (
         <div className='day_wrapper'>
             <div className='day_header'>
@@ -55,7 +53,6 @@ const CreateWorkoutDay = ({handleEditExercise, handleAddExercise, handleRemoveEx
                 <>
                     <ExerciseDayTitle text={watch('title')} id='title' register={register}/>
                     {day.exercises.length !== 0 && day.exercises.map((exercise, index) => {
-                        console.log(exercise);
                         return <WorkoutExercise handleEditExercise={(exercise) => handleEditExercise(dayIndex, exercise)} handleRemoveExercise={() => handleRemoveExercise(dayIndex, index)} exercise={exercise} key={index}/>
                     })}
                 </>

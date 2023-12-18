@@ -61,10 +61,6 @@ const ResetPassword = () => {
     const findUser = () => {
         setLoading(true);
         const email = getValues('email');
-        console.log(email);
-        /*const response = axios.post(`http://localhost:3001/auth/user`, {
-            email,
-        });*/
 
         axios.post(`http://localhost:3001/auth/user`, {
             email,
@@ -75,8 +71,6 @@ const ResetPassword = () => {
             setErrorMessage("");
         })
             .catch((error) => {
-                console.log(error)
-                console.log(error.response);
                 setErrorMessage(error.response.data.message)
             })
             .finally(() => {

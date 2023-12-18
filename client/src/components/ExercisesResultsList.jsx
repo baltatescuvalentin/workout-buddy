@@ -1,8 +1,6 @@
 import '../Styles/workouts.css';
 
 const ExercisesResultsList = ({exercises, setChosenExercise, styling}) => {
-
-    console.log(exercises);
     
     return (
         <div className={`${styling}`}>

@@ -10,6 +10,7 @@ import axios from 'axios';
 import Loader from '../Loader';
 import { useForm } from 'react-hook-form';
 import CaloriesTrackerActivity from '../CaloriesTrackerActivity';
+import toast from 'react-hot-toast';
 
 const CaloriesBurned = ({saveToTracker, calsArray}) => {
 
@@ -140,9 +141,6 @@ const CaloriesBurned = ({saveToTracker, calsArray}) => {
         return parseFloat(currentCalories);
     }, [timeEffect, chosenActivity.calories_per_hour]);
 
-    console.log(`burned:`);
-    console.log(caloriesArray);
-
     const findFood = async () => {
         setSearchLoader(true);
 
@@ -164,7 +162,12 @@ const CaloriesBurned = ({saveToTracker, calsArray}) => {
                 setFoodResults([...response.data]);
             })
             .catch((error) => {
-                console.log(error);
+                if(error.response.data.message) {
+                    toast.error(error.response.data.message, { duration: 3000});
+                }
+                else {
+                    toast.error(error.error , { duration: 3000});
+                }
             })
             .finally(() => {
                 setSearchLoader(false);
@@ -176,7 +179,6 @@ const CaloriesBurned = ({saveToTracker, calsArray}) => {
             return acc + parseFloat(curr.calories);
         }, 0);
         value = value.toFixed(2);
-        console.log(`memo ${value}`)
         return value;
     }, [caloriesArray]);
 

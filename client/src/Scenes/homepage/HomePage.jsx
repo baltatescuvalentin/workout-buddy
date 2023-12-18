@@ -105,21 +105,21 @@ const HomePage = () => {
                 <p>
                     Are you struggling to find the right exercises that suit your goals and preferences? Workout Buddy simplifies the process by providing a comprehensive database of exercises, sorted and categorized by muscle groups, equipment, difficulty, or exercise type. Users can effortlessly explore a wide range of exercises, from beginner-friendly routines to advanced workouts, all at their fingertips. Whether it's strength training, cardio, yoga, or something else, Workout Buddy serves as your personal exercise library, making it easy to discover new and effective movements tailored to your fitness journey.
                 </p>
-                <WorkoutsRedirectButton title='Check it out!' path="" />
+                <WorkoutsRedirectButton title='Check it out!' path="/workouts/findexercise" />
                 <p className="subtitle">
                     2. Creating Workouts for Each Day:
                 </p>
                 <p>
                 Customization is key when it comes to achieving fitness milestones. Workout Buddy empowers users to craft personalized workout routines effortlessly. With an intuitive interface, users can create daily workout plans by selecting exercises from the vast library. You can mix and match exercises, set repetitions, adjust sets, and allocate time for each routine. Additionally, the platform offers the flexibility to create diverse workout schedules tailored to individual fitness levels, whether you're a beginner looking to establish a routine or an experienced fitness enthusiast aiming for a more challenging regimen.
                 </p>
-                <WorkoutsRedirectButton title='Check it out!' path="" />
+                <WorkoutsRedirectButton title='Check it out!' path="/workouts/create_workout" />
                 <p className="subtitle">
                     3. Storing and Viewing Each Workout:
                 </p>
                 <p>
                     Keeping track of your progress is crucial for staying motivated and accountable. Workout Buddy streamlines this process by enabling users to store and view each created workout. The platform organizes and archives your workout plans, allowing you to revisit and execute them conveniently. Users can track their performance, monitor consistency, and view their past workouts for insights into progress and areas for improvement. With an accessible history of workouts, users can analyze trends, adapt their routines, and maintain a clear record of their fitness journey, fostering continuous improvement and goal attainment.
                 </p>
-                <WorkoutsRedirectButton title='Check it out!' path="" />
+                <WorkoutsRedirectButton title='Check it out!' path="/workouts/myworkouts" />
                 <p>
                 Workout Buddy acts as your all-in-one fitness companion, streamlining the process of finding, planning, and tracking your workout routines, ensuring an optimal and tailored fitness experience.
                 </p>
@@ -150,21 +150,21 @@ const HomePage = () => {
                 <p>
                     Understanding your body's metrics is a fundamental step toward a healthier lifestyle. Workout Buddy provides users with a suite of fitness calculators designed to assess and monitor essential health indicators. From calculating Body Mass Index (BMI) to estimating body fat percentage, users gain insights into their overall health status. These calculators serve as valuable tools, enabling individuals to gauge their progress, set realistic goals, and make informed decisions regarding their fitness and well-being. By offering a comprehensive analysis of various health measurements, Workout Buddy equips users with the necessary information to embark on a more effective and targeted fitness journey.
                 </p>
-                <WorkoutsRedirectButton title='Check it out!' path="" />
+                <WorkoutsRedirectButton title='Check it out!' path="/fitness/calculator" />
                 <p className="subtitle">
                     2. Fitness Tracker
                 </p>
                 <p>
                 Consistency and accountability are paramount on any fitness quest. Workout Buddy acts as a daily tracker, allowing users to log and monitor their progress systematically. Users can record a variety of metrics daily, such as weight, calorie intake, water consumption, exercise duration, and other fitness-related activities. With a user-friendly interface, the platform simplifies the process of maintaining a log of daily accomplishments. The tracking system empowers users to track their goals, observe trends, and make data-driven adjustments to their fitness regimen. By consolidating data on a day-to-day basis, Workout Buddy enables users to chart their evolution, identify patterns, and stay motivated on their fitness journey.
                 </p>
-                <WorkoutsRedirectButton title='Check it out!' path="" />
+                <WorkoutsRedirectButton title='Check it out!' path="/fitness/tracker" />
                 <p className="subtitle">
                     3. Summary and Stats
                 </p>
                 <p>
                     While you do a good job workout out and keeping a track of your daily macros and body changes you need a way to see how far you've come. So to be proud of what you did we give you the possibility to see various stats over time with the help of charts and tables. You will know your high and lows to learn from the past so the future you will be close to your ideal vision.
                 </p>
-                <WorkoutsRedirectButton title='Check it out!' path="" />
+                <WorkoutsRedirectButton title='Check it out!' path="/fitness/summary" />
                 <p>
                 Workout Buddy serves as an invaluable tool, offering not only fitness calculators for critical health measurements but also a user-friendly tracking system for continuous progress monitoring. It equips individuals with the necessary insights and tools to make informed decisions, establish habits, and maintain consistent progress toward their fitness objectives.
                 </p>

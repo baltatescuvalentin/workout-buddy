@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import CalculatorInput from '../inputs/CalculatorInput';
 import UtilityButton from '../buttons/UtilityButton';
 import IdentityInput from '../inputs/IdentityInput';
+import toast from 'react-hot-toast';
 
 const BodyFatCalculator = () => {
 
@@ -47,7 +48,6 @@ const BodyFatCalculator = () => {
         setShowCustom(true);
         calculateBodyFat(getValues('age'), getValues('sex'), getValues('weight'), getValues('height'),
             getValues('neck'), getValues('waist'), getValues('hip'));
-        console.log(bodyFat);
     }
 
     let ageEffect = watch('age');
@@ -115,7 +115,12 @@ const BodyFatCalculator = () => {
                 setBodyFat(response.data);
             })
             .catch((error) => {
-                console.log(error);
+                if(error.response.data.message) {
+                    toast.error(error.response.data.message, { duration: 3000});
+                }
+                else {
+                    toast.error(error.error , { duration: 3000});
+                }
             })
             .finally(() => {
                 setLoading(false);

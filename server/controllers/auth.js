@@ -142,8 +142,6 @@ export const changePassword = async (req, res) => {
             new: true,
         });
 
-        console.log(updatedUser);
-
         const userFiltered = { ...updatedUser._doc };
         delete userFiltered.password;
 
@@ -184,6 +182,34 @@ export const userCheck = async(req, res) => {
     catch(error) {
         res.status(500).json({
             error: error.message,
+        })
+    }
+}
+
+
+export const getProfileInfo = async (req, res) => {
+    try {
+        const {
+            id,
+        } = req.params;
+
+        const user = await User.findOne({
+            _id: id,
+        }, 'fullName userName email age height weight sex age');
+
+        if(!user) {
+            res.status(404).json({
+                message: 'User does not exist!',
+            })
+        }
+
+        res.status(200).json({
+            user: user,
+        })
+    }
+    catch(error) {
+        res.status(500).json({
+            error: error,
         })
     }
 }

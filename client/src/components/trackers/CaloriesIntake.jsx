@@ -10,6 +10,7 @@ import axios from 'axios';
 import Loader from '../Loader';
 import { useForm } from 'react-hook-form';
 import CaloriesTrackerFood from '../CaloriesTrackerFood';
+import toast from 'react-hot-toast';
 
 const CaloriesIntake = ({saveToTracker, calsArray}) => {
 
@@ -140,9 +141,6 @@ const CaloriesIntake = ({saveToTracker, calsArray}) => {
         return parseFloat(currentCalories);
     }, [chosenFood.calories, quantityEffect]);
 
-    console.log(caloriesArray);
-    console.log(validCustomInputs);
-
     const findFood = async () => {
         setSearchLoader(true);
 
@@ -163,7 +161,12 @@ const CaloriesIntake = ({saveToTracker, calsArray}) => {
                 setFoodResults([...response.data]);
             })
             .catch((error) => {
-                console.log(error);
+                if(error.response.data.message) {
+                    toast.error(error.response.data.message, { duration: 3000});
+                }
+                else {
+                    toast.error(error.error , { duration: 3000});
+                }
             })
             .finally(() => {
                 setSearchLoader(false);

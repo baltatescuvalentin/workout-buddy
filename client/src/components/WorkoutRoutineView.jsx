@@ -4,7 +4,7 @@ import UtilityButton from './buttons/UtilityButton';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-
+import toast from 'react-hot-toast';
 
 const WorkoutRoutineView = () => {
 
@@ -29,7 +29,12 @@ const WorkoutRoutineView = () => {
                     setCurrentDay(response.data.workout.days[`${day}`]);
                 })
                 .catch((error) => {
-                    console.log(error);
+                    if(error.response.data.message) {
+                        toast.error(error.response.data.message, { duration: 3000});
+                    }
+                    else {
+                        toast.error(error.error , { duration: 3000});
+                    }
                 })
         }
 

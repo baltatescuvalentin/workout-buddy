@@ -12,7 +12,6 @@ const FindExercise = () => {
     const [exercisesList, setExecisesList] = useState([]);
     const [chosenExercise, setChosenExercise] = useState(null);
     const exercises = useSelector(state => state.exercices);
-    console.log(exercises);
 
     const getExerciseInput = (e) => {
         const filtered = filterExercises(e, exercises);

@@ -9,6 +9,7 @@ import CalculatorInput from '../inputs/CalculatorInput';
 import UtilityButton from '../buttons/UtilityButton';
 import IdentityInput from '../inputs/IdentityInput';
 import ActivityLevelDropdown from '../inputs/ActivityLevelDropdown';
+import toast from 'react-hot-toast';
 
 const DailyCaloriesCalculator = () => {
 
@@ -46,7 +47,6 @@ const DailyCaloriesCalculator = () => {
     const calculateCustom = () => {
         setShowCustom(true);
         calculateDailyCalories(getValues('age'), getValues('sex'), getValues('height'), getValues('weight'), getValues('activityLevel'));
-        console.log(dailyCalories);
     }
 
     let ageEffect = watch('age');
@@ -76,7 +76,6 @@ const DailyCaloriesCalculator = () => {
         }
 
         setInputsReady(inputsReady());
-        console.log(activityEffect);
     }, [heightEffect, ageEffect, weightEffect, sexEffect, activityEffect]);
 
     const calculateDailyCalories = async (age, gender, height, weight, activityLevel) => {
@@ -102,7 +101,12 @@ const DailyCaloriesCalculator = () => {
                 setDailyCalories(response.data);
             })
             .catch((error) => {
-                console.log(error);
+                if(error.response.data.message) {
+                    toast.error(error.response.data.message, { duration: 3000});
+                }
+                else {
+                    toast.error(error.error , { duration: 3000});
+                }
             })
             .finally(() => {
                 setLoading(false);

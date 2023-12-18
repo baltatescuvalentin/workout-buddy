@@ -24,7 +24,6 @@ export const exercisesFromAPIToDB = async (req, res) => {
 
         for ( const exercise of response.data ) {
             const result = await cloudinary.uploader.upload(exercise.gifUrl);
-            console.log(result.secure_url);
 
             const createExercise = new Exercise({
                 exerciseId: exercise.id,
@@ -39,7 +38,7 @@ export const exercisesFromAPIToDB = async (req, res) => {
 
             const savedExercise = await createExercise.save();
         }
-        console.log(response.data.length);
+        
         res.status(201).json({
             message: 'all good',
         })

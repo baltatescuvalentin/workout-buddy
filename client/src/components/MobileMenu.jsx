@@ -10,9 +10,7 @@ const MobileMenu = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const mNavbar = useSelector(state => state.mNavbar);
     const mode = useSelector(state => state.mode);
-    console.log(`mNavbar: ${mNavbar}`);
 
     return (
         <div className={`${mode === 'light' ? 'mobile_menu_wrapper_light' : 'mobile_menu_wrapper_dark'}`}>

@@ -12,10 +12,9 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setLogin } from '../../state';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { ClipLoader } from "react-spinners";
-import usePreviousLocation from '../../hooks/usePreviousLocation';
 
 const AdditionalInfo = () => {
 
@@ -24,7 +23,8 @@ const AdditionalInfo = () => {
     const token = useSelector(state => state.token);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const previousLocation = usePreviousLocation();
+    const location = useLocation();
+    let from = location.state?.from?.pathname;
 
     const {
         register,
@@ -40,11 +40,9 @@ const AdditionalInfo = () => {
         }
     })
 
-    console.log(previousLocation);
-
     const cancel = () => {
-        if(previousLocation.includes('register')) {
-            navigate('/');
+        if(from.includes('register')) {
+            navigate('/login');
         }
         else {
             navigate(-1);
@@ -68,7 +66,7 @@ const AdditionalInfo = () => {
                     user: response.data.user,
                     token: token,
                 }));
-                if(previousLocation.includes('register')) {
+                if(from.includes('register')) {
                     navigate('/login');
                 }
                 else {
@@ -77,11 +75,11 @@ const AdditionalInfo = () => {
                 toast.success('Information changed!');
             })
             .catch((error) => {
-                if(error.message) {
-                    console.log(error);
+                if(error.response.data.message) {
+                    toast.error(error.response.data.message, { duration: 3000});
                 }
-                else if(error.error) {
-                    console.log(error);
+                else {
+                    toast.error(error.error , { duration: 3000});
                 }
             })
             .finally(() => {

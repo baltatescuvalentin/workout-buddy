@@ -24,13 +24,15 @@ import Tracker from './Scenes/fitness/Tracker';
 import Summary from './Scenes/fitness/Summary';
 import Error from './Scenes/Error';
 import AlreadyLogged from './components/AlreadyLogged';
+import Profile from './Scenes/Profile';
+import CheckNotLogged from './components/CheckNotLogged';
+import ScrollToTop from './utils/utilityComponents/ScrollToTop';
 
 function App() {
 
   const mode = useSelector(state => state.mode);
   const token = useSelector(state => state.token);
   const exercices = useSelector(state => state.exercices);
-  const mNavbar = useSelector(state => state.mNavbar);
   const dispatch = useDispatch();
 
   const isTokenValid = (token) => {
@@ -52,11 +54,10 @@ function App() {
 
   useEffect(() => {
 
-    const getExercicesFromDB = () => {
-      const response = axios.get('http://localhost:3001/exercises/getExercises');
+    const getExercicesFromDB = async () => {
+      const response = await axios.get('http://localhost:3001/exercises/getExercises');
   
       response.then((response) => {
-        console.log(response);
         const exercicesFromDB = response.data.exercises;
         dispatch(setExercices({
           exercices: exercicesFromDB,
@@ -75,10 +76,6 @@ function App() {
         })
     }
 
-    if(mNavbar === true) {
-      dispatch(setMNavbar({mNavbar: false}));
-    }
-
     const tokenValid = isTokenValid(token);
     if(tokenValid === false) {
       dispatch(setLogout());
@@ -87,16 +84,18 @@ function App() {
     if(exercices.length === 0) {
       getExercicesFromDB();
     }
-    else {
-      console.log(exercices);
+
+
+    return () => {
+      dispatch(setMNavbar({mNavbar: false}));
     }
-    //getExercicesFromDB();
-  }, [token, exercices, dispatch, mNavbar]);
+  }, [token, exercices, dispatch]);
 
   return (
     <div className={`app ${mode === 'light' ? 'light' : 'dark'}`}>
       <ToastProvider />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path='' element={<MobileWrapper />}>
             <Route index element={<HomePage />} />
@@ -114,6 +113,13 @@ function App() {
               <Route path='tracker' element={<Tracker />} />
               <Route path='summary' element={<Summary />} />
             </Route>
+            <Route path='/profile' element={<SharedLayout />}>
+              <Route index element={
+                <CheckNotLogged>
+                  <Profile />
+                </CheckNotLogged>
+              } />
+            </Route>
           </Route>
           <Route path='/register' element={
             <AlreadyLogged>
@@ -126,7 +132,11 @@ function App() {
             </AlreadyLogged>
             } />
           <Route path='/resetpassword' element={<ResetPassword />} />
-          <Route path='/additionalinfo' element={<AdditionalInfo />} />
+          <Route path='/additionalinfo' element={
+            <CheckNotLogged pathTo='register'>
+              <AdditionalInfo />
+            </CheckNotLogged>
+          } />
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

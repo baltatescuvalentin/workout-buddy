@@ -20,8 +20,6 @@ const WorkoutRoutineDay = ({day, workoutId}) => {
         navigate(`${location.pathname}/${workoutId}/${day.dayName}`);
     }
 
-    console.log(day);
-
     return (
         <div className='day_wrapper'>
             <div className='day_header'>
@@ -34,7 +32,6 @@ const WorkoutRoutineDay = ({day, workoutId}) => {
             {
                 details && (
                     day.exercises.map((exercise, index) => {
-                        console.log(exercise);
                         return <WorkoutExercise exercise={exercise} key={index} shouldEdit={false}/>
                     })
                 )

@@ -14,7 +14,7 @@ const MobileNavbar = () => {
     useEffect(() => {
         const handleScroll = (event) => {
             if(mNavbar) {
-             event.preventDefault();
+                event.preventDefault();
             }
         };
     

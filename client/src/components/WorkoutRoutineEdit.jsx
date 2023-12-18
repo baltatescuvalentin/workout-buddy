@@ -52,7 +52,14 @@ const WorkoutRoutineEdit = () => {
                     setValue('description', response.data.workout.description);
                 })
                 .catch((error) => {
-                    console.log(error);
+                    if(error.response.data.message) {
+                        setError(error.response.data.message);
+                        toast.error(error.response.data.message, { duration: 3000});
+                    }
+                    else {
+                        setError(error.error);
+                        toast.error(error.error , { duration: 3000});
+                    }
                 })
         }
 
@@ -203,7 +210,6 @@ const WorkoutRoutineEdit = () => {
                         <h2>{error}</h2>
                         <div className='days_wrapper'>
                             {currentWorkout.map((day, dayIndex) => {
-                                console.log(`day ${dayIndex}: ${day.exercises[0]}`);
                                 return <CreateWorkoutDay handleEditExercise={handleEditExercise} handleAddExercise={handleAddExercise} handleChangeDayName={handleChangeDayName} handleRemoveExercise={handleRemoveExercise} day={day} dayIndex={dayIndex} key={dayIndex}/>
                             }
                             )}

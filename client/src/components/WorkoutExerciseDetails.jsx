@@ -14,8 +14,6 @@ const WorkoutExerciseDetails = ({exercise, handleRemoveExercise, handleEdit, sho
         setDetails(prev => !prev);
     }
 
-    console.log(exercise);
-
     return (
         <div className='workout_exercise_wrapper'>
             <div className='workout_exercise_details_header'>
