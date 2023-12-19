@@ -62,12 +62,7 @@ const Profile = () => {
                     setTableValues(response.data.metrics)
                 })
                 .catch((error) => {
-                    if(error.response.data.message) {
-                        toast.error(error.response.data.message, { duration: 3000});
-                    }
-                    else {
-                        toast.error(error.error , { duration: 3000});
-                    }
+                    
                 })
                 .finally(() => {
                     setLoading(false);

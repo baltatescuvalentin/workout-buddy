@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import InfoCard from '../../components/cards/InfoCard';
 import UtilityButton from '../../components/buttons/UtilityButton';
 import IdentityCard from '../../components/cards/IdentityCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setLogin } from '../../state';
@@ -49,6 +49,12 @@ const AdditionalInfo = () => {
         }
     }
 
+    useEffect(() => {
+        if(from !== '/register' && !user) {
+            navigate('/register');
+        }
+    }, [from, navigate, user]);
+
     const saveToDB = async () => {
         setLoading(true);
 
@@ -70,7 +76,7 @@ const AdditionalInfo = () => {
                     navigate('/login');
                 }
                 else {
-                    navigate('/');
+                    navigate('/profile');
                 }
                 toast.success('Information changed!');
             })

@@ -31,7 +31,15 @@
     width: 35rem;
     height: 41.25rem;
 
-    @media screen and (max-width: $phone) {
+    @media screen and (max-width: $xl) {
+        width: 33.5rem;
+    }
+
+    @media screen and (max-width: $large) {
+        width: 32rem;
+    }
+
+    @media screen and (max-width: $medium) {
         display: none;
     }
 }

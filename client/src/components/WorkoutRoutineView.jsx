@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../Styles/workouts.css';
 import UtilityButton from './buttons/UtilityButton';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -10,6 +10,7 @@ const WorkoutRoutineView = () => {
 
     const [step, setStep] = useState(0);
     const [currentDay, setCurrentDay] = useState(null);
+    const navigate = useNavigate();
 
     const jwt = useSelector(state => state.token);
 
@@ -70,7 +71,8 @@ const WorkoutRoutineView = () => {
                     </div>
                     <div className='workout_routine_step_buttons_wrapper'>
                         {
-                            step > 0 ? <UtilityButton styles='workout_routine_step_button' title='Previous' onClick={prevStep} /> : <div></div>
+                            step > 0 ? <UtilityButton styles='workout_routine_step_button' title='Previous' onClick={prevStep} />
+                            : step === 0 ? <UtilityButton styles='workout_routine_step_button' title='Back' onClick={() => navigate(-1)}/> : <div></div>
                         }
                         {
                             step < currentDay.exercises.length - 1 ? <UtilityButton styles='workout_routine_step_button' title='Next' onClick={nextStep} /> : <div></div>

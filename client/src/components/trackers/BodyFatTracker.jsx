@@ -105,6 +105,7 @@ const BodyFatTracker = ({id, register, setValue, watch, getValues, value, saveTo
     }, [heightEffect, ageEffect, weightEffect, neckEffect, waistEffect, hipEffect, sexEffect]);
 
     const getBodyFat = () => {
+        setCalculate(false);
         calculateBodyFat(getValuesBF('age'), getValuesBF('sex'), getValuesBF('weight'), getValuesBF('height'),
             getValuesBF('neck'), getValuesBF('waist'), getValuesBF('hip'));
         

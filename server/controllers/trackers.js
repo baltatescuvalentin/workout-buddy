@@ -82,10 +82,12 @@ export const deleteTracker = async (req, res) => {
 export const getTrackerByDay = async (req, res) => {
     try {
         const {
+            userId,
             day,
         } = req.params;
 
         const tracker = await Tracker.findOne({
+            userId: userId,
             date: day,
         });
 

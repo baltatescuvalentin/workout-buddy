@@ -78,17 +78,18 @@ const ResetPassword = () => {
             })
     };
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         setLoading(true);
 
-        const response = axios.patch('http://localhost:3001/auth/changepassword', data);
+        //const response = await axios.patch('http://localhost:3001/auth/changepassword', data);
 
-        response.then(() => {
-            dispatch(setLogout());
-            toast.success('Password changed')
-            setStep(1);
-            navigator('/login');
-        })
+        await axios.patch('http://localhost:3001/auth/changepassword', data)
+            .then(() => {
+                dispatch(setLogout());
+                toast.success('Password changed')
+                setStep(1);
+                navigator('/login');
+            })
             .catch((error) => {
                 setErrorMessage(error.reponse.data.message);
             })

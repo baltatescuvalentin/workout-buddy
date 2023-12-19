@@ -55,14 +55,15 @@ function App() {
   useEffect(() => {
 
     const getExercicesFromDB = async () => {
-      const response = await axios.get('http://localhost:3001/exercises/getExercises');
+      //const response = await axios.get('http://localhost:3001/exercises/getExercises');
   
-      response.then((response) => {
-        const exercicesFromDB = response.data.exercises;
-        dispatch(setExercices({
-          exercices: exercicesFromDB,
-        }));
-      })
+      await axios.get('http://localhost:3001/exercises/getExercises')
+        .then((response) => {
+          const exercicesFromDB = response.data.exercises;
+          dispatch(setExercices({
+            exercices: exercicesFromDB,
+          }));
+        })
         .catch((error) => {
           if(error.response) {
             console.log(error.response.data);
@@ -132,11 +133,7 @@ function App() {
             </AlreadyLogged>
             } />
           <Route path='/resetpassword' element={<ResetPassword />} />
-          <Route path='/additionalinfo' element={
-            <CheckNotLogged pathTo='register'>
-              <AdditionalInfo />
-            </CheckNotLogged>
-          } />
+          <Route path='/additionalinfo' element={<AdditionalInfo />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

@@ -76,6 +76,7 @@ const BMITracker = ({id, register, setValue, watch, getValues, value, saveToTrac
     }, [weightEffect, ageEffect, heightEffect]);
 
     const getBMI = () => {
+        setCalculate(false);
         calculateBMI(getValuesBMI('age'), getValuesBMI('weight'), getValuesBMI('height'));
     }
 

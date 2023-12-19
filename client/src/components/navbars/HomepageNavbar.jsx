@@ -30,7 +30,7 @@ const HomepageNavbar = () => {
                 ) : (
                     <div className='homepage_menu'>
                         <Link to='/login' className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Log in</Link>
-                        <Link to='/register' className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Sign in</Link>
+                        <Link to='/register' className={mode === 'light' ? 'light_menu_item' : 'dark_menu_item'}>Sign up</Link>
                     </div>
                 )}
             </div>

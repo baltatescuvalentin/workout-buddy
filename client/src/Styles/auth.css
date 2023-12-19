@@ -30,7 +30,17 @@
   width: 35rem;
   height: 41.25rem;
 }
-@media screen and (max-width: 27rem) {
+@media screen and (max-width: 80rem) {
+  .image {
+    width: 33.5rem;
+  }
+}
+@media screen and (max-width: 67rem) {
+  .image {
+    width: 32rem;
+  }
+}
+@media screen and (max-width: 56rem) {
   .image {
     display: none;
   }

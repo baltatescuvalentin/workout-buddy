@@ -73,8 +73,9 @@ const Tracker = () => {
             }
         }
 
-        await axios.get(`http://localhost:3001/tracker/getTrackerByDay/${date}`, options)
+        await axios.get(`http://localhost:3001/tracker/getTrackerByDay/${user._id}/${date}`, options)
             .then((response) => {
+                console.log(response.data);
                 setTracker(response.data.tracker);
                 setValue('BMI', response.data.tracker?.BMI || 0);
                 setValue('bodyFat', response.data.tracker?.bodyFat || 0);

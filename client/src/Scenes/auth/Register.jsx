@@ -72,9 +72,9 @@ const Register = () => {
         setLoading(true);
             
         await axios.post('http://localhost:3001/auth/register', data)
-            .then((response) => {
-                toast.success('Account successfully created');
+            .then(() => {
                 navigate('/additionalinfo', { state: { from: location }});
+                toast.success('Account successfully created');
             })
             .catch((error) => {
                 setError('This email is already used!');

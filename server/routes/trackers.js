@@ -3,7 +3,7 @@ import { createTracker, deleteTracker, editTracker, getTrackedDates, getTrackerB
 import { verifyToken } from '../middleware/auth.js';
 
 const router = express.Router();
-router.get('/getTrackerByDay/:day', verifyToken, getTrackerByDay);
+router.get('/getTrackerByDay/:userId/:day', verifyToken, getTrackerByDay);
 router.post('/createTracker', verifyToken, createTracker);
 router.patch('/updateTracker/:id', verifyToken, editTracker);
 router.delete('/deleteTracker/:id', verifyToken, deleteTracker);
