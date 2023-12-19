@@ -10,8 +10,6 @@ import AuthSubmitButton from '../../components/buttons/AuthSubmitButton';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
-import { setLogin } from '../../state';
 
 const Register = () => {
 
@@ -19,7 +17,6 @@ const Register = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const location = useLocation();
-    const dispatch = useDispatch();
 
     const {
         register,
