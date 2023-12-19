@@ -49,10 +49,8 @@ const Login = () => {
 
     const onSubmit = async (data) => {
         setLoading(true);
-
-        //const response = axios.post('http://localhost:3001/auth/login', data);
             
-        await axios.post('http://localhost:3001/auth/login', data)
+        await axios.post('https://workout-buddy-3j5n.onrender.com/auth/login', data)
             .then((response) => {
                 toast.success('Logged in')
                 navigate('/');

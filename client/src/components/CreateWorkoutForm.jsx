@@ -179,7 +179,7 @@ const CreateWorkoutForm = ({handleActiveForm}) => {
             }
         }
 
-        await axios.post('http://localhost:3001/workoutroutine/create', data, options)
+        await axios.post('https://workout-buddy-3j5n.onrender.com/workoutroutine/create', data, options)
             .then(() => {
                 toast.success('Workout succesfully created 💪!');
                 handleActiveForm();

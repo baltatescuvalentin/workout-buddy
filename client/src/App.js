@@ -55,9 +55,8 @@ function App() {
   useEffect(() => {
 
     const getExercicesFromDB = async () => {
-      //const response = await axios.get('http://localhost:3001/exercises/getExercises');
   
-      await axios.get('http://localhost:3001/exercises/getExercises')
+      await axios.get('https://workout-buddy-3j5n.onrender.com/exercises/getExercises')
         .then((response) => {
           const exercicesFromDB = response.data.exercises;
           dispatch(setExercices({

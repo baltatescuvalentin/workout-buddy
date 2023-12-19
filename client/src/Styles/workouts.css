@@ -88,7 +88,7 @@
   align-items: center;
   gap: 0.5rem;
 }
-@media screen and (max-width: 27rem) {
+@media screen and (max-width: 80rem) {
   .exercise_steps_image, .create_workout_exercise_steps_image, .workout_exercise_details .workout_exercise_details_instructions, .view_exercise_steps_image {
     flex-direction: column;
   }

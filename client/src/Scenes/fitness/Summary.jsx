@@ -69,7 +69,7 @@ const Summary = () => {
 
             setLoading(true);
 
-            await axios.get(`http://localhost:3001/tracker/getTrackerMetrics/${user._id}`, options) 
+            await axios.get(`https://workout-buddy-3j5n.onrender.com/tracker/getTrackerMetrics/${user._id}`, options) 
                 .then((response) => {
                     setTableValues(response.data.metrics)
                 })
@@ -103,7 +103,7 @@ const Summary = () => {
             let caloriesIntakeData = [];
             let caloriesBurnedData = [];
 
-            await axios.get(`http://localhost:3001/tracker/getUserTrackers/${user._id}`, options)
+            await axios.get(`https://workout-buddy-3j5n.onrender.com/tracker/getUserTrackers/${user._id}`, options)
                 .then((response) => {
                     const data = response.data.trackers;
                     data.forEach((element) => {

@@ -73,9 +73,8 @@ const Tracker = () => {
             }
         }
 
-        await axios.get(`http://localhost:3001/tracker/getTrackerByDay/${user._id}/${date}`, options)
+        await axios.get(`https://workout-buddy-3j5n.onrender.com/tracker/getTrackerByDay/${user._id}/${date}`, options)
             .then((response) => {
-                console.log(response.data);
                 setTracker(response.data.tracker);
                 setValue('BMI', response.data.tracker?.BMI || 0);
                 setValue('bodyFat', response.data.tracker?.bodyFat || 0);
@@ -108,7 +107,7 @@ const Tracker = () => {
             }
         }
 
-        await axios.delete(`http://localhost:3001/tracker/deleteTracker/${dayId}`, options)
+        await axios.delete(`https://workout-buddy-3j5n.onrender.com/tracker/deleteTracker/${dayId}`, options)
             .then(() => {
                 setTracker(null);
                 setRefresh(prev => prev + 1);
@@ -138,7 +137,7 @@ const Tracker = () => {
             userId: user._id,
         }
 
-        await axios.post(`http://localhost:3001/tracker/createTracker`, data, options)
+        await axios.post(`https://workout-buddy-3j5n.onrender.com/tracker/createTracker`, data, options)
             .then((response) => {
                 setTracker(response.data.tracker);
                 setRefresh(prev => prev + 1);
@@ -168,7 +167,7 @@ const Tracker = () => {
             data: data,
         }
 
-        await axios.patch(`http://localhost:3001/tracker/updateTracker/${id}`, content, options)
+        await axios.patch(`https://workout-buddy-3j5n.onrender.com/tracker/updateTracker/${id}`, content, options)
             .then((response) => {
                 setTracker(response.data.tracker);
             })
@@ -197,7 +196,7 @@ const Tracker = () => {
             field: field,
         }
 
-        await axios.patch(`http://localhost:3001/tracker/removeFieldFromTracker`, data, options)
+        await axios.patch(`https://workout-buddy-3j5n.onrender.com/tracker/removeFieldFromTracker`, data, options)
             .then((response) => {
                 
             })
@@ -228,7 +227,7 @@ const Tracker = () => {
                 return;
             }
 
-            await axios.get(`http://localhost:3001/tracker/getTrackedDates/${user._id}`, options)
+            await axios.get(`https://workout-buddy-3j5n.onrender.com/tracker/getTrackedDates/${user._id}`, options)
                 .then((resposne) => {
                     const dates = [...resposne.data.dates];
                     const actualDates = dates.map((date) => date.date);

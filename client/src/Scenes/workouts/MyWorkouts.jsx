@@ -33,7 +33,7 @@ const MyWorkouts = () => {
 
             setLoading(true);
 
-            await axios.get(`http://localhost:3001/workoutroutine/getWorkouts/${user._id}`, options)
+            await axios.get(`https://workout-buddy-3j5n.onrender.com/workoutroutine/getWorkouts/${user._id}`, options)
                 .then((response) => {
                     setWorkouts([...response.data.workouts]);
                     setLoading(false);

@@ -25,7 +25,7 @@ const WorkoutRoutineView = () => {
         }
 
         const getDayExercise = async () => {
-            await axios.get(`http://localhost:3001/workoutroutine/getWorkoutById/${id}`, options)
+            await axios.get(`https://workout-buddy-3j5n.onrender.com/workoutroutine/getWorkoutById/${id}`, options)
                 .then((response) => {
                     setCurrentDay(response.data.workout.days[`${day}`]);
                 })

@@ -10,6 +10,8 @@ import AuthSubmitButton from '../../components/buttons/AuthSubmitButton';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { setLogin } from '../../state';
 
 const Register = () => {
 
@@ -17,6 +19,7 @@ const Register = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const location = useLocation();
+    const dispatch = useDispatch();
 
     const {
         register,
@@ -71,13 +74,18 @@ const Register = () => {
     const onSubmit = async (data) => {
         setLoading(true);
             
-        await axios.post('http://localhost:3001/auth/register', data)
-            .then(() => {
-                navigate('/additionalinfo', { state: { from: location }});
+        await axios.post('https://workout-buddy-3j5n.onrender.com/auth/register', data)
+            .then((response) => {
+                navigate('/additionalinfo', { state: { from: location, userId: response.data.user._id }});
                 toast.success('Account successfully created');
             })
             .catch((error) => {
-                setError('This email is already used!');
+                if(error.response.data.message) {
+                    setError(error.response.data.message);
+                }
+                else {
+                    setError('This email is already used!');
+                }
             })
             .finally(() => {
                 setLoading(false);

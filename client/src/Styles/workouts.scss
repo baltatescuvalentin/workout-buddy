@@ -98,7 +98,7 @@
     align-items: center;
     gap: 0.5rem;
 
-    @media screen and (max-width: $phone) {
+    @media screen and (max-width: $xl) {
         flex-direction: column;
     }
 

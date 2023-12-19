@@ -32,7 +32,7 @@ const Profile = () => {
         const fetchData = async () => {
             setLoading(true);
 
-            await axios.get(`http://localhost:3001/auth/getProfileInfo/${user._id}`, options)
+            await axios.get(`https://workout-buddy-3j5n.onrender.com/auth/getProfileInfo/${user._id}`, options)
                 .then((response) => {
                     setInfo(response.data.user);
                 })
@@ -57,7 +57,7 @@ const Profile = () => {
 
             setLoading(true);
 
-            await axios.get(`http://localhost:3001/tracker/getTrackerMetrics/${user._id}`, options) 
+            await axios.get(`https://workout-buddy-3j5n.onrender.com/tracker/getTrackerMetrics/${user._id}`, options) 
                 .then((response) => {
                     setTableValues(response.data.metrics)
                 })

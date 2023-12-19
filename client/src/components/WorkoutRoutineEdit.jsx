@@ -43,7 +43,7 @@ const WorkoutRoutineEdit = () => {
         }
 
         const getWorkout = async () => {
-            await axios.get(`http://localhost:3001/workoutroutine/getWorkoutById/${id}`, options)
+            await axios.get(`https://workout-buddy-3j5n.onrender.com/workoutroutine/getWorkoutById/${id}`, options)
                 .then((response) => {
                     const array = Object.values(response.data.workout.days);
                     setCurrentWorkout([...array]);
@@ -178,7 +178,7 @@ const WorkoutRoutineEdit = () => {
             }
         };
 
-        await axios.patch(`http://localhost:3001/workoutroutine/update/${id}`, data, options)
+        await axios.patch(`https://workout-buddy-3j5n.onrender.com/workoutroutine/update/${id}`, data, options)
             .then(() => {
                 navigate(-1);
                 toast.success('Workout successfully edited!');

@@ -25,6 +25,7 @@ const AdditionalInfo = () => {
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname;
+    let userId = location.state?.userId;
 
     const {
         register,
@@ -50,33 +51,33 @@ const AdditionalInfo = () => {
     }
 
     useEffect(() => {
-        if(from !== '/register' && !user) {
+        if(!user && !userId) {
             navigate('/register');
         }
-    }, [from, navigate, user]);
+    }, [from, navigate, user, userId]);
 
     const saveToDB = async () => {
         setLoading(true);
 
         const data = {
-            id: user._id,
+            id: userId,
             age: parseInt(getValues('age')),
             height: parseInt(getValues('height')),
             weight: parseInt(getValues('weight')),
             sex: getValues('sex'),
         }
 
-        await axios.patch('http://localhost:3001/auth/update', data)
+        await axios.patch('https://workout-buddy-3j5n.onrender.com/auth/update', data)
             .then((response) => {
-                dispatch(setLogin({
-                    user: response.data.user,
-                    token: token,
-                }));
                 if(from.includes('register')) {
                     navigate('/login');
                 }
                 else {
                     navigate('/profile');
+                    dispatch(setLogin({
+                        user: response.data.user,
+                        token: token,
+                    }));
                 }
                 toast.success('Information changed!');
             })

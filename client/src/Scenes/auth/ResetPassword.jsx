@@ -58,11 +58,11 @@ const ResetPassword = () => {
         }
     };
 
-    const findUser = () => {
+    const findUser = async () => {
         setLoading(true);
         const email = getValues('email');
 
-        axios.post(`http://localhost:3001/auth/user`, {
+        await axios.post(`https://workout-buddy-3j5n.onrender.com/auth/user`, {
             email,
         }).then((response) => {
             if(response.status === 200) {
@@ -81,9 +81,7 @@ const ResetPassword = () => {
     const onSubmit = async (data) => {
         setLoading(true);
 
-        //const response = await axios.patch('http://localhost:3001/auth/changepassword', data);
-
-        await axios.patch('http://localhost:3001/auth/changepassword', data)
+        await axios.patch('https://workout-buddy-3j5n.onrender.com/auth/changepassword', data)
             .then(() => {
                 dispatch(setLogout());
                 toast.success('Password changed')
