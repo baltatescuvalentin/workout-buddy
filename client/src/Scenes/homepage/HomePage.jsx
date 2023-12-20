@@ -11,7 +11,6 @@ import { FaChartBar } from 'react-icons/fa';
 import { MdSummarize } from 'react-icons/md';
 import HomepageNavbar from "../../components/navbars/HomepageNavbar";
 import WorkoutsRedirectButton from "../../components/buttons/WorkoutsRedirectButton";
-import ClearStorageBtn from "../../components/ClearStorageBtn";
 
 const HomePage = () => {
 
@@ -172,8 +171,6 @@ const HomePage = () => {
             </div>
 
             <Contact />
-
-            <ClearStorageBtn />
         </>
     )
 }

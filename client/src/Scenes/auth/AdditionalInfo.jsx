@@ -60,7 +60,7 @@ const AdditionalInfo = () => {
         setLoading(true);
 
         const data = {
-            id: userId,
+            id: userId || user._id,
             age: parseInt(getValues('age')),
             height: parseInt(getValues('height')),
             weight: parseInt(getValues('weight')),
