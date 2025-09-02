@@ -57,9 +57,7 @@ function Sidebar() {
             </p>
           </div>
           <hr className="hidden sm:block w-full border-gray-100" />
-          <div
-            className={`flex flex-col gap-2 no-scrollbar overflow-y-auto overflow-x-visible`}
-          >
+          <div className={`flex flex-col gap-2 no-scrollbar`}>
             <SidebarElement
               name="Home"
               handleClick={() => navigate("/")}
@@ -68,9 +66,9 @@ function Sidebar() {
               key={"home"}
             />
             <SidebarElement
-              name="Exercices"
-              handleClick={() => navigate("/exercices")}
-              currentRoute="exercices"
+              name="Exercises"
+              handleClick={() => navigate("/exercises")}
+              currentRoute="exercises"
               Icon={FaDumbbell}
             />
             <SidebarElement

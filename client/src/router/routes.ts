@@ -2,7 +2,7 @@ export const routes = {
   home: "/",
   login: "/login",
   register: "/register",
-  exercices: "/exercices",
+  exercises: "/exercises",
   calculators: "/calculators",
   workouts: "/workouts",
   tracker: "/tracker",

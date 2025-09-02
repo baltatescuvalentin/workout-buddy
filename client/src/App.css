@@ -7,16 +7,20 @@
   --main-orange: #ea580c;
   --main-purple: #9333ea;
   --main-warning: #a54d0e;
-  --main-danger: #991b1b;
-  --secondary-blue: #eff6ff;
-  --secondary-green: #f0fdf4;
+  --main-danger: #d61c1c;
+  --secondary-blue: #dbeafe;
+  --secondary-green: #dcfce7;
   --secondary-orange: #ffedd5;
-  --secondary-purple: #faf5ff;
+  --secondary-purple: #f3e8ff;
   --secondary-yellow: #fef9c3;
   --secondary-red: #fee2e2;
   --secondary-gray: #f9fafb;
+  --utility-text: #9ca3af;
 }
 
+@utility text-utility {
+  color: var(--utility-text);
+}
 @utility text-main-gray {
   color: var(--main-gray);
 }

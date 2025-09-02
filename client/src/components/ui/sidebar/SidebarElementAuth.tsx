@@ -28,29 +28,6 @@ function SidebarElementAuth({
 
   return (
     <>
-      {/* {sidebar && (
-        <div
-          className={`flex flex-row items-center justify-start p-3 h-[52px] rounded-lg cursor-pointer 
-            ${
-              currentRoute === currRoute ? "bg-gray-100" : "hover:bg-gray-100"
-            }`}
-          onClick={() => handleClick()}
-        >
-          <div className="flex items-center justify-center ml-0.25">
-            <Icon size={24} />
-          </div>
-          <p
-            className={`text-lg  transition-[margin,max-width,opacity] ease-in-out whitespace-nowrap overflow-hidden  sm:${
-              sidebar
-                ? "opacity-100 max-w-xs delay-300 ml-2"
-                : "opacity-0 max-w-0 delay-75 -ml-1"
-            }`}
-          >
-            {name}
-          </p>
-        </div>
-      )} */}
-
       <Tooltip text={name}>
         <div
           className={`flex flex-row items-center justify-start p-3 h-[52px] rounded-lg cursor-pointer 

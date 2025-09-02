@@ -14,13 +14,15 @@ const router = createBrowserRouter([
         element: lazyElement(() => import("../views/home/Home")),
       },
       {
-        path: "/exercices",
+        path: "/exercises",
         element: lazyElement(() => import("../views/exercices/ExercicesIndex")),
         loader: authMiddleware,
       },
       {
         path: "/calculators",
-        element: lazyElement(() => import("../views/exercices/ExercicesIndex")),
+        element: lazyElement(
+          () => import("../views/calculators/CalculatorsIndex")
+        ),
         loader: authMiddleware,
       },
       {

@@ -12,7 +12,7 @@ function AppLayout() {
       {/* <SidebarMobile /> */}
       <Sidebar />
       <div
-        className={`p-7 transition-[margin,width] ease-in-out ml-0 w-full duration-300 ${
+        className={`p-7 pt-18 sm:pt-7 transition-[margin,width] ease-in-out ml-0 w-full duration-300 ${
           sidebar &&
           "blur-xs sm:blur-none pointer-events-none sm:pointer-events-auto "
         } ${
