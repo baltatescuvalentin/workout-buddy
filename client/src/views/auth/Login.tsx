@@ -25,13 +25,10 @@ function Login() {
   const { loginUser } = useUser();
 
   const onSubmit: SubmitHandler<ILoginForm> = (data) => {
-    console.log(data);
-
     setLoading(true);
     axios
       .post(`/auth/login`, data)
       .then((data) => {
-        console.log(data);
         loginUser(data.data.user, data.data.token);
         toast.success("Account created successfully.");
       })

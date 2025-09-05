@@ -2,6 +2,7 @@ import { cva } from "class-variance-authority";
 import type React from "react";
 
 type ButtonType = {
+  type?: "submit" | "button";
   size: "small" | "medium" | "large";
   color: "primary" | "secondary" | "success" | "warning" | "danger";
   disabled?: boolean;
@@ -17,6 +18,7 @@ function Button({
   children,
   styles = "",
   handleClick,
+  type = "button",
 }: ButtonType) {
   const buttonStyles = cva(
     "inline-flex items-center justify-center w-fit px-8 rounded-sm cursor-pointer transition-all duration-100 gap-1 disabled:opacity-50 disabled:cursor-not-allowed",
@@ -48,6 +50,7 @@ function Button({
       className={`${buttonStyles({ size, color })} ${styles}`}
       disabled={disabled}
       onClick={handleClick}
+      type={type}
     >
       {children}
     </button>

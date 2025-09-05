@@ -33,13 +33,10 @@ function Register() {
   const [error, setError] = useState<string>("");
 
   const onSubmit: SubmitHandler<IRegisterForm> = (data) => {
-    console.log(data);
-    console.log(errors);
     setLoading(true);
     axios
       .post(`/auth/register`, data)
-      .then((data) => {
-        console.log(data);
+      .then(() => {
         navigate("/login");
         toast.success("Account created successfully.");
       })
@@ -184,7 +181,7 @@ function Register() {
 
         <div className="flex flex-col sm:flex-row gap-3 items-center">
           <FormInput
-            name="Height"
+            name="Height (cm)"
             id="height"
             type="number"
             errors={errors}
@@ -198,7 +195,7 @@ function Register() {
           ></FormInput>
 
           <FormInput
-            name="Weight"
+            name="Weight (kg)"
             id="weight"
             type="number"
             errors={errors}

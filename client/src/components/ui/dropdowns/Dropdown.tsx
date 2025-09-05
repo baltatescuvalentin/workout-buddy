@@ -7,6 +7,7 @@ import type {
   UseFormRegister,
 } from "react-hook-form";
 import useClickOutside from "../../../hooks/useClickOutside";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 type DropdownType = {
   name: string;
@@ -22,6 +23,8 @@ interface IDropdown<T extends FieldValues> {
   size?: "big" | "medium" | "small";
   validation?: RegisterOptions<T>;
   register: UseFormRegister<T>;
+  styles?: string;
+  info?: string;
 }
 
 function Dropdown<T extends FieldValues>({
@@ -33,6 +36,8 @@ function Dropdown<T extends FieldValues>({
   children,
   validation,
   register,
+  styles,
+  info,
 }: IDropdown<T>) {
   const [selectValue, setSelectValue] = useState<DropdownType>({
     value: "",
@@ -73,17 +78,19 @@ function Dropdown<T extends FieldValues>({
   }
 
   return (
-    <div className="w-full">
+    <div className={`w-full ${styles}`}>
       <input type="hidden" ref={ref} {...rest} value={selectValue.value} />
       <div
         ref={dropdownRef}
-        className={`${cSize} relative flex items-center rounded-md bg-inherit cursor-pointer -ring-offset-1 ring-[var(--main-blue)] px-3 py-3 pr-4 text-sm border-1 border-gray-300
+        className={`${cSize} relative flex items-center justify-between rounded-md bg-inherit cursor-pointer -ring-offset-1 ring-[var(--main-blue)] px-3 py-3 pr-4 text-sm border-1 border-gray-300
           ${open && "ring-1"} ${errors?.[id] && "ring-red-500 ring-1"}`}
         onClick={() => {
           setOpen(!open);
         }}
       >
-        {selectValue.name}
+        <p>{selectValue.name}</p>
+
+        {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
 
         <ul
           className={`absolute transition-all ease-in-out duration-300 flex gap-1.5 flex-col w-full top-12 left-0 z-20 p-2 rounded-md border-1 border-gray-300 shadow-lg list-none bg-white
@@ -109,6 +116,7 @@ function Dropdown<T extends FieldValues>({
 
         <div className="absolute"></div>
       </div>
+      {info && <p className="text-xs text-gray-400">{info}</p>}
       <div
         className={`${
           errors?.[id] ? "visible" : "invisible"

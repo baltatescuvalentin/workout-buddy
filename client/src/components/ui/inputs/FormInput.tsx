@@ -15,8 +15,9 @@ interface IInput<T extends FieldValues> {
   type?: string;
   children?: React.ReactNode;
   errors?: FieldErrors<T> | undefined;
-  validation: RegisterOptions<T>;
+  validation?: RegisterOptions<T>;
   register: UseFormRegister<T>;
+  info?: string;
 }
 
 function FormInput<T extends FieldValues>({
@@ -28,6 +29,7 @@ function FormInput<T extends FieldValues>({
   type,
   size,
   validation,
+  info,
 }: IInput<T>) {
   const cSize = useMemo(() => {
     if (size === "small") {
@@ -43,7 +45,10 @@ function FormInput<T extends FieldValues>({
     <div className=" w-full">
       <div className="relative">
         <input
-          {...register(id, validation)}
+          {...register(id, {
+            ...validation,
+            setValueAs: (v) => (type === "number" ? Number(v) : undefined),
+          })}
           type={type ?? "text"}
           id={id}
           className={`${cSize} block w-full text-sm text-gray-900 bg-transparent rounded-lg border-gray-300 appearance-none focus:outline-none focus:ring-1 -ring-offset-1 ring-[var(--main-blue)] border-1  peer ${
@@ -60,6 +65,7 @@ function FormInput<T extends FieldValues>({
           {name}
         </label>
       </div>
+      {info && <p className="text-xs text-gray-400">{info}</p>}
       <div
         className={`${
           errors?.[id] ? "visible" : "invisible"
