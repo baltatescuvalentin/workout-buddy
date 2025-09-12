@@ -1,5 +1,3 @@
-import type { Goal } from "../utils/calculators";
-
 export interface IBMICalculator {
   height: number;
   weight: number;

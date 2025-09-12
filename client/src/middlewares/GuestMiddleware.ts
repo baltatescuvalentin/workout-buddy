@@ -8,7 +8,7 @@ export function guestMiddleware() {
   if (persistedRoot) {
     try {
       const parsed = JSON.parse(persistedRoot);
-      console.log(parsed.token, parsed.token.length);
+
       const parsedToken = parsed.token ? JSON.parse(parsed.token) : null;
       if (parsedToken.length > 2) {
         return redirect("/");

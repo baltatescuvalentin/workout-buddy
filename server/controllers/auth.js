@@ -99,6 +99,9 @@ export const updateUserInfo = async (req, res) => {
         height,
         weight,
         sex,
+        hips,
+        neck,
+        waist,
       },
       {
         new: true,
@@ -195,7 +198,7 @@ export const getProfileInfo = async (req, res) => {
       {
         _id: id,
       },
-      "fullName userName email age height weight sex age"
+      "fullName userName email age height weight sex age hips neck waist"
     );
 
     if (!user) {

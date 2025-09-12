@@ -42,8 +42,6 @@ function TDEECalculator() {
   };
 
   const calculateWithUserValues = () => {
-    // console.log(user);
-
     if (!getValues("activity")) {
       setError("activity", {
         type: "manual",

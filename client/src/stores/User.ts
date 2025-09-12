@@ -1,10 +1,25 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { IUser } from "../interfaces/IUserStore";
+import type { IExerciseUtils } from "../interfaces/IExercise";
 
 const initialSlice: IUser = {
-  user: {},
+  user: {
+    fullName: "",
+    userName: "",
+    email: "",
+    sex: "",
+    age: 0,
+    height: 0,
+    weight: 0,
+  },
   token: "",
   sidebar: true,
+  exercisesUtils: {
+    target: [],
+    bodyParts: [],
+    equipment: [],
+    types: [],
+  },
 };
 
 export const userSlice = createSlice({
@@ -16,14 +31,26 @@ export const userSlice = createSlice({
       state.token = action.payload.token;
     },
     setLogout: (state) => {
-      state.user = {};
+      state.user = {
+        fullName: "",
+        userName: "",
+        email: "",
+        sex: "",
+        age: 0,
+        height: 0,
+        weight: 0,
+      };
       state.token = "";
     },
     toggleSidebar: (state, action: PayloadAction<boolean>) => {
       state.sidebar = action.payload;
     },
+    setExerciseUtils: (state, action: PayloadAction<IExerciseUtils>) => {
+      state.exercisesUtils = action.payload;
+    },
   },
 });
 
 export default userSlice.reducer;
-export const { setLogin, setLogout, toggleSidebar } = userSlice.actions;
+export const { setLogin, setLogout, toggleSidebar, setExerciseUtils } =
+  userSlice.actions;

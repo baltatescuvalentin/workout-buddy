@@ -8,7 +8,6 @@ export function authMiddleware() {
   if (persistedRoot) {
     try {
       const parsed = JSON.parse(persistedRoot);
-      console.log(typeof parsed.token, parsed.token);
       const parsedToken = parsed.token ? JSON.parse(parsed.token) : null;
       if (parsedToken.length < 3) {
         return redirect("/login");

@@ -61,14 +61,10 @@ export function calculateBodyFat(
 ) {
   let BFP = 0;
 
-  console.log(typeof height, typeof waist, typeof neck, typeof hip, typeof sex);
-
   if (sex === "male") {
     BFP =
       86.01 * Math.log10(waist - neck) - 70.041 * Math.log10(height) + 36.76;
   } else {
-    const numerator = waist + hip - neck;
-    console.log({ numerator, height });
     BFP =
       163.205 * Math.log10(waist + hip - neck) -
       97.684 * Math.log10(height) -

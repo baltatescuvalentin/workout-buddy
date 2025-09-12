@@ -41,7 +41,6 @@ function BMICalculator() {
   };
 
   const calculateWithUserValues = () => {
-    // console.log(user);
     const bmi = calculateBMI(Number(user.weight), Number(user.height));
     setBMI({
       bmi: bmi.bmi,

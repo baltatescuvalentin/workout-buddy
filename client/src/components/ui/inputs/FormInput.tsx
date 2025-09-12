@@ -47,7 +47,7 @@ function FormInput<T extends FieldValues>({
         <input
           {...register(id, {
             ...validation,
-            setValueAs: (v) => (type === "number" ? Number(v) : undefined),
+            setValueAs: (v) => (type === "number" ? Number(v) : String(v)),
           })}
           type={type ?? "text"}
           id={id}
@@ -66,14 +66,16 @@ function FormInput<T extends FieldValues>({
         </label>
       </div>
       {info && <p className="text-xs text-gray-400">{info}</p>}
-      <div
-        className={`${
-          errors?.[id] ? "visible" : "invisible"
-        } text-xs text-red-500 leading-5`}
-      >
-        {(errors?.[id]?.message as string) || "placeholder"}
-        {children}
-      </div>
+      {errors && (
+        <div
+          className={`${
+            errors?.[id] ? "visible" : "invisible"
+          } text-xs text-red-500 leading-5`}
+        >
+          {(errors?.[id]?.message as string) || "placeholder"}
+          {children}
+        </div>
+      )}
     </div>
   );
 }

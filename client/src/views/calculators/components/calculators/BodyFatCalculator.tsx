@@ -31,8 +31,6 @@ function BodyFatCalculator() {
   });
 
   const calculate: SubmitHandler<IBodyFatCalculator> = (data) => {
-    console.log(data);
-
     const tdee = calculateBodyFat(
       data.height,
       data.waist,

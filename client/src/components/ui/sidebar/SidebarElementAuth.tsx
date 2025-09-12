@@ -28,7 +28,7 @@ function SidebarElementAuth({
 
   return (
     <>
-      <Tooltip text={name}>
+      <Tooltip text={name} show={sidebar ? false : true}>
         <div
           className={`flex flex-row items-center justify-start p-3 h-[52px] rounded-lg cursor-pointer 
             ${
