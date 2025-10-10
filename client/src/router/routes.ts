@@ -1,5 +1,4 @@
 export const routes = {
-  home: "/",
   login: "/login",
   register: "/register",
   exercises: "/exercises",
@@ -9,4 +8,6 @@ export const routes = {
   summary: "/summary",
   plans: "/plans",
   profile: "/profile",
+  exercise: "/exercise",
+  home: "/",
 } as const;

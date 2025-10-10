@@ -92,7 +92,7 @@ function Home() {
 
       <div className="flex flex-col sm:flex-row items-center justify-evenly gap-8">
         <Card
-          styles="w-sm cursor-pointer"
+          styles="w-sm cursor-pointer items-center"
           handleClick={() => navigate("/exercises")}
         >
           <div className="rounded-full flex items-center justify-center h-16 w-16  bg-[var(--secondary-blue)]">
@@ -105,7 +105,7 @@ function Home() {
           </p>
         </Card>
         <Card
-          styles="w-sm cursor-pointer"
+          styles="w-sm cursor-pointer items-center"
           handleClick={() => navigate("/tracker")}
         >
           <div className="rounded-full flex items-center justify-center h-16 w-16  bg-[var(--secondary-green)]">
@@ -118,7 +118,7 @@ function Home() {
           </p>
         </Card>
         <Card
-          styles="w-sm cursor-pointer"
+          styles="w-sm cursor-pointer items-center"
           handleClick={() => navigate("/calculators")}
         >
           <div className="rounded-full flex items-center justify-center h-16 w-16  bg-[var(--secondary-purple)]">

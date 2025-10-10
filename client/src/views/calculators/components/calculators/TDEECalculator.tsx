@@ -1,4 +1,4 @@
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { FormProvider, useForm, type SubmitHandler } from "react-hook-form";
 import Calculator from "../../../../components/calculators/Calculator";
 import Button from "../../../../components/ui/buttons/Button";
 import FormInput from "../../../../components/ui/inputs/FormInput";
@@ -13,14 +13,7 @@ function TDEECalculator() {
   const [tdee, setTDEE] = useState<number>(0);
   const user = useAppSelector((state) => state.user);
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    setError,
-    getValues,
-    reset,
-  } = useForm<ITDEECalculator>({
+  const methods = useForm<ITDEECalculator>({
     defaultValues: {
       age: 0,
       sex: "",
@@ -29,6 +22,16 @@ function TDEECalculator() {
       activity: 0,
     },
   });
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    setError,
+    getValues,
+    clearErrors,
+    setValue,
+  } = methods;
 
   const calculate: SubmitHandler<ITDEECalculator> = (data) => {
     const tdee = calculateTDEE(
@@ -59,9 +62,12 @@ function TDEECalculator() {
       user.sex as string
     );
 
-    reset();
-
+    setValue("weight", user.weight);
+    setValue("height", user.height);
+    setValue("age", user.age);
+    setValue("sex", user.sex);
     setTDEE(tdee);
+    clearErrors();
   };
 
   return (
@@ -76,121 +82,123 @@ function TDEECalculator() {
         </div>
       </Calculator.Header>
       <Calculator.Body>
-        <FormInput
-          type="number"
-          id="weight"
-          name="Weight (kg)"
-          register={register}
-          errors={errors}
-          validation={{
-            min: {
-              value: 10,
-              message: "Weight is required",
-            },
-          }}
-        />
+        <FormProvider {...methods}>
+          <FormInput
+            type="number"
+            id="weight"
+            name="Weight (kg)"
+            register={register}
+            errors={errors}
+            validation={{
+              min: {
+                value: 10,
+                message: "Weight is required",
+              },
+            }}
+          />
 
-        <FormInput
-          type="number"
-          id="height"
-          name="Height (cm)"
-          register={register}
-          errors={errors}
-          validation={{
-            min: {
-              value: 10,
-              message: "Height is required",
-            },
-          }}
-        />
+          <FormInput
+            type="number"
+            id="height"
+            name="Height (cm)"
+            register={register}
+            errors={errors}
+            validation={{
+              min: {
+                value: 10,
+                message: "Height is required",
+              },
+            }}
+          />
 
-        <FormInput
-          type="number"
-          id="age"
-          name="Age"
-          register={register}
-          errors={errors}
-          validation={{
-            min: {
-              value: 1,
-              message: "Age is required",
-            },
-          }}
-        />
+          <FormInput
+            type="number"
+            id="age"
+            name="Age"
+            register={register}
+            errors={errors}
+            validation={{
+              min: {
+                value: 1,
+                message: "Age is required",
+              },
+            }}
+          />
 
-        <Dropdown
-          id="sex"
-          name="Sex"
-          register={register}
-          errors={errors}
-          values={[
-            {
-              name: "Male",
-              value: "male",
-            },
-            {
-              name: "Female",
-              value: "female",
-            },
-          ]}
-          validation={{
-            required: "Sex is required",
-          }}
-        />
+          <Dropdown
+            id="sex"
+            name="Sex"
+            // register={register}
+            errors={errors}
+            values={[
+              {
+                name: "Male",
+                value: "male",
+              },
+              {
+                name: "Female",
+                value: "female",
+              },
+            ]}
+            validation={{
+              required: "Sex is required",
+            }}
+          />
 
-        <Dropdown
-          styles="col-span-full w-full"
-          id="activity"
-          name="Activity Level"
-          register={register}
-          errors={errors}
-          validation={{
-            required: "Activity Level is required",
-          }}
-          values={[
-            {
-              name: "Sedendary (little/no exercise)",
-              value: 1.2,
-            },
-            {
-              name: "Light (1–3 days/week)",
-              value: 1.375,
-            },
-            {
-              name: "Moderate (3–5 days/week)",
-              value: 1.55,
-            },
-            {
-              name: "Active (6–7 days/week)",
-              value: "1.725",
-            },
-            {
-              name: "Very active (hard exercise/physical job)",
-              value: 1.9,
-            },
-          ]}
-        />
+          <Dropdown
+            styles="col-span-full w-full"
+            id="activity"
+            name="Activity Level"
+            // register={register}
+            errors={errors}
+            validation={{
+              required: "Activity Level is required",
+            }}
+            values={[
+              {
+                name: "Sedendary (little/no exercise)",
+                value: 1.2,
+              },
+              {
+                name: "Light (1–3 days/week)",
+                value: 1.375,
+              },
+              {
+                name: "Moderate (3–5 days/week)",
+                value: 1.55,
+              },
+              {
+                name: "Active (6–7 days/week)",
+                value: "1.725",
+              },
+              {
+                name: "Very active (hard exercise/physical job)",
+                value: 1.9,
+              },
+            ]}
+          />
 
-        <Button
-          type="submit"
-          color="primary"
-          size="medium"
-          styles="col-span-full w-full"
-        >
-          Calculate TDEE
-        </Button>
+          <Button
+            type="submit"
+            color="primary"
+            size="medium"
+            styles="col-span-full w-full"
+          >
+            Calculate TDEE
+          </Button>
 
-        <p className="text-center col-span-full text-sm">Or</p>
+          <p className="text-center col-span-full text-sm">Or</p>
 
-        <Button
-          type="button"
-          color="secondary"
-          size="medium"
-          styles="col-span-full w-full"
-          handleClick={calculateWithUserValues}
-        >
-          User profile values
-        </Button>
+          <Button
+            type="button"
+            color="secondary"
+            size="medium"
+            styles="col-span-full w-full"
+            handleClick={calculateWithUserValues}
+          >
+            User profile values
+          </Button>
+        </FormProvider>
       </Calculator.Body>
       <Calculator.Footer>
         <p className="text-main-blue text-xl">{tdee}</p>

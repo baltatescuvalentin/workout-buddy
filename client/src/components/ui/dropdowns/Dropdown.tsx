@@ -1,10 +1,10 @@
 import React, { useMemo, useRef, useState } from "react";
-import type {
-  Path,
-  FieldValues,
-  FieldErrors,
-  RegisterOptions,
-  UseFormRegister,
+import {
+  type Path,
+  type FieldValues,
+  type FieldErrors,
+  type RegisterOptions,
+  useFormContext,
 } from "react-hook-form";
 import useClickOutside from "../../../hooks/useClickOutside";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
@@ -21,11 +21,12 @@ interface IDropdown<T extends FieldValues> {
   errors?: FieldErrors<T>;
   children?: React.ReactNode;
   size?: "big" | "medium" | "small";
-  validation?: RegisterOptions<T>;
-  register: UseFormRegister<T>;
+  validation?: RegisterOptions<T, Path<T>>;
+  // register: UseFormRegister<T>;
   styles?: string;
   info?: string;
   defaultValue?: number | string;
+  defaultName?: string;
 }
 
 function Dropdown<T extends FieldValues>({
@@ -36,17 +37,20 @@ function Dropdown<T extends FieldValues>({
   errors,
   children,
   validation,
-  register,
   styles,
   info,
   defaultValue,
+  defaultName,
 }: IDropdown<T>) {
+  const { register } = useFormContext<T>();
+
   const [selectValue, setSelectValue] = useState<DropdownType>({
     value: defaultValue || "",
-    name: defaultValue ? String(defaultValue) : name,
+    name: defaultName || name,
   });
   const [open, setOpen] = useState<boolean>(false);
   const dropdownRef = useRef(null);
+
   useClickOutside(dropdownRef, () => {
     if (open) {
       setOpen(false);
@@ -79,8 +83,17 @@ function Dropdown<T extends FieldValues>({
     });
   }
 
+  // useEffect(() => {
+  //   if (valueWatch === "") {
+  //     setSelectValue({
+  //       value: "",
+  //       name,
+  //     });
+  //   }
+  // }, [name, valueWatch]);
+
   return (
-    <div className={`w-full ${styles}`}>
+    <div className={`w-full !${styles}`}>
       <input type="hidden" ref={ref} {...rest} value={selectValue.value} />
       <div
         ref={dropdownRef}

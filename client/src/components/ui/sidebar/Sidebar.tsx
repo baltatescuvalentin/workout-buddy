@@ -14,6 +14,7 @@ import { toggleSidebar } from "../../../stores/User";
 import useUser from "../../../hooks/useUser";
 import SidebarElementAuth from "./SidebarElementAuth";
 import { useNavigate } from "react-router";
+import { LuTimer } from "react-icons/lu";
 
 function Sidebar() {
   const sidebar = useAppSelector((state) => state.sidebar);
@@ -25,7 +26,7 @@ function Sidebar() {
   return (
     <div className="relative">
       <div
-        className={`fixed z-100 top-16 sm:top-2 sm:left-2 w-[95%] flex flex-col justify-between h-[90%] sm:h-[98%] ml-2 bg-white sm:ml-0  rounded-xl shadow-md  transition-[width,delay,left] duration-300 px-3 py-6 border-1 border-gray-200 ${
+        className={`fixed z-100 top-16 sm:top-2 sm:left-2 w-[95%] flex flex-col justify-between h-[90%] sm:h-[98%] ml-3 bg-white sm:ml-0  rounded-xl shadow-md  transition-[width,delay,left] duration-300 px-3 py-6 border-1 border-gray-200 ${
           sidebar ? "sm:w-[300px]  sm:delay-150" : "sm:w-[75px]"
         } ${sidebar ? "left-0" : "-left-[680px]"}`}
       >
@@ -82,6 +83,12 @@ function Sidebar() {
               handleClick={() => navigate("/workouts")}
               currentRoute="workouts"
               Icon={FaRunning}
+            />
+            <SidebarElement
+              name="Exercise"
+              handleClick={() => navigate("/exercise")}
+              currentRoute="exercise"
+              Icon={LuTimer}
             />
             <SidebarElement
               name="Tracker"

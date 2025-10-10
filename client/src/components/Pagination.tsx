@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import Dropdown from "./ui/dropdowns/Dropdown";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
@@ -13,11 +13,13 @@ interface IPagination {
 }
 
 function Pagination({ meta, perPage, changePage, setPerPage }: IPagination) {
-  const { register, watch } = useForm({
+  const methods = useForm({
     defaultValues: {
       perPage: perPage,
     },
   });
+
+  const { watch } = methods;
 
   const perPageWatch = watch("perPage");
 
@@ -29,28 +31,31 @@ function Pagination({ meta, perPage, changePage, setPerPage }: IPagination) {
     <div className="flex flex-col sm:flex-row gap-5 justify-between items-center">
       <div className="flex flex-row items-center justify-center gap-1">
         <p>Show</p>
-        <Dropdown
-          id="perPage"
-          name="Per page"
-          defaultValue={5}
-          register={register}
-          size="small"
-          values={[
-            {
-              name: "5",
-              value: 5,
-            },
-            {
-              name: "10",
-              value: 10,
-            },
-            {
-              name: "25",
-              value: 25,
-            },
-          ]}
-          styles="!p-0"
-        />
+        <FormProvider {...methods}>
+          <Dropdown
+            id="perPage"
+            name="Per page"
+            defaultValue={perPage}
+            defaultName={String(perPage)}
+            // register={register}
+            size="small"
+            values={[
+              {
+                name: "5",
+                value: 5,
+              },
+              {
+                name: "10",
+                value: 10,
+              },
+              {
+                name: "25",
+                value: 25,
+              },
+            ]}
+            styles="!p-0"
+          />
+        </FormProvider>
         <p>items.</p>
       </div>
 

@@ -1,5 +1,5 @@
 import { FaChartPie } from "react-icons/fa";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { FormProvider, useForm, type SubmitHandler } from "react-hook-form";
 import Calculator from "../../../../components/calculators/Calculator";
 import Button from "../../../../components/ui/buttons/Button";
 import FormInput from "../../../../components/ui/inputs/FormInput";
@@ -14,17 +14,19 @@ import Dropdown from "../../../../components/ui/dropdowns/Dropdown";
 function MacrosCalculator() {
   const [macros, setMacros] = useState<Macros>();
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<IMacroCalculator>({
+  const methods = useForm<IMacroCalculator>({
     defaultValues: {
       weight: 0,
       calories: 0,
       goal: "maintain",
     },
   });
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = methods;
 
   const calculate: SubmitHandler<IMacroCalculator> = (data) => {
     const cMacros = calculateMacros(data.weight, data.calories, data.goal);
@@ -43,69 +45,70 @@ function MacrosCalculator() {
         </div>
       </Calculator.Header>
       <Calculator.Body>
-        <FormInput
-          type="number"
-          id="weight"
-          name="Weight (kg)"
-          register={register}
-          errors={errors}
-          validation={{
-            min: {
-              value: 10,
-              message: "Weight is required",
-            },
-          }}
-        />
+        <FormProvider {...methods}>
+          <FormInput
+            type="number"
+            id="weight"
+            name="Weight (kg)"
+            register={register}
+            errors={errors}
+            validation={{
+              min: {
+                value: 10,
+                message: "Weight is required",
+              },
+            }}
+          />
 
-        <FormInput
-          type="number"
-          id="calories"
-          name="Calories"
-          register={register}
-          errors={errors}
-          validation={{
-            min: {
-              value: 10,
-              message: "Calories is required",
-            },
-          }}
-        />
+          <FormInput
+            type="number"
+            id="calories"
+            name="Calories"
+            register={register}
+            errors={errors}
+            validation={{
+              min: {
+                value: 10,
+                message: "Calories is required",
+              },
+            }}
+          />
 
-        <Dropdown
-          styles="col-span-full w-full"
-          id="goal"
-          name="Goal"
-          register={register}
-          errors={errors}
-          values={[
-            {
-              name: "Weight Loss",
-              value: "loss",
-            },
-            {
-              name: "Maintain Weight",
-              value: "maintain",
-            },
-            {
-              name: "Muscle Gain",
-              value: "gain",
-            },
-          ]}
-          validation={{
-            required: "Goal is required",
-          }}
-        />
+          <Dropdown
+            styles="col-span-full w-full"
+            id="goal"
+            name="Goal"
+            // register={register}
+            errors={errors}
+            values={[
+              {
+                name: "Weight Loss",
+                value: "loss",
+              },
+              {
+                name: "Maintain Weight",
+                value: "maintain",
+              },
+              {
+                name: "Muscle Gain",
+                value: "gain",
+              },
+            ]}
+            validation={{
+              required: "Goal is required",
+            }}
+          />
 
-        <Button
-          type="submit"
-          color="primary"
-          size="medium"
-          styles="col-span-full w-full"
-        >
-          Calculate Macros
-        </Button>
+          <Button
+            type="submit"
+            color="primary"
+            size="medium"
+            styles="col-span-full w-full"
+          >
+            Calculate Macros
+          </Button>
 
-        {/* <p className="text-center col-span-full text-sm">Or</p>
+          {/* <p className="text-center col-span-full text-sm">Or</p>
 
         <Button
           type="button"
@@ -116,20 +119,21 @@ function MacrosCalculator() {
         >
           User profile values
         </Button> */}
+        </FormProvider>
       </Calculator.Body>
       <Calculator.Footer>
         <div className="p-3 w-full">
           <div className="flex flex-row w-full justify-between items-center gap-2">
             <p className="text-sm">Protein</p>
-            <p className="text-sm">{macros?.protein} grams</p>
+            <p className="text-sm">{macros?.protein ?? "0"} grams</p>
           </div>
           <div className="flex flex-row w-full justify-between items-center gap-2">
             <p className="text-sm">Fat</p>
-            <p className="text-sm">{macros?.fat} grams</p>
+            <p className="text-sm">{macros?.fat ?? "0"} grams</p>
           </div>
           <div className="flex flex-row w-full justify-between items-center gap-2">
             <p className="text-sm">Carbs</p>
-            <p className="text-sm">{macros?.carbs} grams</p>
+            <p className="text-sm">{macros?.carbs ?? "0"} grams</p>
           </div>
         </div>
       </Calculator.Footer>

@@ -1,5 +1,5 @@
 import { FaPercent } from "react-icons/fa";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { FormProvider, useForm, type SubmitHandler } from "react-hook-form";
 import Calculator from "../../../../components/calculators/Calculator";
 import Button from "../../../../components/ui/buttons/Button";
 import FormInput from "../../../../components/ui/inputs/FormInput";
@@ -13,14 +13,7 @@ function BodyFatCalculator() {
   const [tdee, setTDEE] = useState<number>(0);
   // const user = useAppSelector((state) => state.user);
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    // setError,
-    // getValues,
-    // reset,
-  } = useForm<IBodyFatCalculator>({
+  const methods = useForm<IBodyFatCalculator>({
     defaultValues: {
       sex: "",
       height: 0,
@@ -29,6 +22,15 @@ function BodyFatCalculator() {
       hip: 0,
     },
   });
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    // setError,
+    // getValues,
+    // reset,
+  } = methods;
 
   const calculate: SubmitHandler<IBodyFatCalculator> = (data) => {
     const tdee = calculateBodyFat(
@@ -53,87 +55,88 @@ function BodyFatCalculator() {
         </div>
       </Calculator.Header>
       <Calculator.Body>
-        <FormInput
-          type="number"
-          id="height"
-          name="Height (cm)"
-          register={register}
-          errors={errors}
-          validation={{
-            min: {
-              value: 10,
-              message: "Height is required",
-            },
-          }}
-        />
+        <FormProvider {...methods}>
+          <FormInput
+            type="number"
+            id="height"
+            name="Height (cm)"
+            register={register}
+            errors={errors}
+            validation={{
+              min: {
+                value: 10,
+                message: "Height is required",
+              },
+            }}
+          />
 
-        <FormInput
-          type="number"
-          id="waist"
-          name="Waist (cm)"
-          register={register}
-          errors={errors}
-          validation={{
-            min: {
-              value: 1,
-              message: "Waist is required",
-            },
-          }}
-        />
+          <FormInput
+            type="number"
+            id="waist"
+            name="Waist (cm)"
+            register={register}
+            errors={errors}
+            validation={{
+              min: {
+                value: 1,
+                message: "Waist is required",
+              },
+            }}
+          />
 
-        <FormInput
-          type="number"
-          id="neck"
-          name="Neck (cm)"
-          register={register}
-          errors={errors}
-          validation={{
-            min: {
-              value: 1,
-              message: "Neck is required",
-            },
-          }}
-        />
+          <FormInput
+            type="number"
+            id="neck"
+            name="Neck (cm)"
+            register={register}
+            errors={errors}
+            validation={{
+              min: {
+                value: 1,
+                message: "Neck is required",
+              },
+            }}
+          />
 
-        <FormInput
-          type="number"
-          id="hip"
-          name="Hip (cm)"
-          register={register}
-          info="For women only"
-        />
+          <FormInput
+            type="number"
+            id="hip"
+            name="Hip (cm)"
+            register={register}
+            info="For women only"
+          />
 
-        <Dropdown
-          styles="col-span-full w-full"
-          id="sex"
-          name="Sex"
-          register={register}
-          errors={errors}
-          values={[
-            {
-              name: "Male",
-              value: "male",
-            },
-            {
-              name: "Female",
-              value: "female",
-            },
-          ]}
-          validation={{
-            required: "Sex is required",
-          }}
-        />
+          <Dropdown
+            styles="col-span-full w-full"
+            id="sex"
+            name="Sex"
+            // register={register}
+            errors={errors}
+            values={[
+              {
+                name: "Male",
+                value: "male",
+              },
+              {
+                name: "Female",
+                value: "female",
+              },
+            ]}
+            validation={{
+              required: "Sex is required",
+            }}
+          />
 
-        <Button
-          type="submit"
-          color="primary"
-          size="medium"
-          styles="col-span-full w-full"
-        >
-          Calculate Body Fat
-        </Button>
+          <Button
+            type="submit"
+            color="primary"
+            size="medium"
+            styles="col-span-full w-full"
+          >
+            Calculate Body Fat
+          </Button>
 
-        {/* <p className="text-center col-span-full text-sm">Or</p>
+          {/* <p className="text-center col-span-full text-sm">Or</p>
 
         <Button
           type="button"
@@ -144,6 +147,7 @@ function BodyFatCalculator() {
         >
           User profile values
         </Button> */}
+        </FormProvider>
       </Calculator.Body>
       <Calculator.Footer>
         <p className="text-main-blue text-xl">{tdee} %</p>

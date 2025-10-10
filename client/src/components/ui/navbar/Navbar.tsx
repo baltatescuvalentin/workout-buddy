@@ -11,7 +11,7 @@ function Navbar() {
 
   return (
     <div
-      className={`fixed top-2 w-[95%] ml-2.5 shadow-lg z-100 px-4 py-2 sm:hidden sm:pointer-events-none rounded-lg bg-white flex flex-row items-center justify-between
+      className={`fixed top-2 w-[95%] ml-3 shadow-lg z-100 px-4 py-2 sm:hidden sm:pointer-events-none rounded-lg bg-white flex flex-row items-center justify-between
     `}
     >
       <RxHamburgerMenu

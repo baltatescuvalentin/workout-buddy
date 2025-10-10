@@ -6,6 +6,12 @@ export interface IExerciseFilter {
   type: string;
 }
 
+export interface IExerciseCreate extends IExerciseFilter {
+  sets: number;
+  reps: number;
+  duration: number;
+}
+
 export interface IExerciseUtils {
   equipment: string[];
   target: string[];

@@ -18,6 +18,7 @@ interface IInput<T extends FieldValues> {
   validation?: RegisterOptions<T>;
   register: UseFormRegister<T>;
   info?: string;
+  hideDetails?: boolean;
 }
 
 function FormInput<T extends FieldValues>({
@@ -30,6 +31,7 @@ function FormInput<T extends FieldValues>({
   size,
   validation,
   info,
+  hideDetails = false,
 }: IInput<T>) {
   const cSize = useMemo(() => {
     if (size === "small") {
@@ -60,13 +62,14 @@ function FormInput<T extends FieldValues>({
           htmlFor={id}
           className={`absolute text-sm text-main-gray duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-main-blue peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 ${
             errors?.[id] && "peer-focus:text-red-500 text-red-500"
-          }`}
+          } ${size === "small" && "text-xs"}`}
         >
           {name}
         </label>
       </div>
       {info && <p className="text-xs text-gray-400">{info}</p>}
-      {errors && (
+
+      {!hideDetails && (
         <div
           className={`${
             errors?.[id] ? "visible" : "invisible"

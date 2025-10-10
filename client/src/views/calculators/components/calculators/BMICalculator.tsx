@@ -18,6 +18,7 @@ function BMICalculator() {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm<IBMICalculator>({
     defaultValues: {
       weight: 0,
@@ -42,6 +43,8 @@ function BMICalculator() {
 
   const calculateWithUserValues = () => {
     const bmi = calculateBMI(Number(user.weight), Number(user.height));
+    setValue("weight", user.weight);
+    setValue("height", user.height);
     setBMI({
       bmi: bmi.bmi,
       status: bmi.status,

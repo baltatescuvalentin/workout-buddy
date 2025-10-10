@@ -27,7 +27,32 @@ const router = createBrowserRouter([
       },
       {
         path: "/workouts",
+        loader: authMiddleware,
         element: lazyElement(() => import("../views/workouts/WorkoutsIndex")),
+        children: [
+          {
+            path: "show",
+            element: lazyElement(
+              () => import("../views/workouts/show/WorkoutsShow")
+            ),
+          },
+          {
+            path: "create",
+            element: lazyElement(
+              () => import("../views/workouts/create/WorkoutsCreate")
+            ),
+          },
+          {
+            path: "edit/:id",
+            element: lazyElement(
+              () => import("../views/workouts/edit/WorkoutsEdit")
+            ),
+          },
+        ],
+      },
+      {
+        path: "/exercise",
+        element: lazyElement(() => import("../views/routine/ExerciseIndex")),
         loader: authMiddleware,
       },
       {
